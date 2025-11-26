@@ -1,0 +1,13 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"3 modules/sensors.c
+[; ;modules/sensors.c: 3: void sensors_update(void)
+[v _sensors_update `(v ~T0 @X0 1 ef ]
+"4
+[; ;modules/sensors.c: 4: {
+{
+[e :U _sensors_update ]
+[f ]
+"6
+[; ;modules/sensors.c: 6: }
+[e :UE 1 ]
+}

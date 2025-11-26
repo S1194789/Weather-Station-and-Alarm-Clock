@@ -1,0 +1,13 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"3 modules/alarms.c
+[; ;modules/alarms.c: 3: void alarms_update(void)
+[v _alarms_update `(v ~T0 @X0 1 ef ]
+"4
+[; ;modules/alarms.c: 4: {
+{
+[e :U _alarms_update ]
+[f ]
+"6
+[; ;modules/alarms.c: 6: }
+[e :UE 1 ]
+}

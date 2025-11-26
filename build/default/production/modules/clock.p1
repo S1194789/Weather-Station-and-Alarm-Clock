@@ -1,0 +1,84 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"6 modules/clock.c
+[; ;modules/clock.c: 6:     system.clock.sec++;
+[c E37 0 1 2 3 .. ]
+[n E37 . MODE_NORMAL MODE_CONFIG MODE_RECORDS MODE_ALARM  ]
+"22 system/system.h
+[; ;system/system.h: 22: typedef struct {
+[s S1 :1 `uc 1 ]
+[n S1 . one_second ]
+"27
+[; ;system/system.h: 27: typedef struct {
+[s S2 `uc 1 `uc 1 `uc 1 ]
+[n S2 . hour min sec ]
+"34
+[; ;system/system.h: 34: typedef struct {
+[s S3 `c 1 `uc 1 ]
+[n S3 . temperature luminosity ]
+"40
+[; ;system/system.h: 40: typedef struct {
+[s S4 `E37 1 `S1 1 `S2 1 `S3 1 ]
+[n S4 . mode flags clock sensors ]
+"47
+[; ;system/system.h: 47: extern system_t system;
+[v _system `S4 ~T0 @X0 0 e ]
+"4 modules/clock.c
+[; ;modules/clock.c: 4: void clock_update_1s(void)
+[v _clock_update_1s `(v ~T0 @X0 1 ef ]
+"5
+[; ;modules/clock.c: 5: {
+{
+[e :U _clock_update_1s ]
+[f ]
+"6
+[; ;modules/clock.c: 6:     system.clock.sec++;
+[e ++ . . _system 2 2 -> -> 1 `i `uc ]
+"8
+[; ;modules/clock.c: 8:     if(system.clock.sec >= 60)
+[e $ ! >= -> . . _system 2 2 `i -> 60 `i 6  ]
+"9
+[; ;modules/clock.c: 9:     {
+{
+"10
+[; ;modules/clock.c: 10:         system.clock.sec = 0;
+[e = . . _system 2 2 -> -> 0 `i `uc ]
+"11
+[; ;modules/clock.c: 11:         system.clock.min++;
+[e ++ . . _system 2 1 -> -> 1 `i `uc ]
+"12
+[; ;modules/clock.c: 12:     }
+}
+[e :U 6 ]
+"14
+[; ;modules/clock.c: 14:     if(system.clock.min >= 60)
+[e $ ! >= -> . . _system 2 1 `i -> 60 `i 7  ]
+"15
+[; ;modules/clock.c: 15:     {
+{
+"16
+[; ;modules/clock.c: 16:         system.clock.min = 0;
+[e = . . _system 2 1 -> -> 0 `i `uc ]
+"17
+[; ;modules/clock.c: 17:         system.clock.hour++;
+[e ++ . . _system 2 0 -> -> 1 `i `uc ]
+"18
+[; ;modules/clock.c: 18:     }
+}
+[e :U 7 ]
+"20
+[; ;modules/clock.c: 20:     if(system.clock.hour >= 24)
+[e $ ! >= -> . . _system 2 0 `i -> 24 `i 8  ]
+"21
+[; ;modules/clock.c: 21:     {
+{
+"22
+[; ;modules/clock.c: 22:         system.clock.hour = 0;
+[e = . . _system 2 0 -> -> 0 `i `uc ]
+"23
+[; ;modules/clock.c: 23:     }
+}
+[e :U 8 ]
+"24
+[; ;modules/clock.c: 24: }
+[e :UE 5 ]
+}
