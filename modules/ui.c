@@ -3,8 +3,11 @@
 #include "lcd.h"
 #include <stdio.h>
 #include "i2c.h"
+#include "sensors.h"
 
 #define _XTAL_FREQ 4000000
+extern unsigned char temperature_value;   // ? ???
+extern unsigned char luminosity_value;     // ? ??? ? ?
 
 static void ui_normal(void);
 static void ui_time_update(void);
@@ -34,13 +37,12 @@ static void ui_normal(void)
     LCDstr("00:00:00   A");
 
     LCDpos(1, 0);
-    LCDstr("00  C L  0");
+    LCDstr("00 C");
 
-   // turn off the curser
+
+    // turn off the cursor
     LCDcmd(0x0C);
 }
-
-
 
 static void ui_time_update(void)
 {
@@ -52,8 +54,15 @@ static void ui_time_update(void)
 
     LCDpos(0, 0);
     LCDstr(buf);
-}
 
+    // ---- NORMAL ????? ??? ?? ?? ----
+    if (ui_state == UI_NORMAL)
+    {
+        LCDpos(1, 0);
+        sprintf(buf, "%02d  C L  0", temperature_value);
+        LCDstr(buf);
+    }
+}
 
 void ui_next_state(void)
 {
@@ -83,8 +92,6 @@ void ui_next_state(void)
     }
 }
 
-
-
 void ui_select(void)
 {
     switch(ui_state)
@@ -105,7 +112,6 @@ void ui_select(void)
             break;
     }
 }
-
 
 void ui_update(void)
 {

@@ -15,18 +15,16 @@ void system_init(void)
     INTCONbits.GIE  = 1;
     INTCONbits.PEIE = 1;
 
-    // ?? ??? ??
     system.mode = MODE_NORMAL;
 
-    // ??? ???
+
     system.flags.one_second = 0;
 
-    // ?? ???
     system.clock.hour = 0;
     system.clock.min  = 0;
     system.clock.sec  = 0;
 
-    // ?? ??? (??? 0?? ?)
+
     system.sensors.temperature = 0;
     system.sensors.luminosity  = 0;
 }

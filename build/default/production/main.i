@@ -20856,19 +20856,35 @@ extern uint8_t S2_pressed;
 # 5 "main.c" 2
 # 1 "modules/sensors.h" 1
 # 11 "modules/sensors.h"
+extern unsigned char temperature_value;
+extern unsigned char luminosity_value;
+
+void sensors_init(void);
 void sensors_update(void);
+unsigned char readTC74(void);
 # 6 "main.c" 2
 # 1 "modules/alarms.h" 1
 # 11 "modules/alarms.h"
 void alarms_update(void);
 # 7 "main.c" 2
 # 1 "modules/ui.h" 1
-# 11 "modules/ui.h"
+
+
+
+
+
 typedef enum {
-    UI_NORMAL,
+    UI_NORMAL = 0,
+
+
     UI_CFG_HOUR,
     UI_CFG_MIN,
     UI_CFG_SEC,
+    UI_CFG_C,
+    UI_CFG_T,
+    UI_CFG_L,
+    UI_CFG_ALARM_EN,
+    UI_CFG_RESET
 } ui_state_t;
 
 extern ui_state_t ui_state;
@@ -20920,6 +20936,7 @@ void main(void)
 
     system_init();
     ui_init();
+    sensors_init();
 
     while (1)
     {
@@ -20927,9 +20944,9 @@ void main(void)
         {
             system.flags.one_second = 0;
             clock_update_1s();
+            sensors_update();
         }
         buttons_update();
-        sensors_update();
         alarms_update();
         ui_update();
 

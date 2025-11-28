@@ -20812,12 +20812,23 @@ extern uint8_t S1_pressed;
 extern uint8_t S2_pressed;
 # 2 "modules/buttons.c" 2
 # 1 "modules/ui.h" 1
-# 11 "modules/ui.h"
+
+
+
+
+
 typedef enum {
-    UI_NORMAL,
+    UI_NORMAL = 0,
+
+
     UI_CFG_HOUR,
     UI_CFG_MIN,
     UI_CFG_SEC,
+    UI_CFG_C,
+    UI_CFG_T,
+    UI_CFG_L,
+    UI_CFG_ALARM_EN,
+    UI_CFG_RESET
 } ui_state_t;
 
 extern ui_state_t ui_state;

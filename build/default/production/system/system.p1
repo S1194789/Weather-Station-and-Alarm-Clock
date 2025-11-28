@@ -1691,28 +1691,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16
 [; ;system/system.c: 16:     INTCONbits.PEIE = 1;
 [e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
-"19
-[; ;system/system.c: 19:     system.mode = MODE_NORMAL;
+"18
+[; ;system/system.c: 18:     system.mode = MODE_NORMAL;
 [e = . _system 0 . `E12633 0 ]
-"22
-[; ;system/system.c: 22:     system.flags.one_second = 0;
+"21
+[; ;system/system.c: 21:     system.flags.one_second = 0;
 [e = . . _system 1 0 -> -> 0 `i `uc ]
-"25
-[; ;system/system.c: 25:     system.clock.hour = 0;
+"23
+[; ;system/system.c: 23:     system.clock.hour = 0;
 [e = . . _system 2 0 -> -> 0 `i `uc ]
-"26
-[; ;system/system.c: 26:     system.clock.min = 0;
+"24
+[; ;system/system.c: 24:     system.clock.min = 0;
 [e = . . _system 2 1 -> -> 0 `i `uc ]
-"27
-[; ;system/system.c: 27:     system.clock.sec = 0;
+"25
+[; ;system/system.c: 25:     system.clock.sec = 0;
 [e = . . _system 2 2 -> -> 0 `i `uc ]
-"30
-[; ;system/system.c: 30:     system.sensors.temperature = 0;
+"28
+[; ;system/system.c: 28:     system.sensors.temperature = 0;
 [e = . . _system 3 0 -> -> 0 `i `c ]
-"31
-[; ;system/system.c: 31:     system.sensors.luminosity = 0;
+"29
+[; ;system/system.c: 29:     system.sensors.luminosity = 0;
 [e = . . _system 3 1 -> -> 0 `i `uc ]
-"32
-[; ;system/system.c: 32: }
+"30
+[; ;system/system.c: 30: }
 [e :UE 1624 ]
 }

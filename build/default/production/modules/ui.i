@@ -8,12 +8,23 @@
 # 2 "<built-in>" 2
 # 1 "modules/ui.c" 2
 # 1 "modules/ui.h" 1
-# 11 "modules/ui.h"
+
+
+
+
+
 typedef enum {
-    UI_NORMAL,
+    UI_NORMAL = 0,
+
+
     UI_CFG_HOUR,
     UI_CFG_MIN,
     UI_CFG_SEC,
+    UI_CFG_C,
+    UI_CFG_T,
+    UI_CFG_L,
+    UI_CFG_ALARM_EN,
+    UI_CFG_RESET
 } ui_state_t;
 
 extern ui_state_t ui_state;
@@ -21063,8 +21074,19 @@ signed char putsI2C( unsigned char *wrptr );
 
 unsigned char ReadI2C( void );
 # 6 "modules/ui.c" 2
+# 1 "modules/sensors.h" 1
+# 11 "modules/sensors.h"
+extern unsigned char temperature_value;
+extern unsigned char luminosity_value;
+
+void sensors_init(void);
+void sensors_update(void);
+unsigned char readTC74(void);
+# 7 "modules/ui.c" 2
 
 
+extern unsigned char temperature_value;
+extern unsigned char luminosity_value;
 
 static void ui_normal(void);
 static void ui_time_update(void);
@@ -21094,13 +21116,12 @@ static void ui_normal(void)
     LCDstr("00:00:00   A");
 
     LCDpos(1, 0);
-    LCDstr("00  C L  0");
+    LCDstr("00 C");
+
 
 
     LCDcmd(0x0C);
 }
-
-
 
 static void ui_time_update(void)
 {
@@ -21112,8 +21133,15 @@ static void ui_time_update(void)
 
     LCDpos(0, 0);
     LCDstr(buf);
-}
 
+
+    if (ui_state == UI_NORMAL)
+    {
+        LCDpos(1, 0);
+        sprintf(buf, "%02d  C L  0", temperature_value);
+        LCDstr(buf);
+    }
+}
 
 void ui_next_state(void)
 {
@@ -21122,17 +21150,17 @@ void ui_next_state(void)
         case UI_NORMAL:
             ui_state = UI_CFG_HOUR;
             LCDcmd(0x0F);
-            LCDpos(0,0);
+            LCDpos(0,1);
             break;
 
         case UI_CFG_HOUR:
             ui_state = UI_CFG_MIN;
-            LCDpos(0,3);
+            LCDpos(0,4);
             break;
 
         case UI_CFG_MIN:
             ui_state = UI_CFG_SEC;
-            LCDpos(0,6);
+            LCDpos(0,7);
             break;
 
         case UI_CFG_SEC:
@@ -21142,8 +21170,6 @@ void ui_next_state(void)
             break;
     }
 }
-
-
 
 void ui_select(void)
 {
@@ -21166,7 +21192,6 @@ void ui_select(void)
     }
 }
 
-
 void ui_update(void)
 {
     if (ui_state == UI_NORMAL)
@@ -21181,8 +21206,8 @@ void ui_update(void)
 
     switch(ui_state)
     {
-        case UI_CFG_HOUR: LCDpos(0,0); break;
-        case UI_CFG_MIN: LCDpos(0,3); break;
-        case UI_CFG_SEC: LCDpos(0,6); break;
+        case UI_CFG_HOUR: LCDpos(0,1); break;
+        case UI_CFG_MIN: LCDpos(0,4); break;
+        case UI_CFG_SEC: LCDpos(0,7); break;
     }
 }

@@ -21132,12 +21132,10 @@ void system_init(void)
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
 
-
     system.mode = MODE_NORMAL;
 
 
     system.flags.one_second = 0;
-
 
     system.clock.hour = 0;
     system.clock.min = 0;
