@@ -20812,12 +20812,23 @@ extern uint8_t S1_pressed;
 extern uint8_t S2_pressed;
 # 2 "modules/buttons.c" 2
 # 1 "modules/ui.h" 1
-# 11 "modules/ui.h"
+
+
+
+
+
 typedef enum {
-    UI_NORMAL,
+    UI_NORMAL = 0,
+
+
     UI_CFG_HOUR,
     UI_CFG_MIN,
     UI_CFG_SEC,
+    UI_CFG_C,
+    UI_CFG_T,
+    UI_CFG_L,
+    UI_CFG_ALARM_EN,
+    UI_CFG_RESET
 } ui_state_t;
 
 extern ui_state_t ui_state;
@@ -20854,12 +20865,33 @@ typedef struct {
     uint8_t luminosity;
 } sensors_t;
 
+typedef struct {
+    uint8_t enabled;
+
+    uint8_t clk_h;
+    uint8_t clk_m;
+    uint8_t clk_s;
+
+    int8_t temp_thr;
+    uint8_t lum_thr;
+
+
+    uint8_t active_C;
+    uint8_t active_T;
+    uint8_t active_L;
+
+
+    uint8_t pwm_active;
+    uint8_t pwm_timer;
+} alarms_t;
+
 
 typedef struct {
     system_mode_t mode;
     system_flags_t flags;
     clock_t clock;
     sensors_t sensors;
+    alarms_t alarms;
 } system_t;
 
 extern system_t system;

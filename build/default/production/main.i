@@ -20832,12 +20832,33 @@ typedef struct {
     uint8_t luminosity;
 } sensors_t;
 
+typedef struct {
+    uint8_t enabled;
+
+    uint8_t clk_h;
+    uint8_t clk_m;
+    uint8_t clk_s;
+
+    int8_t temp_thr;
+    uint8_t lum_thr;
+
+
+    uint8_t active_C;
+    uint8_t active_T;
+    uint8_t active_L;
+
+
+    uint8_t pwm_active;
+    uint8_t pwm_timer;
+} alarms_t;
+
 
 typedef struct {
     system_mode_t mode;
     system_flags_t flags;
     clock_t clock;
     sensors_t sensors;
+    alarms_t alarms;
 } system_t;
 
 extern system_t system;
@@ -20856,19 +20877,35 @@ extern uint8_t S2_pressed;
 # 5 "main.c" 2
 # 1 "modules/sensors.h" 1
 # 11 "modules/sensors.h"
+extern unsigned char temperature_value;
+extern unsigned char luminosity_value;
+
+void sensors_init(void);
 void sensors_update(void);
+unsigned char readTC74(void);
 # 6 "main.c" 2
 # 1 "modules/alarms.h" 1
 # 11 "modules/alarms.h"
 void alarms_update(void);
 # 7 "main.c" 2
 # 1 "modules/ui.h" 1
-# 11 "modules/ui.h"
+
+
+
+
+
 typedef enum {
-    UI_NORMAL,
+    UI_NORMAL = 0,
+
+
     UI_CFG_HOUR,
     UI_CFG_MIN,
     UI_CFG_SEC,
+    UI_CFG_C,
+    UI_CFG_T,
+    UI_CFG_L,
+    UI_CFG_ALARM_EN,
+    UI_CFG_RESET
 } ui_state_t;
 
 extern ui_state_t ui_state;
@@ -20920,6 +20957,7 @@ void main(void)
 
     system_init();
     ui_init();
+    sensors_init();
 
     while (1)
     {
@@ -20927,9 +20965,9 @@ void main(void)
         {
             system.flags.one_second = 0;
             clock_update_1s();
+            sensors_update();
         }
         buttons_update();
-        sensors_update();
         alarms_update();
         ui_update();
 

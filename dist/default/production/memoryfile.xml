@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\01RTS_1.X.production.hex">
+  <executable name="dist/default/production\Weather-Station-and-Alarm-Clock.production.hex">
     <memory name="program">
       <units>words</units>
       <length>8192</length>
-      <used>2285</used>
-      <free>5907</free>
+      <used>3678</used>
+      <free>4514</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>1024</length>
-      <used>195</used>
-      <free>829</free>
+      <used>240</used>
+      <free>784</free>
     </memory>
   </executable>
 </project>

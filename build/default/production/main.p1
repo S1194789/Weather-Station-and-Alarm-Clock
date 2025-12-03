@@ -1,13 +1,16 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"49 system/system.h
-[; ;system/system.h: 49: void system_init(void);
+"70 system/system.h
+[; ;system/system.h: 70: void system_init(void);
 [v _system_init `(v ~T0 @X0 0 ef ]
-"20 modules/ui.h
-[; ;modules/ui.h: 20: void ui_init(void);
+"22 modules/ui.h
+[; ;modules/ui.h: 22: void ui_init(void);
 [v _ui_init `(v ~T0 @X0 0 ef ]
-"25 main.c
-[; ;main.c: 25:         if(system.flags.one_second)
+"14 modules/sensors.h
+[; ;modules/sensors.h: 14: void sensors_init(void);
+[v _sensors_init `(v ~T0 @X0 0 ef ]
+"26 main.c
+[; ;main.c: 26:         if(system.flags.one_second)
 [c E12218 0 1 2 3 .. ]
 [n E12218 . MODE_NORMAL MODE_CONFIG MODE_RECORDS MODE_ALARM  ]
 "22 system/system.h
@@ -22,27 +25,31 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;system/system.h: 34: typedef struct {
 [s S1620 `c 1 `uc 1 ]
 [n S1620 . temperature luminosity ]
-"40
-[; ;system/system.h: 40: typedef struct {
-[s S1621 `E12218 1 `S1618 1 `S1619 1 `S1620 1 ]
-[n S1621 . mode flags clock sensors ]
-"47
-[; ;system/system.h: 47: extern system_t system;
-[v _system `S1621 ~T0 @X0 0 e ]
+"39
+[; ;system/system.h: 39: typedef struct {
+[s S1621 `uc 1 `uc 1 `uc 1 `uc 1 `c 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
+[n S1621 . enabled clk_h clk_m clk_s temp_thr lum_thr active_C active_T active_L pwm_active pwm_timer ]
+"60
+[; ;system/system.h: 60: typedef struct {
+[s S1622 `E12218 1 `S1618 1 `S1619 1 `S1620 1 `S1621 1 ]
+[n S1622 . mode flags clock sensors alarms ]
+"68
+[; ;system/system.h: 68: extern system_t system;
+[v _system `S1622 ~T0 @X0 0 e ]
 "11 modules/clock.h
 [; ;modules/clock.h: 11: void clock_update_1s(void);
 [v _clock_update_1s `(v ~T0 @X0 0 ef ]
+"15 modules/sensors.h
+[; ;modules/sensors.h: 15: void sensors_update(void);
+[v _sensors_update `(v ~T0 @X0 0 ef ]
 "11 modules/buttons.h
 [; ;modules/buttons.h: 11: void buttons_update(void);
 [v _buttons_update `(v ~T0 @X0 0 ef ]
-"11 modules/sensors.h
-[; ;modules/sensors.h: 11: void sensors_update(void);
-[v _sensors_update `(v ~T0 @X0 0 ef ]
 "11 modules/alarms.h
 [; ;modules/alarms.h: 11: void alarms_update(void);
 [v _alarms_update `(v ~T0 @X0 0 ef ]
-"21 modules/ui.h
-[; ;modules/ui.h: 21: void ui_update(void);
+"23 modules/ui.h
+[; ;modules/ui.h: 23: void ui_update(void);
 [v _ui_update `(v ~T0 @X0 0 ef ]
 "54 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f18875.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f18875.h: 54: __asm("INDF0 equ 00h");
@@ -1697,47 +1704,50 @@ Version 4.0 HI-TECH Software Intermediate Code
 "21
 [; ;main.c: 21:     ui_init();
 [e ( _ui_init ..  ]
-"23
-[; ;main.c: 23:     while (1)
-[e :U 1624 ]
+"22
+[; ;main.c: 22:     sensors_init();
+[e ( _sensors_init ..  ]
 "24
-[; ;main.c: 24:     {
-{
-"25
-[; ;main.c: 25:         if(system.flags.one_second)
-[e $ ! != -> . . _system 1 0 `i -> 0 `i 1626  ]
-"26
-[; ;main.c: 26:         {
-{
-"27
-[; ;main.c: 27:             system.flags.one_second = 0;
-[e = . . _system 1 0 -> -> 0 `i `uc ]
-"28
-[; ;main.c: 28:             clock_update_1s();
-[e ( _clock_update_1s ..  ]
-"29
-[; ;main.c: 29:         }
-}
-[e :U 1626 ]
-"30
-[; ;main.c: 30:         buttons_update();
-[e ( _buttons_update ..  ]
-"31
-[; ;main.c: 31:         sensors_update();
-[e ( _sensors_update ..  ]
-"32
-[; ;main.c: 32:         alarms_update();
-[e ( _alarms_update ..  ]
-"33
-[; ;main.c: 33:         ui_update();
-[e ( _ui_update ..  ]
-"36
-[; ;main.c: 36:     }
-}
-[e :U 1623 ]
-[e $U 1624  ]
+[; ;main.c: 24:     while (1)
 [e :U 1625 ]
+"25
+[; ;main.c: 25:     {
+{
+"26
+[; ;main.c: 26:         if(system.flags.one_second)
+[e $ ! != -> . . _system 1 0 `i -> 0 `i 1627  ]
+"27
+[; ;main.c: 27:         {
+{
+"28
+[; ;main.c: 28:             system.flags.one_second = 0;
+[e = . . _system 1 0 -> -> 0 `i `uc ]
+"29
+[; ;main.c: 29:             clock_update_1s();
+[e ( _clock_update_1s ..  ]
+"30
+[; ;main.c: 30:             sensors_update();
+[e ( _sensors_update ..  ]
+"31
+[; ;main.c: 31:         }
+}
+[e :U 1627 ]
+"32
+[; ;main.c: 32:         buttons_update();
+[e ( _buttons_update ..  ]
+"33
+[; ;main.c: 33:         alarms_update();
+[e ( _alarms_update ..  ]
+"34
+[; ;main.c: 34:         ui_update();
+[e ( _ui_update ..  ]
 "37
-[; ;main.c: 37: }
-[e :UE 1622 ]
+[; ;main.c: 37:     }
+}
+[e :U 1624 ]
+[e $U 1625  ]
+[e :U 1626 ]
+"38
+[; ;main.c: 38: }
+[e :UE 1623 ]
 }

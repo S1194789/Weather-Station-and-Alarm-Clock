@@ -30,12 +30,12 @@ ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 IMAGE_TYPE=debug
 OUTPUT_SUFFIX=elf
 DEBUGGABLE_SUFFIX=elf
-FINAL_IMAGE=${DISTDIR}/01RTS_1.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+FINAL_IMAGE=${DISTDIR}/Weather-Station-and-Alarm-Clock.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 else
 IMAGE_TYPE=production
 OUTPUT_SUFFIX=hex
 DEBUGGABLE_SUFFIX=elf
-FINAL_IMAGE=${DISTDIR}/01RTS_1.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+FINAL_IMAGE=${DISTDIR}/Weather-Station-and-Alarm-Clock.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 endif
 
 ifeq ($(COMPARE_BUILD), true)
@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=I2C/i2c.c LCD/lcd.c mcc_generated_files/examples/i2c1_master_example.c mcc_generated_files/pin_manager.c mcc_generated_files/device_config.c mcc_generated_files/mcc.c mcc_generated_files/i2c1_master.c mcc_generated_files/tmr1.c mcc_generated_files/interrupt_manager.c main.c system/system.c modules/alarms.c modules/buttons.c modules/clock.c modules/sensors.c modules/storage.c modules/ui.c
+SOURCEFILES_QUOTED_IF_SPACED=I2C/i2c.c LCD/lcd.c modules/alarms.c modules/buttons.c modules/clock.c modules/sensors.c modules/storage.c modules/ui.c mcc_generated_files/examples/i2c1_master_example.c mcc_generated_files/pin_manager.c mcc_generated_files/device_config.c mcc_generated_files/mcc.c mcc_generated_files/i2c1_master.c mcc_generated_files/tmr1.c mcc_generated_files/interrupt_manager.c main.c system/system.c mcc_generated_files/adcc.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/I2C/i2c.p1 ${OBJECTDIR}/LCD/lcd.p1 ${OBJECTDIR}/mcc_generated_files/examples/i2c1_master_example.p1 ${OBJECTDIR}/mcc_generated_files/pin_manager.p1 ${OBJECTDIR}/mcc_generated_files/device_config.p1 ${OBJECTDIR}/mcc_generated_files/mcc.p1 ${OBJECTDIR}/mcc_generated_files/i2c1_master.p1 ${OBJECTDIR}/mcc_generated_files/tmr1.p1 ${OBJECTDIR}/mcc_generated_files/interrupt_manager.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/system/system.p1 ${OBJECTDIR}/modules/alarms.p1 ${OBJECTDIR}/modules/buttons.p1 ${OBJECTDIR}/modules/clock.p1 ${OBJECTDIR}/modules/sensors.p1 ${OBJECTDIR}/modules/storage.p1 ${OBJECTDIR}/modules/ui.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/I2C/i2c.p1.d ${OBJECTDIR}/LCD/lcd.p1.d ${OBJECTDIR}/mcc_generated_files/examples/i2c1_master_example.p1.d ${OBJECTDIR}/mcc_generated_files/pin_manager.p1.d ${OBJECTDIR}/mcc_generated_files/device_config.p1.d ${OBJECTDIR}/mcc_generated_files/mcc.p1.d ${OBJECTDIR}/mcc_generated_files/i2c1_master.p1.d ${OBJECTDIR}/mcc_generated_files/tmr1.p1.d ${OBJECTDIR}/mcc_generated_files/interrupt_manager.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/system/system.p1.d ${OBJECTDIR}/modules/alarms.p1.d ${OBJECTDIR}/modules/buttons.p1.d ${OBJECTDIR}/modules/clock.p1.d ${OBJECTDIR}/modules/sensors.p1.d ${OBJECTDIR}/modules/storage.p1.d ${OBJECTDIR}/modules/ui.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/I2C/i2c.p1 ${OBJECTDIR}/LCD/lcd.p1 ${OBJECTDIR}/modules/alarms.p1 ${OBJECTDIR}/modules/buttons.p1 ${OBJECTDIR}/modules/clock.p1 ${OBJECTDIR}/modules/sensors.p1 ${OBJECTDIR}/modules/storage.p1 ${OBJECTDIR}/modules/ui.p1 ${OBJECTDIR}/mcc_generated_files/examples/i2c1_master_example.p1 ${OBJECTDIR}/mcc_generated_files/pin_manager.p1 ${OBJECTDIR}/mcc_generated_files/device_config.p1 ${OBJECTDIR}/mcc_generated_files/mcc.p1 ${OBJECTDIR}/mcc_generated_files/i2c1_master.p1 ${OBJECTDIR}/mcc_generated_files/tmr1.p1 ${OBJECTDIR}/mcc_generated_files/interrupt_manager.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/system/system.p1 ${OBJECTDIR}/mcc_generated_files/adcc.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/I2C/i2c.p1.d ${OBJECTDIR}/LCD/lcd.p1.d ${OBJECTDIR}/modules/alarms.p1.d ${OBJECTDIR}/modules/buttons.p1.d ${OBJECTDIR}/modules/clock.p1.d ${OBJECTDIR}/modules/sensors.p1.d ${OBJECTDIR}/modules/storage.p1.d ${OBJECTDIR}/modules/ui.p1.d ${OBJECTDIR}/mcc_generated_files/examples/i2c1_master_example.p1.d ${OBJECTDIR}/mcc_generated_files/pin_manager.p1.d ${OBJECTDIR}/mcc_generated_files/device_config.p1.d ${OBJECTDIR}/mcc_generated_files/mcc.p1.d ${OBJECTDIR}/mcc_generated_files/i2c1_master.p1.d ${OBJECTDIR}/mcc_generated_files/tmr1.p1.d ${OBJECTDIR}/mcc_generated_files/interrupt_manager.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/system/system.p1.d ${OBJECTDIR}/mcc_generated_files/adcc.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/I2C/i2c.p1 ${OBJECTDIR}/LCD/lcd.p1 ${OBJECTDIR}/mcc_generated_files/examples/i2c1_master_example.p1 ${OBJECTDIR}/mcc_generated_files/pin_manager.p1 ${OBJECTDIR}/mcc_generated_files/device_config.p1 ${OBJECTDIR}/mcc_generated_files/mcc.p1 ${OBJECTDIR}/mcc_generated_files/i2c1_master.p1 ${OBJECTDIR}/mcc_generated_files/tmr1.p1 ${OBJECTDIR}/mcc_generated_files/interrupt_manager.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/system/system.p1 ${OBJECTDIR}/modules/alarms.p1 ${OBJECTDIR}/modules/buttons.p1 ${OBJECTDIR}/modules/clock.p1 ${OBJECTDIR}/modules/sensors.p1 ${OBJECTDIR}/modules/storage.p1 ${OBJECTDIR}/modules/ui.p1
+OBJECTFILES=${OBJECTDIR}/I2C/i2c.p1 ${OBJECTDIR}/LCD/lcd.p1 ${OBJECTDIR}/modules/alarms.p1 ${OBJECTDIR}/modules/buttons.p1 ${OBJECTDIR}/modules/clock.p1 ${OBJECTDIR}/modules/sensors.p1 ${OBJECTDIR}/modules/storage.p1 ${OBJECTDIR}/modules/ui.p1 ${OBJECTDIR}/mcc_generated_files/examples/i2c1_master_example.p1 ${OBJECTDIR}/mcc_generated_files/pin_manager.p1 ${OBJECTDIR}/mcc_generated_files/device_config.p1 ${OBJECTDIR}/mcc_generated_files/mcc.p1 ${OBJECTDIR}/mcc_generated_files/i2c1_master.p1 ${OBJECTDIR}/mcc_generated_files/tmr1.p1 ${OBJECTDIR}/mcc_generated_files/interrupt_manager.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/system/system.p1 ${OBJECTDIR}/mcc_generated_files/adcc.p1
 
 # Source Files
-SOURCEFILES=I2C/i2c.c LCD/lcd.c mcc_generated_files/examples/i2c1_master_example.c mcc_generated_files/pin_manager.c mcc_generated_files/device_config.c mcc_generated_files/mcc.c mcc_generated_files/i2c1_master.c mcc_generated_files/tmr1.c mcc_generated_files/interrupt_manager.c main.c system/system.c modules/alarms.c modules/buttons.c modules/clock.c modules/sensors.c modules/storage.c modules/ui.c
+SOURCEFILES=I2C/i2c.c LCD/lcd.c modules/alarms.c modules/buttons.c modules/clock.c modules/sensors.c modules/storage.c modules/ui.c mcc_generated_files/examples/i2c1_master_example.c mcc_generated_files/pin_manager.c mcc_generated_files/device_config.c mcc_generated_files/mcc.c mcc_generated_files/i2c1_master.c mcc_generated_files/tmr1.c mcc_generated_files/interrupt_manager.c main.c system/system.c mcc_generated_files/adcc.c
 
 
 
@@ -82,7 +82,7 @@ FIXDEPS=fixDeps
 ifneq ($(INFORMATION_MESSAGE), )
 	@echo $(INFORMATION_MESSAGE)
 endif
-	${MAKE}  -f nbproject/Makefile-default.mk ${DISTDIR}/01RTS_1.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+	${MAKE}  -f nbproject/Makefile-default.mk ${DISTDIR}/Weather-Station-and-Alarm-Clock.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 
 MP_PROCESSOR_OPTION=16F18875
 # ------------------------------------------------------------------------------------
@@ -103,6 +103,54 @@ ${OBJECTDIR}/LCD/lcd.p1: LCD/lcd.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/LCD/lcd.p1 LCD/lcd.c 
 	@-${MV} ${OBJECTDIR}/LCD/lcd.d ${OBJECTDIR}/LCD/lcd.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/LCD/lcd.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/modules/alarms.p1: modules/alarms.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/modules" 
+	@${RM} ${OBJECTDIR}/modules/alarms.p1.d 
+	@${RM} ${OBJECTDIR}/modules/alarms.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/alarms.p1 modules/alarms.c 
+	@-${MV} ${OBJECTDIR}/modules/alarms.d ${OBJECTDIR}/modules/alarms.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/modules/alarms.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/modules/buttons.p1: modules/buttons.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/modules" 
+	@${RM} ${OBJECTDIR}/modules/buttons.p1.d 
+	@${RM} ${OBJECTDIR}/modules/buttons.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/buttons.p1 modules/buttons.c 
+	@-${MV} ${OBJECTDIR}/modules/buttons.d ${OBJECTDIR}/modules/buttons.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/modules/buttons.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/modules/clock.p1: modules/clock.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/modules" 
+	@${RM} ${OBJECTDIR}/modules/clock.p1.d 
+	@${RM} ${OBJECTDIR}/modules/clock.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/clock.p1 modules/clock.c 
+	@-${MV} ${OBJECTDIR}/modules/clock.d ${OBJECTDIR}/modules/clock.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/modules/clock.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/modules/sensors.p1: modules/sensors.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/modules" 
+	@${RM} ${OBJECTDIR}/modules/sensors.p1.d 
+	@${RM} ${OBJECTDIR}/modules/sensors.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/sensors.p1 modules/sensors.c 
+	@-${MV} ${OBJECTDIR}/modules/sensors.d ${OBJECTDIR}/modules/sensors.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/modules/sensors.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/modules/storage.p1: modules/storage.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/modules" 
+	@${RM} ${OBJECTDIR}/modules/storage.p1.d 
+	@${RM} ${OBJECTDIR}/modules/storage.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/storage.p1 modules/storage.c 
+	@-${MV} ${OBJECTDIR}/modules/storage.d ${OBJECTDIR}/modules/storage.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/modules/storage.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/modules/ui.p1: modules/ui.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/modules" 
+	@${RM} ${OBJECTDIR}/modules/ui.p1.d 
+	@${RM} ${OBJECTDIR}/modules/ui.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/ui.p1 modules/ui.c 
+	@-${MV} ${OBJECTDIR}/modules/ui.d ${OBJECTDIR}/modules/ui.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/modules/ui.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/mcc_generated_files/examples/i2c1_master_example.p1: mcc_generated_files/examples/i2c1_master_example.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/examples" 
@@ -176,53 +224,13 @@ ${OBJECTDIR}/system/system.p1: system/system.c  nbproject/Makefile-${CND_CONF}.m
 	@-${MV} ${OBJECTDIR}/system/system.d ${OBJECTDIR}/system/system.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/system/system.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/modules/alarms.p1: modules/alarms.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/modules" 
-	@${RM} ${OBJECTDIR}/modules/alarms.p1.d 
-	@${RM} ${OBJECTDIR}/modules/alarms.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/alarms.p1 modules/alarms.c 
-	@-${MV} ${OBJECTDIR}/modules/alarms.d ${OBJECTDIR}/modules/alarms.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/modules/alarms.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/modules/buttons.p1: modules/buttons.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/modules" 
-	@${RM} ${OBJECTDIR}/modules/buttons.p1.d 
-	@${RM} ${OBJECTDIR}/modules/buttons.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/buttons.p1 modules/buttons.c 
-	@-${MV} ${OBJECTDIR}/modules/buttons.d ${OBJECTDIR}/modules/buttons.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/modules/buttons.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/modules/clock.p1: modules/clock.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/modules" 
-	@${RM} ${OBJECTDIR}/modules/clock.p1.d 
-	@${RM} ${OBJECTDIR}/modules/clock.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/clock.p1 modules/clock.c 
-	@-${MV} ${OBJECTDIR}/modules/clock.d ${OBJECTDIR}/modules/clock.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/modules/clock.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/modules/sensors.p1: modules/sensors.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/modules" 
-	@${RM} ${OBJECTDIR}/modules/sensors.p1.d 
-	@${RM} ${OBJECTDIR}/modules/sensors.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/sensors.p1 modules/sensors.c 
-	@-${MV} ${OBJECTDIR}/modules/sensors.d ${OBJECTDIR}/modules/sensors.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/modules/sensors.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/modules/storage.p1: modules/storage.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/modules" 
-	@${RM} ${OBJECTDIR}/modules/storage.p1.d 
-	@${RM} ${OBJECTDIR}/modules/storage.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/storage.p1 modules/storage.c 
-	@-${MV} ${OBJECTDIR}/modules/storage.d ${OBJECTDIR}/modules/storage.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/modules/storage.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/modules/ui.p1: modules/ui.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/modules" 
-	@${RM} ${OBJECTDIR}/modules/ui.p1.d 
-	@${RM} ${OBJECTDIR}/modules/ui.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/ui.p1 modules/ui.c 
-	@-${MV} ${OBJECTDIR}/modules/ui.d ${OBJECTDIR}/modules/ui.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/modules/ui.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/mcc_generated_files/adcc.p1: mcc_generated_files/adcc.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/adcc.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/adcc.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -mdebugger=pickit3   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/mcc_generated_files/adcc.p1 mcc_generated_files/adcc.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/adcc.d ${OBJECTDIR}/mcc_generated_files/adcc.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/adcc.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/I2C/i2c.p1: I2C/i2c.c  nbproject/Makefile-${CND_CONF}.mk 
@@ -240,6 +248,54 @@ ${OBJECTDIR}/LCD/lcd.p1: LCD/lcd.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/LCD/lcd.p1 LCD/lcd.c 
 	@-${MV} ${OBJECTDIR}/LCD/lcd.d ${OBJECTDIR}/LCD/lcd.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/LCD/lcd.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/modules/alarms.p1: modules/alarms.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/modules" 
+	@${RM} ${OBJECTDIR}/modules/alarms.p1.d 
+	@${RM} ${OBJECTDIR}/modules/alarms.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/alarms.p1 modules/alarms.c 
+	@-${MV} ${OBJECTDIR}/modules/alarms.d ${OBJECTDIR}/modules/alarms.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/modules/alarms.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/modules/buttons.p1: modules/buttons.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/modules" 
+	@${RM} ${OBJECTDIR}/modules/buttons.p1.d 
+	@${RM} ${OBJECTDIR}/modules/buttons.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/buttons.p1 modules/buttons.c 
+	@-${MV} ${OBJECTDIR}/modules/buttons.d ${OBJECTDIR}/modules/buttons.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/modules/buttons.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/modules/clock.p1: modules/clock.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/modules" 
+	@${RM} ${OBJECTDIR}/modules/clock.p1.d 
+	@${RM} ${OBJECTDIR}/modules/clock.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/clock.p1 modules/clock.c 
+	@-${MV} ${OBJECTDIR}/modules/clock.d ${OBJECTDIR}/modules/clock.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/modules/clock.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/modules/sensors.p1: modules/sensors.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/modules" 
+	@${RM} ${OBJECTDIR}/modules/sensors.p1.d 
+	@${RM} ${OBJECTDIR}/modules/sensors.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/sensors.p1 modules/sensors.c 
+	@-${MV} ${OBJECTDIR}/modules/sensors.d ${OBJECTDIR}/modules/sensors.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/modules/sensors.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/modules/storage.p1: modules/storage.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/modules" 
+	@${RM} ${OBJECTDIR}/modules/storage.p1.d 
+	@${RM} ${OBJECTDIR}/modules/storage.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/storage.p1 modules/storage.c 
+	@-${MV} ${OBJECTDIR}/modules/storage.d ${OBJECTDIR}/modules/storage.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/modules/storage.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/modules/ui.p1: modules/ui.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/modules" 
+	@${RM} ${OBJECTDIR}/modules/ui.p1.d 
+	@${RM} ${OBJECTDIR}/modules/ui.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/ui.p1 modules/ui.c 
+	@-${MV} ${OBJECTDIR}/modules/ui.d ${OBJECTDIR}/modules/ui.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/modules/ui.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 ${OBJECTDIR}/mcc_generated_files/examples/i2c1_master_example.p1: mcc_generated_files/examples/i2c1_master_example.c  nbproject/Makefile-${CND_CONF}.mk 
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/examples" 
@@ -313,53 +369,13 @@ ${OBJECTDIR}/system/system.p1: system/system.c  nbproject/Makefile-${CND_CONF}.m
 	@-${MV} ${OBJECTDIR}/system/system.d ${OBJECTDIR}/system/system.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/system/system.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/modules/alarms.p1: modules/alarms.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/modules" 
-	@${RM} ${OBJECTDIR}/modules/alarms.p1.d 
-	@${RM} ${OBJECTDIR}/modules/alarms.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/alarms.p1 modules/alarms.c 
-	@-${MV} ${OBJECTDIR}/modules/alarms.d ${OBJECTDIR}/modules/alarms.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/modules/alarms.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/modules/buttons.p1: modules/buttons.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/modules" 
-	@${RM} ${OBJECTDIR}/modules/buttons.p1.d 
-	@${RM} ${OBJECTDIR}/modules/buttons.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/buttons.p1 modules/buttons.c 
-	@-${MV} ${OBJECTDIR}/modules/buttons.d ${OBJECTDIR}/modules/buttons.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/modules/buttons.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/modules/clock.p1: modules/clock.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/modules" 
-	@${RM} ${OBJECTDIR}/modules/clock.p1.d 
-	@${RM} ${OBJECTDIR}/modules/clock.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/clock.p1 modules/clock.c 
-	@-${MV} ${OBJECTDIR}/modules/clock.d ${OBJECTDIR}/modules/clock.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/modules/clock.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/modules/sensors.p1: modules/sensors.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/modules" 
-	@${RM} ${OBJECTDIR}/modules/sensors.p1.d 
-	@${RM} ${OBJECTDIR}/modules/sensors.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/sensors.p1 modules/sensors.c 
-	@-${MV} ${OBJECTDIR}/modules/sensors.d ${OBJECTDIR}/modules/sensors.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/modules/sensors.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/modules/storage.p1: modules/storage.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/modules" 
-	@${RM} ${OBJECTDIR}/modules/storage.p1.d 
-	@${RM} ${OBJECTDIR}/modules/storage.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/storage.p1 modules/storage.c 
-	@-${MV} ${OBJECTDIR}/modules/storage.d ${OBJECTDIR}/modules/storage.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/modules/storage.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
-${OBJECTDIR}/modules/ui.p1: modules/ui.c  nbproject/Makefile-${CND_CONF}.mk 
-	@${MKDIR} "${OBJECTDIR}/modules" 
-	@${RM} ${OBJECTDIR}/modules/ui.p1.d 
-	@${RM} ${OBJECTDIR}/modules/ui.p1 
-	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/modules/ui.p1 modules/ui.c 
-	@-${MV} ${OBJECTDIR}/modules/ui.d ${OBJECTDIR}/modules/ui.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/modules/ui.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/mcc_generated_files/adcc.p1: mcc_generated_files/adcc.c  nbproject/Makefile-${CND_CONF}.mk 
+	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/adcc.p1.d 
+	@${RM} ${OBJECTDIR}/mcc_generated_files/adcc.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/mcc_generated_files/adcc.p1 mcc_generated_files/adcc.c 
+	@-${MV} ${OBJECTDIR}/mcc_generated_files/adcc.d ${OBJECTDIR}/mcc_generated_files/adcc.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/mcc_generated_files/adcc.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 
@@ -378,16 +394,16 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: link
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${DISTDIR}/01RTS_1.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
+${DISTDIR}/Weather-Station-and-Alarm-Clock.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
 	@${MKDIR} ${DISTDIR} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=${DISTDIR}/01RTS_1.X.${IMAGE_TYPE}.map  -D__DEBUG=1  -mdebugger=pickit3  -DXPRJ_default=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto        $(COMPARISON_BUILD) -Wl,--memorysummary,${DISTDIR}/memoryfile.xml -o ${DISTDIR}/01RTS_1.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
-	@${RM} ${DISTDIR}/01RTS_1.X.${IMAGE_TYPE}.hex 
+	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=${DISTDIR}/Weather-Station-and-Alarm-Clock.${IMAGE_TYPE}.map  -D__DEBUG=1  -mdebugger=pickit3  -DXPRJ_default=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto        $(COMPARISON_BUILD) -Wl,--memorysummary,${DISTDIR}/memoryfile.xml -o ${DISTDIR}/Weather-Station-and-Alarm-Clock.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
+	@${RM} ${DISTDIR}/Weather-Station-and-Alarm-Clock.${IMAGE_TYPE}.hex 
 	
 	
 else
-${DISTDIR}/01RTS_1.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
+${DISTDIR}/Weather-Station-and-Alarm-Clock.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
 	@${MKDIR} ${DISTDIR} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=${DISTDIR}/01RTS_1.X.${IMAGE_TYPE}.map  -DXPRJ_default=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     $(COMPARISON_BUILD) -Wl,--memorysummary,${DISTDIR}/memoryfile.xml -o ${DISTDIR}/01RTS_1.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
+	${MP_CC} $(MP_EXTRA_LD_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -Wl,-Map=${DISTDIR}/Weather-Station-and-Alarm-Clock.${IMAGE_TYPE}.map  -DXPRJ_default=$(CND_CONF)  -Wl,--defsym=__MPLAB_BUILD=1   -mdfp="${DFP_DIR}/xc8"  -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -I"I2C" -I"LCD" -I"modules" -I"system" -I"mcc_generated_files" -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mno-default-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     $(COMPARISON_BUILD) -Wl,--memorysummary,${DISTDIR}/memoryfile.xml -o ${DISTDIR}/Weather-Station-and-Alarm-Clock.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
 	
 	
 endif

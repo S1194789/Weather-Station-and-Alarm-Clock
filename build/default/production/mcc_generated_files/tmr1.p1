@@ -1,5 +1,5 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F12263 `(v ~T0 @X0 0 tf ]
+[v F12277 `(v ~T0 @X0 0 tf ]
 "6883 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f18875.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f18875.h: 6883: extern volatile unsigned char T1GCON __attribute__((address(0x20F)));
 [v _T1GCON `Vuc ~T0 @X0 0 e@527 ]
@@ -89,9 +89,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "6917
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f18875.h: 6917: extern volatile T1GCONbits_t T1GCONbits __attribute__((address(0x20F)));
 [v _T1GCONbits `VS308 ~T0 @X0 0 e@527 ]
-[v F12278 `(v ~T0 @X0 0 tf ]
-[v F12280 `(v ~T0 @X0 0 tf ]
-[v F12282 `(v ~T0 @X0 0 tf ]
+[v F12292 `(v ~T0 @X0 0 tf ]
+[v F12294 `(v ~T0 @X0 0 tf ]
+[v F12296 `(v ~T0 @X0 0 tf ]
 "187 mcc_generated_files/tmr1.c
 [; ;mcc_generated_files/tmr1.c: 187:     system.flags.one_second = 1;
 [c E12235 0 1 2 3 .. ]
@@ -108,13 +108,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;system/system.h: 34: typedef struct {
 [s S1620 `c 1 `uc 1 ]
 [n S1620 . temperature luminosity ]
-"40
-[; ;system/system.h: 40: typedef struct {
-[s S1621 `E12235 1 `S1618 1 `S1619 1 `S1620 1 ]
-[n S1621 . mode flags clock sensors ]
-"47
-[; ;system/system.h: 47: extern system_t system;
-[v _system `S1621 ~T0 @X0 0 e ]
+"39
+[; ;system/system.h: 39: typedef struct {
+[s S1621 `uc 1 `uc 1 `uc 1 `uc 1 `c 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
+[n S1621 . enabled clk_h clk_m clk_s temp_thr lum_thr active_C active_T active_L pwm_active pwm_timer ]
+"60
+[; ;system/system.h: 60: typedef struct {
+[s S1622 `E12235 1 `S1618 1 `S1619 1 `S1620 1 `S1621 1 ]
+[n S1622 . mode flags clock sensors alarms ]
+"68
+[; ;system/system.h: 68: extern system_t system;
+[v _system `S1622 ~T0 @X0 0 e ]
 "54 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f18875.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f18875.h: 54: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -1758,7 +1762,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _timer1ReloadVal `Vus ~T0 @X0 1 e ]
 "60
 [; ;mcc_generated_files/tmr1.c: 60: void (*TMR1_InterruptHandler)(void);
-[v _TMR1_InterruptHandler `*F12263 ~T0 @X0 1 e ]
+[v _TMR1_InterruptHandler `*F12277 ~T0 @X0 1 e ]
 "66
 [; ;mcc_generated_files/tmr1.c: 66: void TMR1_Initialize(void)
 [v _TMR1_Initialize `(v ~T0 @X0 1 ef ]
@@ -1799,7 +1803,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _T1CON -> -> 49 `i `uc ]
 "99
 [; ;mcc_generated_files/tmr1.c: 99: }
-[e :UE 1622 ]
+[e :UE 1623 ]
 }
 "101
 [; ;mcc_generated_files/tmr1.c: 101: void TMR1_StartTimer(void)
@@ -1814,7 +1818,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _T1CONbits 1 0 -> -> 1 `i `uc ]
 "105
 [; ;mcc_generated_files/tmr1.c: 105: }
-[e :UE 1623 ]
+[e :UE 1624 ]
 }
 "107
 [; ;mcc_generated_files/tmr1.c: 107: void TMR1_StopTimer(void)
@@ -1829,7 +1833,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _T1CONbits 1 0 -> -> 0 `i `uc ]
 "111
 [; ;mcc_generated_files/tmr1.c: 111: }
-[e :UE 1624 ]
+[e :UE 1625 ]
 }
 "113
 [; ;mcc_generated_files/tmr1.c: 113: uint16_t TMR1_ReadTimer(void)
@@ -1863,10 +1867,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "126
 [; ;mcc_generated_files/tmr1.c: 126:     return readVal;
 [e ) _readVal ]
-[e $UE 1625  ]
+[e $UE 1626  ]
 "127
 [; ;mcc_generated_files/tmr1.c: 127: }
-[e :UE 1625 ]
+[e :UE 1626 ]
 }
 "129
 [; ;mcc_generated_files/tmr1.c: 129: void TMR1_WriteTimer(uint16_t timerVal)
@@ -1883,7 +1887,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "131
 [; ;mcc_generated_files/tmr1.c: 131:     if (T1CONbits.nT1SYNC == 1)
-[e $ ! == -> . . _T1CONbits 1 2 `i -> 1 `i 1627  ]
+[e $ ! == -> . . _T1CONbits 1 2 `i -> 1 `i 1628  ]
 "132
 [; ;mcc_generated_files/tmr1.c: 132:     {
 {
@@ -1902,10 +1906,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "142
 [; ;mcc_generated_files/tmr1.c: 142:     }
 }
-[e $U 1628  ]
+[e $U 1629  ]
 "143
 [; ;mcc_generated_files/tmr1.c: 143:     else
-[e :U 1627 ]
+[e :U 1628 ]
 "144
 [; ;mcc_generated_files/tmr1.c: 144:     {
 {
@@ -1918,10 +1922,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "148
 [; ;mcc_generated_files/tmr1.c: 148:     }
 }
-[e :U 1628 ]
+[e :U 1629 ]
 "149
 [; ;mcc_generated_files/tmr1.c: 149: }
-[e :UE 1626 ]
+[e :UE 1627 ]
 }
 "151
 [; ;mcc_generated_files/tmr1.c: 151: void TMR1_Reload(void)
@@ -1936,7 +1940,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _TMR1_WriteTimer (1 _timer1ReloadVal ]
 "154
 [; ;mcc_generated_files/tmr1.c: 154: }
-[e :UE 1629 ]
+[e :UE 1630 ]
 }
 "156
 [; ;mcc_generated_files/tmr1.c: 156: void TMR1_StartSinglePulseAcquisition(void)
@@ -1951,7 +1955,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _T1GCONbits 2 1 -> -> 1 `i `uc ]
 "159
 [; ;mcc_generated_files/tmr1.c: 159: }
-[e :UE 1630 ]
+[e :UE 1631 ]
 }
 "161
 [; ;mcc_generated_files/tmr1.c: 161: uint8_t TMR1_CheckGateValueStatus(void)
@@ -1964,10 +1968,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "163
 [; ;mcc_generated_files/tmr1.c: 163:     return (T1GCONbits.T1GVAL);
 [e ) . . _T1GCONbits 1 1 ]
-[e $UE 1631  ]
+[e $UE 1632  ]
 "164
 [; ;mcc_generated_files/tmr1.c: 164: }
-[e :UE 1631 ]
+[e :UE 1632 ]
 }
 "166
 [; ;mcc_generated_files/tmr1.c: 166: void TMR1_ISR(void)
@@ -1985,7 +1989,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _TMR1_WriteTimer (1 _timer1ReloadVal ]
 "173
 [; ;mcc_generated_files/tmr1.c: 173:     if(TMR1_InterruptHandler)
-[e $ ! != _TMR1_InterruptHandler -> -> 0 `i `*F12278 1633  ]
+[e $ ! != _TMR1_InterruptHandler -> -> 0 `i `*F12292 1634  ]
 "174
 [; ;mcc_generated_files/tmr1.c: 174:     {
 {
@@ -1995,24 +1999,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 "176
 [; ;mcc_generated_files/tmr1.c: 176:     }
 }
-[e :U 1633 ]
+[e :U 1634 ]
 "177
 [; ;mcc_generated_files/tmr1.c: 177: }
-[e :UE 1632 ]
+[e :UE 1633 ]
 }
 "180
 [; ;mcc_generated_files/tmr1.c: 180: void TMR1_SetInterruptHandler(void (* InterruptHandler)(void)){
-[v _TMR1_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F12280 ]
+[v _TMR1_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F12294 ]
 {
 [e :U _TMR1_SetInterruptHandler ]
-[v _InterruptHandler `*F12282 ~T0 @X0 1 r1 ]
+[v _InterruptHandler `*F12296 ~T0 @X0 1 r1 ]
 [f ]
 "181
 [; ;mcc_generated_files/tmr1.c: 181:     TMR1_InterruptHandler = InterruptHandler;
 [e = _TMR1_InterruptHandler _InterruptHandler ]
 "182
 [; ;mcc_generated_files/tmr1.c: 182: }
-[e :UE 1634 ]
+[e :UE 1635 ]
 }
 "184
 [; ;mcc_generated_files/tmr1.c: 184: void TMR1_DefaultInterruptHandler(void){
@@ -2025,5 +2029,5 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _system 1 0 -> -> 1 `i `uc ]
 "188
 [; ;mcc_generated_files/tmr1.c: 188: }
-[e :UE 1635 ]
+[e :UE 1636 ]
 }

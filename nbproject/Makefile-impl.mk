@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=01RTS_1.X
+PROJECTNAME=Weather-Station-and-Alarm-Clock
 
 # Active Configuration
 DEFAULTCONF=default

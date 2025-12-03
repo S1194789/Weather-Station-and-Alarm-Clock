@@ -18,7 +18,8 @@ void main(void)
 {
     // initialize the device
     system_init();   
-    ui_init(); 
+    ui_init();
+    sensors_init();
 
     while (1)
     {
@@ -26,9 +27,9 @@ void main(void)
         {
             system.flags.one_second = 0;
             clock_update_1s();
+            sensors_update();
         }    
         buttons_update();
-        sensors_update();
         alarms_update();
         ui_update();
         

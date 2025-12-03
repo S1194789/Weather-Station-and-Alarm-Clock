@@ -1,8 +1,8 @@
 Version 4.0 HI-TECH Software Intermediate Code
 "7 system/system.c
 [; ;system/system.c: 7: system_t system;
-[c E12633 0 1 2 3 .. ]
-[n E12633 . MODE_NORMAL MODE_CONFIG MODE_RECORDS MODE_ALARM  ]
+[c E12676 0 1 2 3 .. ]
+[n E12676 . MODE_NORMAL MODE_CONFIG MODE_RECORDS MODE_ALARM  ]
 "22 system/system.h
 [; ;system/system.h: 22: typedef struct {
 [s S1620 :1 `uc 1 ]
@@ -15,12 +15,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;system/system.h: 34: typedef struct {
 [s S1622 `c 1 `uc 1 ]
 [n S1622 . temperature luminosity ]
-"40
-[; ;system/system.h: 40: typedef struct {
-[s S1623 `E12633 1 `S1620 1 `S1621 1 `S1622 1 ]
-[n S1623 . mode flags clock sensors ]
-"72 mcc_generated_files/mcc.h
-[; ;mcc_generated_files/mcc.h: 72: void SYSTEM_Initialize(void);
+"39
+[; ;system/system.h: 39: typedef struct {
+[s S1623 `uc 1 `uc 1 `uc 1 `uc 1 `c 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
+[n S1623 . enabled clk_h clk_m clk_s temp_thr lum_thr active_C active_T active_L pwm_active pwm_timer ]
+"60
+[; ;system/system.h: 60: typedef struct {
+[s S1624 `E12676 1 `S1620 1 `S1621 1 `S1622 1 `S1623 1 ]
+[n S1624 . mode flags clock sensors alarms ]
+"73 mcc_generated_files/mcc.h
+[; ;mcc_generated_files/mcc.h: 73: void SYSTEM_Initialize(void);
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
 "357 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f18875.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f18875.h: 357:     struct {
@@ -1673,7 +1677,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 0FEFh ;# ">
 "7 system/system.c
 [; ;system/system.c: 7: system_t system;
-[v _system `S1623 ~T0 @X0 1 e ]
+[v _system `S1624 ~T0 @X0 1 e ]
 "9
 [; ;system/system.c: 9: void system_init(void)
 [v _system_init `(v ~T0 @X0 1 ef ]
@@ -1693,7 +1697,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
 "19
 [; ;system/system.c: 19:     system.mode = MODE_NORMAL;
-[e = . _system 0 . `E12633 0 ]
+[e = . _system 0 . `E12676 0 ]
 "22
 [; ;system/system.c: 22:     system.flags.one_second = 0;
 [e = . . _system 1 0 -> -> 0 `i `uc ]
@@ -1712,7 +1716,40 @@ Version 4.0 HI-TECH Software Intermediate Code
 "31
 [; ;system/system.c: 31:     system.sensors.luminosity = 0;
 [e = . . _system 3 1 -> -> 0 `i `uc ]
-"32
-[; ;system/system.c: 32: }
-[e :UE 1624 ]
+"34
+[; ;system/system.c: 34:     system.alarms.enabled = 0;
+[e = . . _system 4 0 -> -> 0 `i `uc ]
+"37
+[; ;system/system.c: 37:     system.alarms.clk_h = 0;
+[e = . . _system 4 1 -> -> 0 `i `uc ]
+"38
+[; ;system/system.c: 38:     system.alarms.clk_m = 5;
+[e = . . _system 4 2 -> -> 5 `i `uc ]
+"39
+[; ;system/system.c: 39:     system.alarms.clk_s = 5;
+[e = . . _system 4 3 -> -> 5 `i `uc ]
+"41
+[; ;system/system.c: 41:     system.alarms.temp_thr = 22;
+[e = . . _system 4 4 -> -> 22 `i `c ]
+"42
+[; ;system/system.c: 42:     system.alarms.lum_thr = 2;
+[e = . . _system 4 5 -> -> 2 `i `uc ]
+"44
+[; ;system/system.c: 44:     system.alarms.active_C = 0;
+[e = . . _system 4 6 -> -> 0 `i `uc ]
+"45
+[; ;system/system.c: 45:     system.alarms.active_T = 0;
+[e = . . _system 4 7 -> -> 0 `i `uc ]
+"46
+[; ;system/system.c: 46:     system.alarms.active_L = 0;
+[e = . . _system 4 8 -> -> 0 `i `uc ]
+"48
+[; ;system/system.c: 48:     system.alarms.pwm_active = 0;
+[e = . . _system 4 9 -> -> 0 `i `uc ]
+"49
+[; ;system/system.c: 49:     system.alarms.pwm_timer = 0;
+[e = . . _system 4 10 -> -> 0 `i `uc ]
+"50
+[; ;system/system.c: 50: }
+[e :UE 1625 ]
 }

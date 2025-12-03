@@ -20862,12 +20862,33 @@ typedef struct {
     uint8_t luminosity;
 } sensors_t;
 
+typedef struct {
+    uint8_t enabled;
+
+    uint8_t clk_h;
+    uint8_t clk_m;
+    uint8_t clk_s;
+
+    int8_t temp_thr;
+    uint8_t lum_thr;
+
+
+    uint8_t active_C;
+    uint8_t active_T;
+    uint8_t active_L;
+
+
+    uint8_t pwm_active;
+    uint8_t pwm_timer;
+} alarms_t;
+
 
 typedef struct {
     system_mode_t mode;
     system_flags_t flags;
     clock_t clock;
     sensors_t sensors;
+    alarms_t alarms;
 } system_t;
 
 extern system_t system;

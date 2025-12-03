@@ -20810,9 +20810,9 @@ extern __bank0 __bit __timeout;
 # 1 "mcc_generated_files/device_config.h" 1
 # 51 "mcc_generated_files/mcc.h" 2
 # 1 "mcc_generated_files/pin_manager.h" 1
-# 222 "mcc_generated_files/pin_manager.h"
+# 242 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 234 "mcc_generated_files/pin_manager.h"
+# 254 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 52 "mcc_generated_files/mcc.h" 2
 
@@ -21046,6 +21046,73 @@ void I2C1_SetDataNackCallback(i2c1_callback_t cb, void *ptr);
 # 204 "mcc_generated_files/i2c1_master.h"
 void I2C1_SetTimeoutCallback(i2c1_callback_t cb, void *ptr);
 # 57 "mcc_generated_files/mcc.h" 2
+# 1 "mcc_generated_files/adcc.h" 1
+# 72 "mcc_generated_files/adcc.h"
+typedef uint16_t adc_result_t;
+# 86 "mcc_generated_files/adcc.h"
+typedef enum
+{
+    channel_ANA0 = 0x0,
+    channel_VSS = 0x3C,
+    channel_Temp = 0x3D,
+    channel_DAC1 = 0x3E,
+    channel_FVR_buf1 = 0x3F
+} adcc_channel_t;
+# 127 "mcc_generated_files/adcc.h"
+void ADCC_Initialize(void);
+# 156 "mcc_generated_files/adcc.h"
+void ADCC_StartConversion(adcc_channel_t channel);
+# 186 "mcc_generated_files/adcc.h"
+_Bool ADCC_IsConversionDone(void);
+# 218 "mcc_generated_files/adcc.h"
+adc_result_t ADCC_GetConversionResult(void);
+# 249 "mcc_generated_files/adcc.h"
+adc_result_t ADCC_GetSingleConversion(adcc_channel_t channel);
+# 274 "mcc_generated_files/adcc.h"
+void ADCC_StopConversion(void);
+# 301 "mcc_generated_files/adcc.h"
+void ADCC_SetStopOnInterrupt(void);
+# 326 "mcc_generated_files/adcc.h"
+void ADCC_DischargeSampleCapacitor(void);
+# 352 "mcc_generated_files/adcc.h"
+void ADCC_LoadAcquisitionRegister(uint8_t);
+# 378 "mcc_generated_files/adcc.h"
+void ADCC_SetPrechargeTime(uint8_t);
+# 403 "mcc_generated_files/adcc.h"
+void ADCC_SetRepeatCount(uint8_t);
+# 431 "mcc_generated_files/adcc.h"
+uint8_t ADCC_GetCurrentCountofConversions(void);
+# 455 "mcc_generated_files/adcc.h"
+void ADCC_ClearAccumulator(void);
+# 480 "mcc_generated_files/adcc.h"
+uint16_t ADCC_GetAccumulatorValue(void);
+# 508 "mcc_generated_files/adcc.h"
+_Bool ADCC_HasAccumulatorOverflowed(void);
+# 533 "mcc_generated_files/adcc.h"
+uint16_t ADCC_GetFilterValue(void);
+# 561 "mcc_generated_files/adcc.h"
+uint16_t ADCC_GetPreviousResult(void);
+# 587 "mcc_generated_files/adcc.h"
+void ADCC_DefineSetPoint(uint16_t);
+# 613 "mcc_generated_files/adcc.h"
+void ADCC_SetUpperThreshold(uint16_t);
+# 639 "mcc_generated_files/adcc.h"
+void ADCC_SetLowerThreshold(uint16_t);
+# 666 "mcc_generated_files/adcc.h"
+uint16_t ADCC_GetErrorCalculation(void);
+# 693 "mcc_generated_files/adcc.h"
+void ADCC_EnableDoubleSampling(void);
+# 717 "mcc_generated_files/adcc.h"
+void ADCC_EnableContinuousConversion(void);
+# 741 "mcc_generated_files/adcc.h"
+void ADCC_DisableContinuousConversion(void);
+# 769 "mcc_generated_files/adcc.h"
+_Bool ADCC_HasErrorCrossedUpperThreshold(void);
+# 797 "mcc_generated_files/adcc.h"
+_Bool ADCC_HasErrorCrossedLowerThreshold(void);
+# 824 "mcc_generated_files/adcc.h"
+uint8_t ADCC_GetConversionStageStatus(void);
+# 58 "mcc_generated_files/mcc.h" 2
 # 1 "mcc_generated_files/tmr1.h" 1
 # 100 "mcc_generated_files/tmr1.h"
 void TMR1_Initialize(void);
@@ -21071,12 +21138,12 @@ void TMR1_ISR(void);
 extern void (*TMR1_InterruptHandler)(void);
 # 421 "mcc_generated_files/tmr1.h"
 void TMR1_DefaultInterruptHandler(void);
-# 58 "mcc_generated_files/mcc.h" 2
-# 72 "mcc_generated_files/mcc.h"
+# 59 "mcc_generated_files/mcc.h" 2
+# 73 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 85 "mcc_generated_files/mcc.h"
+# 86 "mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 98 "mcc_generated_files/mcc.h"
+# 99 "mcc_generated_files/mcc.h"
 void PMD_Initialize(void);
 # 3 "system/system.c" 2
 # 1 "system/system.h" 1
@@ -21106,12 +21173,33 @@ typedef struct {
     uint8_t luminosity;
 } sensors_t;
 
+typedef struct {
+    uint8_t enabled;
+
+    uint8_t clk_h;
+    uint8_t clk_m;
+    uint8_t clk_s;
+
+    int8_t temp_thr;
+    uint8_t lum_thr;
+
+
+    uint8_t active_C;
+    uint8_t active_T;
+    uint8_t active_L;
+
+
+    uint8_t pwm_active;
+    uint8_t pwm_timer;
+} alarms_t;
+
 
 typedef struct {
     system_mode_t mode;
     system_flags_t flags;
     clock_t clock;
     sensors_t sensors;
+    alarms_t alarms;
 } system_t;
 
 extern system_t system;
@@ -21146,4 +21234,22 @@ void system_init(void)
 
     system.sensors.temperature = 0;
     system.sensors.luminosity = 0;
+
+
+    system.alarms.enabled = 0;
+
+
+    system.alarms.clk_h = 0;
+    system.alarms.clk_m = 5;
+    system.alarms.clk_s = 5;
+
+    system.alarms.temp_thr = 22;
+    system.alarms.lum_thr = 2;
+
+    system.alarms.active_C = 0;
+    system.alarms.active_T = 0;
+    system.alarms.active_L = 0;
+
+    system.alarms.pwm_active = 0;
+    system.alarms.pwm_timer = 0;
 }

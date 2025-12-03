@@ -8,12 +8,23 @@
 # 2 "<built-in>" 2
 # 1 "modules/ui.c" 2
 # 1 "modules/ui.h" 1
-# 11 "modules/ui.h"
+
+
+
+
+
 typedef enum {
-    UI_NORMAL,
+    UI_NORMAL = 0,
+
+
     UI_CFG_HOUR,
     UI_CFG_MIN,
     UI_CFG_SEC,
+    UI_CFG_C,
+    UI_CFG_T,
+    UI_CFG_L,
+    UI_CFG_ALARM_EN,
+    UI_CFG_RESET
 } ui_state_t;
 
 extern ui_state_t ui_state;
@@ -158,12 +169,33 @@ typedef struct {
     uint8_t luminosity;
 } sensors_t;
 
+typedef struct {
+    uint8_t enabled;
+
+    uint8_t clk_h;
+    uint8_t clk_m;
+    uint8_t clk_s;
+
+    int8_t temp_thr;
+    uint8_t lum_thr;
+
+
+    uint8_t active_C;
+    uint8_t active_T;
+    uint8_t active_L;
+
+
+    uint8_t pwm_active;
+    uint8_t pwm_timer;
+} alarms_t;
+
 
 typedef struct {
     system_mode_t mode;
     system_flags_t flags;
     clock_t clock;
     sensors_t sensors;
+    alarms_t alarms;
 } system_t;
 
 extern system_t system;
@@ -21063,14 +21095,26 @@ signed char putsI2C( unsigned char *wrptr );
 
 unsigned char ReadI2C( void );
 # 6 "modules/ui.c" 2
+# 1 "modules/sensors.h" 1
+# 11 "modules/sensors.h"
+extern unsigned char temperature_value;
+extern unsigned char luminosity_value;
+
+void sensors_init(void);
+void sensors_update(void);
+unsigned char readTC74(void);
+# 7 "modules/ui.c" 2
 
 
+extern unsigned char temperature_value;
+extern unsigned char luminosity_value;
 
 static void ui_normal(void);
 static void ui_time_update(void);
 
 ui_state_t ui_state = UI_NORMAL;
 static uint8_t blink = 0;
+static uint8_t alarm_edit_step = 0;
 
 void ui_init(void)
 {
@@ -21090,60 +21134,144 @@ static void ui_normal(void)
 {
     LCDcmd(0x01);
 
-    LCDpos(0, 0);
-    LCDstr("00:00:00   A");
-
-    LCDpos(1, 0);
-    LCDstr("00  C L  0");
-
-
     LCDcmd(0x0C);
 }
-
-
 
 static void ui_time_update(void)
 {
     char buf[17];
-    sprintf(buf, "%02d:%02d:%02d   A",
+
+
+    char cC = system.alarms.active_C ? 'C' : ' ';
+    char cT = system.alarms.active_T ? 'T' : ' ';
+    char cL = system.alarms.active_L ? 'L' : ' ';
+    char cA = system.alarms.enabled ? 'A' : 'a';
+
+    sprintf(buf, "%02d:%02d:%02d %c%c%c %c ",
         system.clock.hour,
         system.clock.min,
-        system.clock.sec);
+        system.clock.sec,
+        cC, cT, cL,
+        cA);
 
     LCDpos(0, 0);
     LCDstr(buf);
-}
 
+
+    LCDpos(1, 0);
+
+    switch (ui_state)
+    {
+        case UI_NORMAL:
+
+            sprintf(buf, "%02d C L  %d",
+                    temperature_value,
+                    luminosity_value);
+            break;
+
+        case UI_CFG_HOUR:
+        case UI_CFG_MIN:
+        case UI_CFG_SEC:
+
+            sprintf(buf, "Set clock time   ");
+            break;
+
+        case UI_CFG_C:
+
+            sprintf(buf, "AL %02d:%02d:%02d   ",
+                    system.alarms.clk_h,
+                    system.alarms.clk_m,
+                    system.alarms.clk_s);
+            break;
+
+        case UI_CFG_T:
+
+            sprintf(buf, "Tthr=%02d C       ", system.alarms.temp_thr);
+            break;
+
+        case UI_CFG_L:
+
+            sprintf(buf, "Lthr=%d (0-3)     ", system.alarms.lum_thr);
+            break;
+
+        case UI_CFG_ALARM_EN:
+
+            if (system.alarms.enabled)
+                sprintf(buf, "Alarms: ON       ");
+            else
+                sprintf(buf, "Alarms: OFF      ");
+            break;
+
+        case UI_CFG_RESET:
+
+            sprintf(buf, "Reset records S2 ");
+            break;
+    }
+
+    LCDstr(buf);
+}
 
 void ui_next_state(void)
 {
     switch(ui_state)
     {
         case UI_NORMAL:
+
+            system.alarms.active_C = 0;
+            system.alarms.active_T = 0;
+            system.alarms.active_L = 0;
+
             ui_state = UI_CFG_HOUR;
             LCDcmd(0x0F);
-            LCDpos(0,0);
+            LCDpos(0,1);
             break;
 
         case UI_CFG_HOUR:
             ui_state = UI_CFG_MIN;
-            LCDpos(0,3);
+            LCDpos(0,4);
             break;
 
         case UI_CFG_MIN:
             ui_state = UI_CFG_SEC;
-            LCDpos(0,6);
+            LCDpos(0,7);
             break;
 
         case UI_CFG_SEC:
+            ui_state = UI_CFG_C;
+            LCDpos(0, 13);
+            break;
+
+         case UI_CFG_C:
+            ui_state = UI_CFG_T;
+            LCDpos(0, 10);
+            alarm_edit_step = 0;
+
+        case UI_CFG_T:
+            ui_state = UI_CFG_L;
+
+            LCDpos(0, 11);
+            break;
+
+        case UI_CFG_L:
+            ui_state = UI_CFG_ALARM_EN;
+
+            LCDpos(0, 13);
+            break;
+
+        case UI_CFG_ALARM_EN:
+            ui_state = UI_CFG_RESET;
+
+
+            LCDpos(1, 0);
+            break;
+
+        case UI_CFG_RESET:
         default:
             ui_state = UI_NORMAL;
             ui_normal();
             break;
     }
 }
-
-
 
 void ui_select(void)
 {
@@ -21161,11 +21289,59 @@ void ui_select(void)
             system.clock.sec = (system.clock.sec + 1) % 60;
             break;
 
+        case UI_CFG_C:
+             switch (alarm_edit_step)
+            {
+            case 0:
+
+                alarm_edit_step = 1;
+                break;
+
+            case 1:
+
+                system.alarms.clk_h = (system.alarms.clk_h + 1) % 24;
+                break;
+
+            case 2:
+
+                system.alarms.clk_m = (system.alarms.clk_m + 1) % 60;
+                break;
+
+            case 3:
+
+                system.alarms.clk_s = (system.alarms.clk_s + 1) % 60;
+                break;
+            }
+            break;
+
+        case UI_CFG_T:
+
+            if (system.alarms.temp_thr < 50)
+                system.alarms.temp_thr++;
+            else
+                system.alarms.temp_thr = 0;
+            break;
+
+        case UI_CFG_L:
+
+            system.alarms.lum_thr = (system.alarms.lum_thr + 1) % 4;
+            break;
+
+        case UI_CFG_ALARM_EN:
+
+            system.alarms.enabled ^= 1;
+            break;
+
+        case UI_CFG_RESET:
+
+
+            break;
+
         default:
+
             break;
     }
 }
-
 
 void ui_update(void)
 {
@@ -21181,8 +21357,26 @@ void ui_update(void)
 
     switch(ui_state)
     {
-        case UI_CFG_HOUR: LCDpos(0,0); break;
-        case UI_CFG_MIN: LCDpos(0,3); break;
-        case UI_CFG_SEC: LCDpos(0,6); break;
+        case UI_CFG_HOUR: LCDpos(0, 1); break;
+        case UI_CFG_MIN: LCDpos(0, 4); break;
+        case UI_CFG_SEC: LCDpos(0, 7); break;
+        case UI_CFG_C:
+            switch (alarm_edit_step)
+            {
+            case 0: LCDpos(0, 9); break;
+            case 1: LCDpos(1, 4); break;
+            case 2: LCDpos(1, 7); break;
+            case 3: LCDpos(1, 10); break;
+            }
+        break;
+        case UI_CFG_T: LCDpos(0,10); break;
+        case UI_CFG_L: LCDpos(0,11); break;
+        case UI_CFG_ALARM_EN: LCDpos(0,13); break;
+        case UI_CFG_RESET: LCDpos(1, 0); break;
+
+        case UI_NORMAL:
+        default:
+            LCDcmd(0x0C);
+            break;
     }
 }

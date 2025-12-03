@@ -21,11 +21,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "525
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f18875.h: 525: extern volatile PORTCbits_t PORTCbits __attribute__((address(0x00E)));
 [v _PORTCbits `VS36 ~T0 @X0 0 e@14 ]
-"22 modules/ui.h
-[; ;modules/ui.h: 22: void ui_next_state(void);
+"24 modules/ui.h
+[; ;modules/ui.h: 24: void ui_next_state(void);
 [v _ui_next_state `(v ~T0 @X0 0 ef ]
-"23
-[; ;modules/ui.h: 23: void ui_select(void);
+"25
+[; ;modules/ui.h: 25: void ui_select(void);
 [v _ui_select `(v ~T0 @X0 0 ef ]
 "54 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f18875.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f18875.h: 54: __asm("INDF0 equ 00h");
@@ -1687,14 +1687,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "11
 [; ;modules/buttons.c: 11:     static uint8_t prev_S1 = 1;
-[v F12261 `uc ~T0 @X0 1 s prev_S1 ]
-[i F12261
+[v F12280 `uc ~T0 @X0 1 s prev_S1 ]
+[i F12280
 -> -> 1 `i `uc
 ]
 "12
 [; ;modules/buttons.c: 12:     static uint8_t prev_S2 = 1;
-[v F12262 `uc ~T0 @X0 1 s prev_S2 ]
-[i F12262
+[v F12281 `uc ~T0 @X0 1 s prev_S2 ]
+[i F12281
 -> -> 1 `i `uc
 ]
 "14
@@ -1707,7 +1707,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _now_S2 . . _PORTCbits 0 5 ]
 "18
 [; ;modules/buttons.c: 18:     if (prev_S1 == 1 && now_S1 == 0)
-[e $ ! && == -> F12261 `i -> 1 `i == -> _now_S1 `i -> 0 `i 1623  ]
+[e $ ! && == -> F12280 `i -> 1 `i == -> _now_S1 `i -> 0 `i 1624  ]
 "19
 [; ;modules/buttons.c: 19:     {
 {
@@ -1717,13 +1717,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "21
 [; ;modules/buttons.c: 21:     }
 }
-[e :U 1623 ]
+[e :U 1624 ]
 "22
 [; ;modules/buttons.c: 22:     S1_pressed = (now_S1 == 0);
 [e = _S1_pressed -> -> == -> _now_S1 `i -> 0 `i `i `uc ]
 "25
 [; ;modules/buttons.c: 25:     if (prev_S2 == 1 && now_S2 == 0)
-[e $ ! && == -> F12262 `i -> 1 `i == -> _now_S2 `i -> 0 `i 1624  ]
+[e $ ! && == -> F12281 `i -> 1 `i == -> _now_S2 `i -> 0 `i 1625  ]
 "26
 [; ;modules/buttons.c: 26:     {
 {
@@ -1733,17 +1733,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "28
 [; ;modules/buttons.c: 28:     }
 }
-[e :U 1624 ]
+[e :U 1625 ]
 "29
 [; ;modules/buttons.c: 29:     S2_pressed = (now_S2 == 0);
 [e = _S2_pressed -> -> == -> _now_S2 `i -> 0 `i `i `uc ]
 "32
 [; ;modules/buttons.c: 32:     prev_S1 = now_S1;
-[e = F12261 _now_S1 ]
+[e = F12280 _now_S1 ]
 "33
 [; ;modules/buttons.c: 33:     prev_S2 = now_S2;
-[e = F12262 _now_S2 ]
+[e = F12281 _now_S2 ]
 "34
 [; ;modules/buttons.c: 34: }
-[e :UE 1622 ]
+[e :UE 1623 ]
 }

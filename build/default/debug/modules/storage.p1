@@ -1,0 +1,25 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"3 modules/storage.c
+[; ;modules/storage.c: 3: void storage_save_all(void)
+[v _storage_save_all `(v ~T0 @X0 1 ef ]
+"4
+[; ;modules/storage.c: 4: {
+{
+[e :U _storage_save_all ]
+[f ]
+"6
+[; ;modules/storage.c: 6: }
+[e :UE 1 ]
+}
+"8
+[; ;modules/storage.c: 8: void storage_load_all(void)
+[v _storage_load_all `(v ~T0 @X0 1 ef ]
+"9
+[; ;modules/storage.c: 9: {
+{
+[e :U _storage_load_all ]
+[f ]
+"11
+[; ;modules/storage.c: 11: }
+[e :UE 2 ]
+}

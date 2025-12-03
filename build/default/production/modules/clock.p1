@@ -15,13 +15,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;system/system.h: 34: typedef struct {
 [s S3 `c 1 `uc 1 ]
 [n S3 . temperature luminosity ]
-"40
-[; ;system/system.h: 40: typedef struct {
-[s S4 `E37 1 `S1 1 `S2 1 `S3 1 ]
-[n S4 . mode flags clock sensors ]
-"47
-[; ;system/system.h: 47: extern system_t system;
-[v _system `S4 ~T0 @X0 0 e ]
+"39
+[; ;system/system.h: 39: typedef struct {
+[s S4 `uc 1 `uc 1 `uc 1 `uc 1 `c 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
+[n S4 . enabled clk_h clk_m clk_s temp_thr lum_thr active_C active_T active_L pwm_active pwm_timer ]
+"60
+[; ;system/system.h: 60: typedef struct {
+[s S5 `E37 1 `S1 1 `S2 1 `S3 1 `S4 1 ]
+[n S5 . mode flags clock sensors alarms ]
+"68
+[; ;system/system.h: 68: extern system_t system;
+[v _system `S5 ~T0 @X0 0 e ]
 "4 modules/clock.c
 [; ;modules/clock.c: 4: void clock_update_1s(void)
 [v _clock_update_1s `(v ~T0 @X0 1 ef ]
@@ -35,7 +39,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ++ . . _system 2 2 -> -> 1 `i `uc ]
 "8
 [; ;modules/clock.c: 8:     if(system.clock.sec >= 60)
-[e $ ! >= -> . . _system 2 2 `i -> 60 `i 6  ]
+[e $ ! >= -> . . _system 2 2 `i -> 60 `i 7  ]
 "9
 [; ;modules/clock.c: 9:     {
 {
@@ -48,10 +52,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12
 [; ;modules/clock.c: 12:     }
 }
-[e :U 6 ]
+[e :U 7 ]
 "14
 [; ;modules/clock.c: 14:     if(system.clock.min >= 60)
-[e $ ! >= -> . . _system 2 1 `i -> 60 `i 7  ]
+[e $ ! >= -> . . _system 2 1 `i -> 60 `i 8  ]
 "15
 [; ;modules/clock.c: 15:     {
 {
@@ -64,10 +68,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "18
 [; ;modules/clock.c: 18:     }
 }
-[e :U 7 ]
+[e :U 8 ]
 "20
 [; ;modules/clock.c: 20:     if(system.clock.hour >= 24)
-[e $ ! >= -> . . _system 2 0 `i -> 24 `i 8  ]
+[e $ ! >= -> . . _system 2 0 `i -> 24 `i 9  ]
 "21
 [; ;modules/clock.c: 21:     {
 {
@@ -77,8 +81,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "23
 [; ;modules/clock.c: 23:     }
 }
-[e :U 8 ]
+[e :U 9 ]
 "24
 [; ;modules/clock.c: 24: }
-[e :UE 5 ]
+[e :UE 6 ]
 }
