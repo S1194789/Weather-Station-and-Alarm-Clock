@@ -1,0 +1,393 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"7 modules/storage.h
+[; ;modules/storage.h: 7: typedef struct {
+[s S1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
+[n S1 . h m s T L ]
+"222 mcc_generated_files/memory.h
+[; ;mcc_generated_files/memory.h: 222: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+[v _DATAEE_WriteByte `(v ~T0 @X0 0 ef2`us`uc ]
+"248
+[; ;mcc_generated_files/memory.h: 248: uint8_t DATAEE_ReadByte(uint16_t bAdd);
+[v _DATAEE_ReadByte `(uc ~T0 @X0 0 ef1`us ]
+"12 modules/storage.c
+[; ;modules/storage.c: 12: static rec_t r_tmax, r_tmin, r_lmax, r_lmin;
+[v _r_tmax `S1 ~T0 @X0 1 s ]
+[v _r_tmin `S1 ~T0 @X0 1 s ]
+[v _r_lmax `S1 ~T0 @X0 1 s ]
+[v _r_lmin `S1 ~T0 @X0 1 s ]
+"15
+[; ;modules/storage.c: 15: static void save_rec(uint8_t addr, rec_t r)
+[v _save_rec `(v ~T0 @X0 1 sf2`uc`S1 ]
+"16
+[; ;modules/storage.c: 16: {
+{
+[e :U _save_rec ]
+"15
+[; ;modules/storage.c: 15: static void save_rec(uint8_t addr, rec_t r)
+[v _addr `uc ~T0 @X0 1 r1 ]
+[v _r `S1 ~T0 @X0 1 r2 ]
+"16
+[; ;modules/storage.c: 16: {
+[f ]
+"17
+[; ;modules/storage.c: 17:     DATAEE_WriteByte(addr, r.h);
+[e ( _DATAEE_WriteByte (2 , -> _addr `us . _r 0 ]
+"18
+[; ;modules/storage.c: 18:     DATAEE_WriteByte(addr + 1, r.m);
+[e ( _DATAEE_WriteByte (2 , -> + -> _addr `i -> 1 `i `us . _r 1 ]
+"19
+[; ;modules/storage.c: 19:     DATAEE_WriteByte(addr + 2, r.s);
+[e ( _DATAEE_WriteByte (2 , -> + -> _addr `i -> 2 `i `us . _r 2 ]
+"20
+[; ;modules/storage.c: 20:     DATAEE_WriteByte(addr + 3, r.T);
+[e ( _DATAEE_WriteByte (2 , -> + -> _addr `i -> 3 `i `us . _r 3 ]
+"21
+[; ;modules/storage.c: 21:     DATAEE_WriteByte(addr + 4, r.L);
+[e ( _DATAEE_WriteByte (2 , -> + -> _addr `i -> 4 `i `us . _r 4 ]
+"22
+[; ;modules/storage.c: 22: }
+[e :UE 2 ]
+}
+"25
+[; ;modules/storage.c: 25: static rec_t load_rec(uint8_t addr)
+[v _load_rec `(S1 ~T0 @X0 1 sf1`uc ]
+"26
+[; ;modules/storage.c: 26: {
+{
+[e :U _load_rec ]
+"25
+[; ;modules/storage.c: 25: static rec_t load_rec(uint8_t addr)
+[v _addr `uc ~T0 @X0 1 r1 ]
+"26
+[; ;modules/storage.c: 26: {
+[f ]
+"27
+[; ;modules/storage.c: 27:     rec_t r;
+[v _r `S1 ~T0 @X0 1 a ]
+"28
+[; ;modules/storage.c: 28:     r.h = DATAEE_ReadByte(addr);
+[e = . _r 0 ( _DATAEE_ReadByte (1 -> _addr `us ]
+"29
+[; ;modules/storage.c: 29:     r.m = DATAEE_ReadByte(addr + 1);
+[e = . _r 1 ( _DATAEE_ReadByte (1 -> + -> _addr `i -> 1 `i `us ]
+"30
+[; ;modules/storage.c: 30:     r.s = DATAEE_ReadByte(addr + 2);
+[e = . _r 2 ( _DATAEE_ReadByte (1 -> + -> _addr `i -> 2 `i `us ]
+"31
+[; ;modules/storage.c: 31:     r.T = DATAEE_ReadByte(addr + 3);
+[e = . _r 3 ( _DATAEE_ReadByte (1 -> + -> _addr `i -> 3 `i `us ]
+"32
+[; ;modules/storage.c: 32:     r.L = DATAEE_ReadByte(addr + 4);
+[e = . _r 4 ( _DATAEE_ReadByte (1 -> + -> _addr `i -> 4 `i `us ]
+"33
+[; ;modules/storage.c: 33:     return r;
+[e ) _r ]
+[e $UE 3  ]
+"34
+[; ;modules/storage.c: 34: }
+[e :UE 3 ]
+}
+"37
+[; ;modules/storage.c: 37: static uint8_t invalid(rec_t r)
+[v _invalid `(uc ~T0 @X0 1 sf1`S1 ]
+"38
+[; ;modules/storage.c: 38: {
+{
+[e :U _invalid ]
+"37
+[; ;modules/storage.c: 37: static uint8_t invalid(rec_t r)
+[v _r `S1 ~T0 @X0 1 r1 ]
+"38
+[; ;modules/storage.c: 38: {
+[f ]
+"39
+[; ;modules/storage.c: 39:     return (r.h == 0xFF || r.m == 0xFF || r.s == 0xFF ||
+[e ) -> -> || || || || == -> . _r 0 `i -> 255 `i == -> . _r 1 `i -> 255 `i == -> . _r 2 `i -> 255 `i == -> . _r 3 `i -> 255 `i == -> . _r 4 `i -> 255 `i `i `uc ]
+[e $UE 4  ]
+"41
+[; ;modules/storage.c: 41: }
+[e :UE 4 ]
+}
+"44
+[; ;modules/storage.c: 44: static void set_defaults(void)
+[v _set_defaults `(v ~T0 @X0 1 sf ]
+"45
+[; ;modules/storage.c: 45: {
+{
+[e :U _set_defaults ]
+[f ]
+[v F85 `S1 ~T0 @X0 1 s ]
+[i F85
+:U ..
+:U ..
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+..
+..
+]
+"46
+[; ;modules/storage.c: 46:     r_tmax = (rec_t){0,0,0, 0,0};
+[v F86 `S1 ~T0 @X0 1 a ]
+[v F87 `S1 ~T0 @X0 1 s ]
+[i F87
+:U ..
+:U ..
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 50 `i `uc
+-> -> 0 `i `uc
+..
+..
+]
+"47
+[; ;modules/storage.c: 47:     r_tmin = (rec_t){0,0,0, 50,0};
+[v F88 `S1 ~T0 @X0 1 a ]
+[v F89 `S1 ~T0 @X0 1 s ]
+[i F89
+:U ..
+:U ..
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+..
+..
+]
+"49
+[; ;modules/storage.c: 49:     r_lmax = (rec_t){0,0,0, 0,0};
+[v F90 `S1 ~T0 @X0 1 a ]
+[v F91 `S1 ~T0 @X0 1 s ]
+[i F91
+:U ..
+:U ..
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 3 `i `uc
+..
+..
+]
+"50
+[; ;modules/storage.c: 50:     r_lmin = (rec_t){0,0,0, 0,3};
+[v F92 `S1 ~T0 @X0 1 a ]
+"46
+[; ;modules/storage.c: 46:     r_tmax = (rec_t){0,0,0, 0,0};
+[e = _r_tmax ; = F86 F85 F86 ]
+"47
+[; ;modules/storage.c: 47:     r_tmin = (rec_t){0,0,0, 50,0};
+[e = _r_tmin ; = F88 F87 F88 ]
+"49
+[; ;modules/storage.c: 49:     r_lmax = (rec_t){0,0,0, 0,0};
+[e = _r_lmax ; = F90 F89 F90 ]
+"50
+[; ;modules/storage.c: 50:     r_lmin = (rec_t){0,0,0, 0,3};
+[e = _r_lmin ; = F92 F91 F92 ]
+"52
+[; ;modules/storage.c: 52:     save_rec(0, r_tmax);
+[e ( _save_rec (2 , -> -> 0 `i `uc _r_tmax ]
+"53
+[; ;modules/storage.c: 53:     save_rec(5, r_tmin);
+[e ( _save_rec (2 , -> -> 5 `i `uc _r_tmin ]
+"54
+[; ;modules/storage.c: 54:     save_rec(10, r_lmax);
+[e ( _save_rec (2 , -> -> 10 `i `uc _r_lmax ]
+"55
+[; ;modules/storage.c: 55:     save_rec(15, r_lmin);
+[e ( _save_rec (2 , -> -> 15 `i `uc _r_lmin ]
+"57
+[; ;modules/storage.c: 57:     DATAEE_WriteByte(100, 0xA5);
+[e ( _DATAEE_WriteByte (2 , -> -> 100 `i `us -> -> 165 `i `uc ]
+"58
+[; ;modules/storage.c: 58: }
+[e :UE 5 ]
+}
+"61
+[; ;modules/storage.c: 61: void STORAGE_Init(void)
+[v _STORAGE_Init `(v ~T0 @X0 1 ef ]
+"62
+[; ;modules/storage.c: 62: {
+{
+[e :U _STORAGE_Init ]
+[f ]
+"63
+[; ;modules/storage.c: 63:     uint8_t m = DATAEE_ReadByte(100);
+[v _m `uc ~T0 @X0 1 a ]
+[e = _m ( _DATAEE_ReadByte (1 -> -> 100 `i `us ]
+"65
+[; ;modules/storage.c: 65:     if (m != 0xA5)
+[e $ ! != -> _m `i -> 165 `i 7  ]
+"66
+[; ;modules/storage.c: 66:     {
+{
+"67
+[; ;modules/storage.c: 67:         set_defaults();
+[e ( _set_defaults ..  ]
+"68
+[; ;modules/storage.c: 68:         return;
+[e $UE 6  ]
+"69
+[; ;modules/storage.c: 69:     }
+}
+[e :U 7 ]
+"71
+[; ;modules/storage.c: 71:     r_tmax = load_rec(0);
+[e = _r_tmax ( _load_rec (1 -> -> 0 `i `uc ]
+"72
+[; ;modules/storage.c: 72:     r_tmin = load_rec(5);
+[e = _r_tmin ( _load_rec (1 -> -> 5 `i `uc ]
+"73
+[; ;modules/storage.c: 73:     r_lmax = load_rec(10);
+[e = _r_lmax ( _load_rec (1 -> -> 10 `i `uc ]
+"74
+[; ;modules/storage.c: 74:     r_lmin = load_rec(15);
+[e = _r_lmin ( _load_rec (1 -> -> 15 `i `uc ]
+"76
+[; ;modules/storage.c: 76:     if (invalid(r_tmax) || invalid(r_tmin) ||
+[e $ ! || || || != -> ( _invalid (1 _r_tmax `i -> 0 `i != -> ( _invalid (1 _r_tmin `i -> 0 `i != -> ( _invalid (1 _r_lmax `i -> 0 `i != -> ( _invalid (1 _r_lmin `i -> 0 `i 8  ]
+"78
+[; ;modules/storage.c: 78:     {
+{
+"79
+[; ;modules/storage.c: 79:         set_defaults();
+[e ( _set_defaults ..  ]
+"80
+[; ;modules/storage.c: 80:     }
+}
+[e :U 8 ]
+"81
+[; ;modules/storage.c: 81: }
+[e :UE 6 ]
+}
+"84
+[; ;modules/storage.c: 84: void STORAGE_Reset(void)
+[v _STORAGE_Reset `(v ~T0 @X0 1 ef ]
+"85
+[; ;modules/storage.c: 85: {
+{
+[e :U _STORAGE_Reset ]
+[f ]
+"86
+[; ;modules/storage.c: 86:     set_defaults();
+[e ( _set_defaults ..  ]
+"87
+[; ;modules/storage.c: 87: }
+[e :UE 9 ]
+}
+"90
+[; ;modules/storage.c: 90: void STORAGE_Update(uint8_t T, uint8_t L,
+[v _STORAGE_Update `(v ~T0 @X0 1 ef5`uc`uc`uc`uc`uc ]
+"92
+[; ;modules/storage.c: 92: {
+{
+[e :U _STORAGE_Update ]
+"90
+[; ;modules/storage.c: 90: void STORAGE_Update(uint8_t T, uint8_t L,
+[v _T `uc ~T0 @X0 1 r1 ]
+[v _L `uc ~T0 @X0 1 r2 ]
+"91
+[; ;modules/storage.c: 91:                     uint8_t h, uint8_t m, uint8_t s)
+[v _h `uc ~T0 @X0 1 r3 ]
+[v _m `uc ~T0 @X0 1 r4 ]
+[v _s `uc ~T0 @X0 1 r5 ]
+"92
+[; ;modules/storage.c: 92: {
+[f ]
+[v F102 `S1 ~T0 @X0 1 s ]
+[i F102
+:U ..
+:U ..
+"93
+[; ;modules/storage.c: 93:     rec_t r = {h,m,s, T,L};
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+-> -> 0 `i `uc
+..
+..
+]
+[v _r `S1 ~T0 @X0 1 a ]
+[e = _r F102 ]
+[e ; = . _r 0 _h ; = . _r 1 _m ; = . _r 2 _s ; = . _r 3 _T = . _r 4 _L ]
+"95
+[; ;modules/storage.c: 95:     if (T > r_tmax.T) { r_tmax = r; save_rec(0, r_tmax); }
+[e $ ! > -> _T `i -> . _r_tmax 3 `i 11  ]
+{
+[e = _r_tmax _r ]
+[e ( _save_rec (2 , -> -> 0 `i `uc _r_tmax ]
+}
+[e :U 11 ]
+"96
+[; ;modules/storage.c: 96:     if (T < r_tmin.T) { r_tmin = r; save_rec(5, r_tmin); }
+[e $ ! < -> _T `i -> . _r_tmin 3 `i 12  ]
+{
+[e = _r_tmin _r ]
+[e ( _save_rec (2 , -> -> 5 `i `uc _r_tmin ]
+}
+[e :U 12 ]
+"97
+[; ;modules/storage.c: 97:     if (L > r_lmax.L) { r_lmax = r; save_rec(10, r_lmax); }
+[e $ ! > -> _L `i -> . _r_lmax 4 `i 13  ]
+{
+[e = _r_lmax _r ]
+[e ( _save_rec (2 , -> -> 10 `i `uc _r_lmax ]
+}
+[e :U 13 ]
+"98
+[; ;modules/storage.c: 98:     if (L < r_lmin.L) { r_lmin = r; save_rec(15, r_lmin); }
+[e $ ! < -> _L `i -> . _r_lmin 4 `i 14  ]
+{
+[e = _r_lmin _r ]
+[e ( _save_rec (2 , -> -> 15 `i `uc _r_lmin ]
+}
+[e :U 14 ]
+"99
+[; ;modules/storage.c: 99: }
+[e :UE 10 ]
+}
+"101
+[; ;modules/storage.c: 101: rec_t STORAGE_GetTmax(void){ return r_tmax; }
+[v _STORAGE_GetTmax `(S1 ~T0 @X0 1 ef ]
+{
+[e :U _STORAGE_GetTmax ]
+[f ]
+[e ) _r_tmax ]
+[e $UE 15  ]
+[e :UE 15 ]
+}
+"102
+[; ;modules/storage.c: 102: rec_t STORAGE_GetTmin(void){ return r_tmin; }
+[v _STORAGE_GetTmin `(S1 ~T0 @X0 1 ef ]
+{
+[e :U _STORAGE_GetTmin ]
+[f ]
+[e ) _r_tmin ]
+[e $UE 16  ]
+[e :UE 16 ]
+}
+"103
+[; ;modules/storage.c: 103: rec_t STORAGE_GetLmax(void){ return r_lmax; }
+[v _STORAGE_GetLmax `(S1 ~T0 @X0 1 ef ]
+{
+[e :U _STORAGE_GetLmax ]
+[f ]
+[e ) _r_lmax ]
+[e $UE 17  ]
+[e :UE 17 ]
+}
+"104
+[; ;modules/storage.c: 104: rec_t STORAGE_GetLmin(void){ return r_lmin; }
+[v _STORAGE_GetLmin `(S1 ~T0 @X0 1 ef ]
+{
+[e :U _STORAGE_GetLmin ]
+[f ]
+[e ) _r_lmin ]
+[e $UE 18  ]
+[e :UE 18 ]
+}

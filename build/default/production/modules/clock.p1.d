@@ -1,0 +1,4 @@
+build/default/production/modules/clock.p1:  \
+modules/clock.c  \
+modules/clock.h  \
+system/system.h 
