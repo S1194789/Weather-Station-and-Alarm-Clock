@@ -58,11 +58,19 @@ static void ui_time_update(void)
     char cL = system.alarms.active_L ? 'L' : ' ';
     char cA = system.alarms.enabled  ? 'A' : 'a';
 
-    sprintf(buf, "%02d:%02d:%02d %c%c%c %c ",
+    if (ui_state == UI_CFG_RESET)
+    sprintf(buf, "%02d:%02d:%02d %c%c%c %c R",
             system.clock.hour,
             system.clock.min,
             system.clock.sec,
             cC, cT, cL, cA);
+    else
+        sprintf(buf, "%02d:%02d:%02d %c%c%c %c ",
+                system.clock.hour,
+                system.clock.min,
+                system.clock.sec,
+                cC, cT, cL, cA);
+
 
     LCDpos(0, 0);
     LCDstr(buf);
