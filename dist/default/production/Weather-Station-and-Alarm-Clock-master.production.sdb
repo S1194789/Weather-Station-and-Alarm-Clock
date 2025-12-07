@@ -23,7 +23,7 @@ channel_Temp 61
 channel_DAC1 62
 channel_FVR_buf1 63
 ]
-"19 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\modules/ui.c
+"15 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\modules/ui.c
 [e E36 . `uc
 UI_NORMAL 0
 UI_CFG_HOUR 1
@@ -35,7 +35,7 @@ UI_CFG_L 6
 UI_CFG_ALARM_EN 7
 UI_CFG_RESET 8
 ]
-"56
+"61
 [e E54 . `uc
 MODE_NORMAL 0
 MODE_CONFIG 1
@@ -376,28 +376,28 @@ MODE_RECORDS 2
 [v _STORAGE_GetLmin STORAGE_GetLmin `(S992  1 e 5 0 ]
 "26 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\modules/ui.c
 [v _ui_init ui_init `(v  1 e 1 0 ]
-"43
+"44
 [v _ui_normal ui_normal `(v  1 s 1 ui_normal ]
-"52
+"55
 [v _ui_time_update ui_time_update `(v  1 s 1 ui_time_update ]
-"115
+"148
 [v _ui_next_state ui_next_state `(v  1 e 1 0 ]
-"183
+"218
 [v _ui_select ui_select `(v  1 e 1 0 ]
-"284
+"306
 [v _ui_update ui_update `(v  1 e 1 0 ]
-"346
+"363
 [v _ui_show_records ui_show_records `(v  1 e 1 0 ]
 "8 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\system/system.c
 [v _system_init system_init `(v  1 e 1 0 ]
-[s S2331 . 1 `uc 1 INTEDG 1 0 :1:0 
+[s S2332 . 1 `uc 1 INTEDG 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
 "364 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f18875.h
-[u S2336 . 1 `S2331 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES2336  1 e 1 @11 ]
+[u S2337 . 1 `S2332 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES2337  1 e 1 @11 ]
 [s S713 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
@@ -480,7 +480,7 @@ MODE_RECORDS 2
 [v _ADACCH ADACCH `VEuc  1 e 1 @145 ]
 "2126
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @147 ]
-[s S2400 . 1 `uc 1 ADGO 1 0 :1:0 
+[s S2401 . 1 `uc 1 ADGO 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFM 1 0 :2:2 
 `uc 1 ADCS 1 0 :1:4 
@@ -489,44 +489,44 @@ MODE_RECORDS 2
 `uc 1 ADON 1 0 :1:7 
 ]
 "2162
-[s S2408 . 1 `uc 1 DONE 1 0 :1:0 
+[s S2409 . 1 `uc 1 DONE 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFRM 1 0 :2:2 
 ]
-[s S2412 . 1 `uc 1 nDONE 1 0 :1:0 
+[s S2413 . 1 `uc 1 nDONE 1 0 :1:0 
 ]
-[s S2414 . 1 `uc 1 GO 1 0 :1:0 
+[s S2415 . 1 `uc 1 GO 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFM0 1 0 :1:2 
 `uc 1 ADFM1 1 0 :1:3 
 ]
-[s S2419 . 1 `uc 1 GO_nDONE 1 0 :1:0 
+[s S2420 . 1 `uc 1 GO_nDONE 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ADFRM0 1 0 :1:2 
 `uc 1 ADFRM1 1 0 :1:3 
 ]
-[u S2424 . 1 `S2400 1 . 1 0 `S2408 1 . 1 0 `S2412 1 . 1 0 `S2414 1 . 1 0 `S2419 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES2424  1 e 1 @147 ]
+[u S2425 . 1 `S2401 1 . 1 0 `S2409 1 . 1 0 `S2413 1 . 1 0 `S2415 1 . 1 0 `S2420 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES2425  1 e 1 @147 ]
 "2237
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @148 ]
-[s S2554 . 1 `uc 1 ADDSEN 1 0 :1:0 
+[s S2555 . 1 `uc 1 ADDSEN 1 0 :1:0 
 `uc 1 . 1 0 :4:1 
 `uc 1 ADGPOL 1 0 :1:5 
 `uc 1 ADIPEN 1 0 :1:6 
 `uc 1 ADPPOL 1 0 :1:7 
 ]
 "2251
-[u S2560 . 1 `S2554 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES2560  1 e 1 @148 ]
+[u S2561 . 1 `S2555 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES2561  1 e 1 @148 ]
 "2276
 [v _ADCON2 ADCON2 `VEuc  1 e 1 @149 ]
-[s S2490 . 1 `uc 1 ADMD 1 0 :3:0 
+[s S2491 . 1 `uc 1 ADMD 1 0 :3:0 
 `uc 1 ADACLR 1 0 :1:3 
 `uc 1 ADCRS 1 0 :3:4 
 `uc 1 ADPSIS 1 0 :1:7 
 ]
 "2298
-[s S2495 . 1 `uc 1 ADMD0 1 0 :1:0 
+[s S2496 . 1 `uc 1 ADMD0 1 0 :1:0 
 `uc 1 ADMD1 1 0 :1:1 
 `uc 1 ADMD2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -534,11 +534,11 @@ MODE_RECORDS 2
 `uc 1 ADCRS1 1 0 :1:5 
 `uc 1 ADCRS2 1 0 :1:6 
 ]
-[u S2503 . 1 `S2490 1 . 1 0 `S2495 1 . 1 0 ]
-[v _ADCON2bits ADCON2bits `VES2503  1 e 1 @149 ]
+[u S2504 . 1 `S2491 1 . 1 0 `S2496 1 . 1 0 ]
+[v _ADCON2bits ADCON2bits `VES2504  1 e 1 @149 ]
 "2353
 [v _ADCON3 ADCON3 `VEuc  1 e 1 @150 ]
-[s S2461 . 1 `uc 1 ADTMD0 1 0 :1:0 
+[s S2462 . 1 `uc 1 ADTMD0 1 0 :1:0 
 `uc 1 ADTMD1 1 0 :1:1 
 `uc 1 ADTMD2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -547,15 +547,15 @@ MODE_RECORDS 2
 `uc 1 ADCALC2 1 0 :1:6 
 ]
 "2374
-[s S2469 . 1 `uc 1 ADTMD 1 0 :3:0 
+[s S2470 . 1 `uc 1 ADTMD 1 0 :3:0 
 `uc 1 ADSOI 1 0 :1:3 
 `uc 1 ADCALC 1 0 :3:4 
 ]
-[u S2473 . 1 `S2461 1 . 1 0 `S2469 1 . 1 0 ]
-[v _ADCON3bits ADCON3bits `VES2473  1 e 1 @150 ]
+[u S2474 . 1 `S2462 1 . 1 0 `S2470 1 . 1 0 ]
+[v _ADCON3bits ADCON3bits `VES2474  1 e 1 @150 ]
 "2424
 [v _ADSTAT ADSTAT `VEuc  1 e 1 @151 ]
-[s S2522 . 1 `uc 1 ADSTAT 1 0 :3:0 
+[s S2523 . 1 `uc 1 ADSTAT 1 0 :3:0 
 `uc 1 ADMACT 1 0 :1:3 
 `uc 1 ADMATH 1 0 :1:4 
 `uc 1 ADLTHR 1 0 :1:5 
@@ -563,12 +563,12 @@ MODE_RECORDS 2
 `uc 1 ADAOV 1 0 :1:7 
 ]
 "2444
-[s S2529 . 1 `uc 1 ADSTAT0 1 0 :1:0 
+[s S2530 . 1 `uc 1 ADSTAT0 1 0 :1:0 
 `uc 1 ADSTAT1 1 0 :1:1 
 `uc 1 ADSTAT2 1 0 :1:2 
 ]
-[u S2533 . 1 `S2522 1 . 1 0 `S2529 1 . 1 0 ]
-[v _ADSTATbits ADSTATbits `VES2533  1 e 1 @151 ]
+[u S2534 . 1 `S2523 1 . 1 0 `S2530 1 . 1 0 ]
+[v _ADSTATbits ADSTATbits `VES2534  1 e 1 @151 ]
 "2494
 [v _ADCLK ADCLK `VEuc  1 e 1 @152 ]
 "2552
@@ -774,32 +774,32 @@ MODE_RECORDS 2
 [v _TMR1H TMR1H `VEuc  1 e 1 @525 ]
 "6787
 [v _T1CON T1CON `VEuc  1 e 1 @526 ]
-[s S2159 . 1 `uc 1 ON 1 0 :1:0 
+[s S2160 . 1 `uc 1 ON 1 0 :1:0 
 `uc 1 RD16 1 0 :1:1 
 `uc 1 nSYNC 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 CKPS 1 0 :2:4 
 ]
 "6818
-[s S2165 . 1 `uc 1 TMR1ON 1 0 :1:0 
+[s S2166 . 1 `uc 1 TMR1ON 1 0 :1:0 
 `uc 1 T1RD16 1 0 :1:1 
 `uc 1 nT1SYNC 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 T1CKPS0 1 0 :1:4 
 `uc 1 T1CKPS1 1 0 :1:5 
 ]
-[s S2172 . 1 `uc 1 . 1 0 :4:0 
+[s S2173 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 CKPS0 1 0 :1:4 
 `uc 1 CKPS1 1 0 :1:5 
 ]
-[s S2176 . 1 `uc 1 . 1 0 :1:0 
+[s S2177 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 RD161 1 0 :1:1 
 ]
-[u S2179 . 1 `S2159 1 . 1 0 `S2165 1 . 1 0 `S2172 1 . 1 0 `S2176 1 . 1 0 ]
-[v _T1CONbits T1CONbits `VES2179  1 e 1 @526 ]
+[u S2180 . 1 `S2160 1 . 1 0 `S2166 1 . 1 0 `S2173 1 . 1 0 `S2177 1 . 1 0 ]
+[v _T1CONbits T1CONbits `VES2180  1 e 1 @526 ]
 "6883
 [v _T1GCON T1GCON `VEuc  1 e 1 @527 ]
-[s S2205 . 1 `uc 1 . 1 0 :2:0 
+[s S2206 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 GVAL 1 0 :1:2 
 `uc 1 GGO_nDONE 1 0 :1:3 
 `uc 1 GSPM 1 0 :1:4 
@@ -808,7 +808,7 @@ MODE_RECORDS 2
 `uc 1 GE 1 0 :1:7 
 ]
 "6917
-[s S2213 . 1 `uc 1 . 1 0 :2:0 
+[s S2214 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T1GVAL 1 0 :1:2 
 `uc 1 T1GGO_nDONE 1 0 :1:3 
 `uc 1 T1GSPM 1 0 :1:4 
@@ -816,11 +816,11 @@ MODE_RECORDS 2
 `uc 1 T1GPOL 1 0 :1:6 
 `uc 1 T1GE 1 0 :1:7 
 ]
-[s S2221 . 1 `uc 1 . 1 0 :3:0 
+[s S2222 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 T1GGO 1 0 :1:3 
 ]
-[u S2224 . 1 `S2205 1 . 1 0 `S2213 1 . 1 0 `S2221 1 . 1 0 ]
-[v _T1GCONbits T1GCONbits `VES2224  1 e 1 @527 ]
+[u S2225 . 1 `S2206 1 . 1 0 `S2214 1 . 1 0 `S2222 1 . 1 0 ]
+[v _T1GCONbits T1GCONbits `VES2225  1 e 1 @527 ]
 "7079
 [v _T1GATE T1GATE `VEuc  1 e 1 @528 ]
 "7245
@@ -835,7 +835,7 @@ MODE_RECORDS 2
 "21376
 [u S368 . 1 `S361 1 . 1 0 ]
 [v _PIR3bits PIR3bits `VES368  1 e 1 @1807 ]
-[s S2114 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[s S2115 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 TMR3IF 1 0 :1:2 
 `uc 1 TMR4IF 1 0 :1:3 
@@ -843,9 +843,9 @@ MODE_RECORDS 2
 `uc 1 TMR6IF 1 0 :1:5 
 ]
 "21426
-[u S2121 . 1 `S2114 1 . 1 0 ]
-[v _PIR4bits PIR4bits `VES2121  1 e 1 @1808 ]
-[s S1933 . 1 `uc 1 SSP1IE 1 0 :1:0 
+[u S2122 . 1 `S2115 1 . 1 0 ]
+[v _PIR4bits PIR4bits `VES2122  1 e 1 @1808 ]
+[s S1934 . 1 `uc 1 SSP1IE 1 0 :1:0 
 `uc 1 BCL1IE 1 0 :1:1 
 `uc 1 SSP2IE 1 0 :1:2 
 `uc 1 BCL2IE 1 0 :1:3 
@@ -853,9 +853,9 @@ MODE_RECORDS 2
 `uc 1 RCIE 1 0 :1:5 
 ]
 "21798
-[u S1940 . 1 `S1933 1 . 1 0 ]
-[v _PIE3bits PIE3bits `VES1940  1 e 1 @1817 ]
-[s S2131 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[u S1941 . 1 `S1934 1 . 1 0 ]
+[v _PIE3bits PIE3bits `VES1941  1 e 1 @1817 ]
+[s S2132 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 TMR3IE 1 0 :1:2 
 `uc 1 TMR4IE 1 0 :1:3 
@@ -863,8 +863,8 @@ MODE_RECORDS 2
 `uc 1 TMR6IE 1 0 :1:5 
 ]
 "21848
-[u S2138 . 1 `S2131 1 . 1 0 ]
-[v _PIE4bits PIE4bits `VES2138  1 e 1 @1818 ]
+[u S2139 . 1 `S2132 1 . 1 0 ]
+[v _PIE4bits PIE4bits `VES2139  1 e 1 @1818 ]
 "22100
 [v _PMD0 PMD0 `VEuc  1 e 1 @1942 ]
 "22157
@@ -885,7 +885,7 @@ MODE_RECORDS 2
 [v _NVMDATL NVMDATL `VEuc  1 e 1 @2076 ]
 "23281
 [v _NVMDATH NVMDATH `VEuc  1 e 1 @2077 ]
-[s S2639 . 1 `uc 1 RD 1 0 :1:0 
+[s S2640 . 1 `uc 1 RD 1 0 :1:0 
 `uc 1 WR 1 0 :1:1 
 `uc 1 WREN 1 0 :1:2 
 `uc 1 WRERR 1 0 :1:3 
@@ -894,8 +894,8 @@ MODE_RECORDS 2
 `uc 1 NVMREGS 1 0 :1:6 
 ]
 "23347
-[u S2647 . 1 `S2639 1 . 1 0 ]
-[v _NVMCON1bits NVMCON1bits `VES2647  1 e 1 @2078 ]
+[u S2648 . 1 `S2640 1 . 1 0 ]
+[v _NVMCON1bits NVMCON1bits `VES2648  1 e 1 @2078 ]
 "23387
 [v _NVMCON2 NVMCON2 `VEuc  1 e 1 @2079 ]
 "23451
@@ -977,13 +977,13 @@ MODE_RECORDS 2
 [v _nout nout `i  1 s 2 nout ]
 "146 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\mcc_generated_files/i2c1_master.c
 [v _i2c1_fsmStateTable i2c1_fsmStateTable `DC[16]*.37(E12611  1 e 32 0 ]
-[s S1587 . 29 `[6]*.37(E363 1 callbackTable 12 0 `[6]*.30v 1 callbackPayload 6 12 `us 1 time_out 2 18 `us 1 time_out_value 2 20 `uc 1 address 1 22 `*.30uc 1 data_ptr 1 23 `ui 1 data_length 2 24 `E12611 1 state 1 26 `E358 1 error 1 27 `uc 1 addressNackCheck 1 28 :1:0 
+[s S1588 . 29 `[6]*.37(E363 1 callbackTable 12 0 `[6]*.30v 1 callbackPayload 6 12 `us 1 time_out 2 18 `us 1 time_out_value 2 20 `uc 1 address 1 22 `*.30uc 1 data_ptr 1 23 `ui 1 data_length 2 24 `E12611 1 state 1 26 `E358 1 error 1 27 `uc 1 addressNackCheck 1 28 :1:0 
 `uc 1 busy 1 28 :1:1 
 `uc 1 inUse 1 28 :1:2 
 `uc 1 bufferFree 1 28 :1:3 
 ]
 "165
-[v _I2C1_Status I2C1_Status `S1587  1 e 29 0 ]
+[v _I2C1_Status I2C1_Status `S1588  1 e 29 0 ]
 "59 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\mcc_generated_files/tmr1.c
 [v _timer1ReloadVal timer1ReloadVal `VEus  1 e 2 0 ]
 "60
@@ -1002,11 +1002,11 @@ MODE_RECORDS 2
 [v _r_tmin r_tmin `S992  1 s 5 r_tmin ]
 [v _r_lmax r_lmax `S992  1 s 5 r_lmax ]
 [v _r_lmin r_lmin `S992  1 s 5 r_lmin ]
-"19 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\modules/ui.c
+"15 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\modules/ui.c
 [v _ui_state ui_state `E36  1 e 1 0 ]
-"20
+"16
 [v _alarm_edit_step alarm_edit_step `uc  1 s 1 alarm_edit_step ]
-"21
+"17
 [v _record_page record_page `uc  1 s 1 record_page ]
 [s S611 . 1 `uc 1 one_second 1 0 :1:0 
 ]
@@ -1021,61 +1021,59 @@ MODE_RECORDS 2
 {
 "48
 } 0
-"284 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\modules/ui.c
+"306 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\modules/ui.c
 [v _ui_update ui_update `(v  1 e 1 0 ]
 {
-"341
+"357
 } 0
-"52
+"55
 [v _ui_time_update ui_time_update `(v  1 s 1 ui_time_update ]
 {
-"54
-[v ui_time_update@buf buf `[17]uc  1 a 17 26 ]
-"59
-[v ui_time_update@cA cA `uc  1 a 1 46 ]
-"58
-[v ui_time_update@cL cL `uc  1 a 1 45 ]
 "57
-[v ui_time_update@cT cT `uc  1 a 1 44 ]
-"56
-[v ui_time_update@cC cC `uc  1 a 1 43 ]
-"110
+[v ui_time_update@buf buf `[17]uc  1 a 17 0 ]
+"58
+[v ui_time_update@cA cA `uc  1 a 1 31 ]
+[v ui_time_update@cL cL `uc  1 a 1 30 ]
+[v ui_time_update@cT cT `uc  1 a 1 29 ]
+[v ui_time_update@cC cC `uc  1 a 1 28 ]
+[v ui_time_update@cR cR `uc  1 a 1 27 ]
+"142
 } 0
-"346
+"363
 [v _ui_show_records ui_show_records `(v  1 e 1 0 ]
 {
 [v ui_show_records@page page `uc  1 p 1 wreg ]
 [s S992 . 5 `uc 1 h 1 0 `uc 1 m 1 1 `uc 1 s 1 2 `uc 1 T 1 3 `uc 1 L 1 4 ]
-"375
+"392
 [v ui_show_records@lmin lmin `S992  1 a 5 33 ]
-"374
+"391
 [v ui_show_records@lmax lmax `S992  1 a 5 28 ]
-"360
+"377
 [v ui_show_records@tmin tmin `S992  1 a 5 23 ]
-"359
+"376
 [v ui_show_records@tmax tmax `S992  1 a 5 18 ]
-"349
+"366
 [v ui_show_records@buf buf `[17]uc  1 a 17 0 ]
-"346
+"363
 [v ui_show_records@page page `uc  1 p 1 wreg ]
-"348
+"365
 [v ui_show_records@last_page last_page `uc  1 s 1 last_page ]
-"351
+"368
 [v ui_show_records@page page `uc  1 p 1 17 ]
-"387
+"404
 } 1
 "9 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\nf_sprintf.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
-[u S3205 . 2 `*.39uc 1 buffer 2 0 `*.2DCuc 1 source 2 0 ]
+[u S3206 . 2 `*.39uc 1 buffer 2 0 `*.2DCuc 1 source 2 0 ]
 "13
-[s S3208 _IO_FILE 11 `S3205 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v sprintf@f f `S3208  1 a 11 1 ]
+[s S3209 _IO_FILE 11 `S3206 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v sprintf@f f `S3209  1 a 11 57 ]
 "12
-[v sprintf@ap ap `[1]*.4v  1 a 1 0 ]
+[v sprintf@ap ap `[1]*.4v  1 a 1 56 ]
 "9
-[v sprintf@s s `*.39uc  1 p 2 56 ]
-[v sprintf@fmt fmt `*.25DCuc  1 p 2 58 ]
+[v sprintf@s s `*.5uc  1 p 1 0 ]
+[v sprintf@fmt fmt `*.25DCuc  1 p 2 1 ]
 "23
 } 0
 "1817 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\doprnt.c
@@ -1083,9 +1081,9 @@ MODE_RECORDS 2
 {
 "1820
 [v vfprintf@cfmt cfmt `*.25uc  1 a 2 54 ]
-[s S3240 _IO_FILE 0 ]
+[s S3241 _IO_FILE 0 ]
 "1817
-[v vfprintf@fp fp `*.39S3240  1 p 2 48 ]
+[v vfprintf@fp fp `*.39S3241  1 p 2 48 ]
 [v vfprintf@fmt fmt `*.25DCuc  1 p 2 50 ]
 [v vfprintf@ap ap `*.4*.4v  1 p 1 52 ]
 "1840
@@ -1093,18 +1091,18 @@ MODE_RECORDS 2
 "1177
 [v _vfpfcnvrt vfpfcnvrt `(i  1 s 2 vfpfcnvrt ]
 {
-[u S3269 . 4 `i 1 sint 2 0 `ui 1 uint 2 0 `d 1 f 4 0 ]
+[u S3270 . 4 `i 1 sint 2 0 `ui 1 uint 2 0 `d 1 f 4 0 ]
 "1188
-[v vfpfcnvrt@convarg convarg `S3269  1 a 4 42 ]
+[v vfpfcnvrt@convarg convarg `S3270  1 a 4 42 ]
 "1179
 [v vfpfcnvrt@cp cp `*.25uc  1 a 2 46 ]
 "1180
 [v vfpfcnvrt@done done `a  1 a 1 41 ]
 "1179
 [v vfpfcnvrt@c c `uc  1 a 1 40 ]
-[s S3240 _IO_FILE 0 ]
+[s S3241 _IO_FILE 0 ]
 "1177
-[v vfpfcnvrt@fp fp `*.39S3240  1 p 2 31 ]
+[v vfpfcnvrt@fp fp `*.39S3241  1 p 2 31 ]
 [v vfpfcnvrt@fmt fmt `*.4*.25uc  1 p 1 33 ]
 [v vfpfcnvrt@ap ap `*.39*.4v  1 p 2 34 ]
 "1814
@@ -1117,9 +1115,9 @@ MODE_RECORDS 2
 [v utoa@w w `i  1 a 2 23 ]
 "1007
 [v utoa@p p `a  1 a 1 22 ]
-[s S3240 _IO_FILE 0 ]
+[s S3241 _IO_FILE 0 ]
 "1001
-[v utoa@fp fp `*.39S3240  1 p 2 18 ]
+[v utoa@fp fp `*.39S3241  1 p 2 18 ]
 [v utoa@d d `ui  1 p 2 20 ]
 "1047
 } 0
@@ -1177,9 +1175,9 @@ MODE_RECORDS 2
 [v dtoa@s s `uc  1 a 1 28 ]
 "520
 [v dtoa@p p `a  1 a 1 25 ]
-[s S3240 _IO_FILE 0 ]
+[s S3241 _IO_FILE 0 ]
 "513
-[v dtoa@fp fp `*.39S3240  1 p 2 18 ]
+[v dtoa@fp fp `*.39S3241  1 p 2 18 ]
 [v dtoa@d d `i  1 p 2 20 ]
 "583
 } 0
@@ -1188,9 +1186,9 @@ MODE_RECORDS 2
 {
 "195
 [v pad@i i `i  1 a 2 16 ]
-[s S3240 _IO_FILE 0 ]
+[s S3241 _IO_FILE 0 ]
 "193
-[v pad@fp fp `*.39S3240  1 p 2 11 ]
+[v pad@fp fp `*.39S3241  1 p 2 11 ]
 [v pad@buf buf `*.5uc  1 p 1 13 ]
 [v pad@p p `i  1 p 2 14 ]
 "226
@@ -1213,9 +1211,9 @@ MODE_RECORDS 2
 [v fputs@c c `uc  1 a 1 8 ]
 "8
 [v fputs@s s `*.5DCuc  1 p 1 5 ]
-[u S3205 . 2 `*.39uc 1 buffer 2 0 `*.2DCuc 1 source 2 0 ]
-[s S3208 _IO_FILE 11 `S3205 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v fputs@fp fp `*.39S3208  1 p 2 6 ]
+[u S3206 . 2 `*.39uc 1 buffer 2 0 `*.2DCuc 1 source 2 0 ]
+[s S3209 _IO_FILE 11 `S3206 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputs@fp fp `*.39S3209  1 p 2 6 ]
 "19
 } 0
 "1 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\abs.c
@@ -1243,9 +1241,9 @@ MODE_RECORDS 2
 "478
 [v ctoa@w w `i  1 a 2 10 ]
 [v ctoa@l l `i  1 a 2 8 ]
-[s S3240 _IO_FILE 0 ]
+[s S3241 _IO_FILE 0 ]
 "476
-[v ctoa@fp fp `*.39S3240  1 p 2 5 ]
+[v ctoa@fp fp `*.39S3241  1 p 2 5 ]
 [v ctoa@c c `uc  1 p 1 7 ]
 "509
 } 0
@@ -1253,9 +1251,9 @@ MODE_RECORDS 2
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 2 ]
-[u S3205 . 2 `*.39uc 1 buffer 2 0 `*.2DCuc 1 source 2 0 ]
-[s S3208 _IO_FILE 11 `S3205 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v fputc@fp fp `*.39S3208  1 p 2 4 ]
+[u S3206 . 2 `*.39uc 1 buffer 2 0 `*.2DCuc 1 source 2 0 ]
+[s S3209 _IO_FILE 11 `S3206 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputc@fp fp `*.39S3209  1 p 2 4 ]
 "24
 } 0
 "7 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\putch.c
@@ -1411,10 +1409,10 @@ MODE_RECORDS 2
 [v buttons_update@prev_S2 prev_S2 `uc  1 s 1 prev_S2 ]
 "34
 } 0
-"183 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\modules/ui.c
+"218 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\modules/ui.c
 [v _ui_select ui_select `(v  1 e 1 0 ]
 {
-"278
+"300
 } 0
 "5 C:\Program Files\Microchip\xc8\v3.10\pic\sources\c99\common\awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]
@@ -1450,15 +1448,15 @@ MODE_RECORDS 2
 [v LCDchar@c c `uc  1 p 1 9 ]
 "110
 } 1
-"115 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\modules/ui.c
+"148 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\modules/ui.c
 [v _ui_next_state ui_next_state `(v  1 e 1 0 ]
 {
-"178
+"212
 } 0
-"43
+"44
 [v _ui_normal ui_normal `(v  1 s 1 ui_normal ]
 {
-"47
+"48
 } 0
 "125 C:\Users\HYEJOO KWON\MPLABXProjects\Weather-Station-and-Alarm-Clock-master\LCD/lcd.c
 [v _LCDpos LCDpos `(v  1 e 1 0 ]

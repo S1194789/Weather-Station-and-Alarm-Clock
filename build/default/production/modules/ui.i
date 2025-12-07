@@ -21144,16 +21144,16 @@ rec_t STORAGE_GetLmin(void);
 
 
 
-
 extern unsigned char temperature_value;
 extern unsigned char luminosity_value;
-
-static void ui_normal(void);
-static void ui_time_update(void);
 
 ui_state_t ui_state = UI_NORMAL;
 static uint8_t alarm_edit_step = 0;
 static uint8_t record_page = 0;
+
+static void ui_normal(void);
+static void ui_time_update(void);
+
 
 
 
@@ -21165,12 +21165,13 @@ void ui_init(void)
     _delay((unsigned long)((100)*(4000000/4000.0)));
 
     LCDcmd(0x01);
-    LCDpos(0, 0);
+    LCDpos(0,0);
     LCDstr("Loading...");
     _delay((unsigned long)((300)*(4000000/4000.0)));
 
     ui_normal();
 }
+
 
 
 
@@ -21184,25 +21185,56 @@ static void ui_normal(void)
 
 
 
+
+
 static void ui_time_update(void)
 {
     char buf[17];
+    char cC, cT, cL, cA, cR;
 
-    char cC = system.alarms.active_C ? 'C' : ' ';
-    char cT = system.alarms.active_T ? 'T' : ' ';
-    char cL = system.alarms.active_L ? 'L' : ' ';
-    char cA = system.alarms.enabled ? 'A' : 'a';
 
-    sprintf(buf, "%02d:%02d:%02d %c%c%c %c ",
+    if (system.mode == MODE_CONFIG)
+    {
+        cC = 'C';
+        cT = 'T';
+        cL = 'L';
+        cA = system.alarms.enabled ? 'A' : 'a';
+        cR = 'R';
+    }
+    else
+    {
+
+        if (!system.alarms.enabled)
+        {
+            cC = ' ';
+            cT = ' ';
+            cL = ' ';
+            cA = 'a';
+        }
+        else
+        {
+
+            cC = system.alarms.active_C ? 'C' : ' ';
+            cT = system.alarms.active_T ? 'T' : ' ';
+            cL = system.alarms.active_L ? 'L' : ' ';
+            cA = 'A';
+        }
+
+        cR = ' ';
+    }
+
+
+    sprintf(buf, "%02d:%02d:%02d %c%c%c %c %c",
             system.clock.hour,
             system.clock.min,
             system.clock.sec,
-            cC, cT, cL, cA);
+            cC, cT, cL, cA, cR);
 
-    LCDpos(0, 0);
+    LCDpos(0,0);
     LCDstr(buf);
 
-    LCDpos(1, 0);
+
+    LCDpos(1,0);
 
     switch (ui_state)
     {
@@ -21247,11 +21279,13 @@ static void ui_time_update(void)
 
 
 
+
 void ui_next_state(void)
 {
     switch(ui_state)
     {
         case UI_NORMAL:
+            system.mode = MODE_CONFIG;
             ui_state = UI_CFG_HOUR;
             LCDcmd(0x0F);
             LCDpos(0,1);
@@ -21282,7 +21316,6 @@ void ui_next_state(void)
             }
             else
             {
-
                 alarm_edit_step = 0;
                 ui_state = UI_CFG_T;
                 LCDpos(0,10);
@@ -21306,6 +21339,7 @@ void ui_next_state(void)
 
         case UI_CFG_RESET:
         default:
+            system.mode = MODE_NORMAL;
             ui_state = UI_NORMAL;
             ui_normal();
             break;
@@ -21315,14 +21349,10 @@ void ui_next_state(void)
 
 
 
+
 void ui_select(void)
 {
-
-
-
     system.records_timer = 0;
-
-
 
 
     if (ui_state == UI_CFG_RESET)
@@ -21341,12 +21371,9 @@ void ui_select(void)
     }
 
 
-
-
     if (system.mode == MODE_RECORDS)
     {
-        if (record_page == 0)
-            record_page = 1;
+        if (record_page == 0) record_page = 1;
         else
         {
             record_page = 0;
@@ -21358,8 +21385,6 @@ void ui_select(void)
     }
 
 
-
-
     if (ui_state == UI_NORMAL && system.mode == MODE_NORMAL)
     {
         system.mode = MODE_RECORDS;
@@ -21367,8 +21392,6 @@ void ui_select(void)
         ui_normal();
         return;
     }
-
-
 
 
     switch(ui_state)
@@ -21386,7 +21409,6 @@ void ui_select(void)
             break;
 
         case UI_CFG_C:
-
             if (alarm_edit_step == 0)
                 system.alarms.clk_h = (system.alarms.clk_h + 1) % 24;
             else if (alarm_edit_step == 1)
@@ -21419,17 +21441,13 @@ void ui_select(void)
 void ui_update(void)
 {
 
-
-
     if (system.mode == MODE_RECORDS)
     {
         ui_show_records(record_page);
 
-
         if (system.flags.one_second)
         {
             system.records_timer++;
-
             if (system.records_timer >= 10)
             {
                 system.mode = MODE_NORMAL;
@@ -21440,8 +21458,6 @@ void ui_update(void)
         }
         return;
     }
-
-
 
 
     ui_time_update();
@@ -21474,6 +21490,7 @@ void ui_update(void)
             break;
     }
 }
+
 
 
 

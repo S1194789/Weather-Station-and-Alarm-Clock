@@ -1,6 +1,6 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"19 modules/ui.c
-[; ;modules/ui.c: 19: ui_state_t ui_state = UI_NORMAL;
+"15 modules/ui.c
+[; ;modules/ui.c: 15: ui_state_t ui_state = UI_NORMAL;
 [c E36 0 1 2 3 4 5 6 7 8 .. ]
 [n E36 . UI_NORMAL UI_CFG_HOUR UI_CFG_MIN UI_CFG_SEC UI_CFG_C UI_CFG_T UI_CFG_L UI_CFG_ALARM_EN UI_CFG_RESET  ]
 "155 I2C/i2c.h
@@ -22,11 +22,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "24
 [; ;LCD/lcd.h: 24: void LCDstr(char *p);
 [v _LCDstr `(v ~T0 @X0 0 ef1`*uc ]
-"16 modules/ui.c
-[; ;modules/ui.c: 16: static void ui_normal(void);
+"19 modules/ui.c
+[; ;modules/ui.c: 19: static void ui_normal(void);
 [v _ui_normal `(v ~T0 @X0 0 sf ]
-"56
-[; ;modules/ui.c: 56:     char cC = system.alarms.active_C ? 'C' : ' ';
+"61
+[; ;modules/ui.c: 61:     if (system.mode == MODE_CONFIG)
 [c E54 0 1 2 .. ]
 [n E54 . MODE_NORMAL MODE_CONFIG MODE_RECORDS  ]
 "14 system/system.h
@@ -55,11 +55,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "121 C:\Program Files\Microchip\xc8\v3.10\pic\include\c99/stdio.h
 [; ;C:\Program Files\Microchip\xc8\v3.10\pic\include\c99/stdio.h: 121: int sprintf(char *restrict, const char *restrict, ...);
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"13 modules/ui.c
-[; ;modules/ui.c: 13: extern unsigned char temperature_value;
+"12 modules/ui.c
+[; ;modules/ui.c: 12: extern unsigned char temperature_value;
 [v _temperature_value `uc ~T0 @X0 0 e ]
-"14
-[; ;modules/ui.c: 14: extern unsigned char luminosity_value;
+"13
+[; ;modules/ui.c: 13: extern unsigned char luminosity_value;
 [v _luminosity_value `uc ~T0 @X0 0 e ]
 "18 modules/storage.h
 [; ;modules/storage.h: 18: void STORAGE_Reset(void);
@@ -1721,20 +1721,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "36489
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC16F1xxxx_DFP/1.24.387/xc8\pic\include\proc/pic16f18875.h: 36489: __asm("TOSH equ 0FEFh");
 [; <" TOSH equ 0FEFh ;# ">
-"19 modules/ui.c
-[; ;modules/ui.c: 19: ui_state_t ui_state = UI_NORMAL;
+"15 modules/ui.c
+[; ;modules/ui.c: 15: ui_state_t ui_state = UI_NORMAL;
 [v _ui_state `E36 ~T0 @X0 1 e ]
 [i _ui_state
 . `E36 0
 ]
-"20
-[; ;modules/ui.c: 20: static uint8_t alarm_edit_step = 0;
+"16
+[; ;modules/ui.c: 16: static uint8_t alarm_edit_step = 0;
 [v _alarm_edit_step `uc ~T0 @X0 1 s ]
 [i _alarm_edit_step
 -> -> 0 `i `uc
 ]
-"21
-[; ;modules/ui.c: 21: static uint8_t record_page = 0;
+"17
+[; ;modules/ui.c: 17: static uint8_t record_page = 0;
 [v _record_page `uc ~T0 @X0 1 s ]
 [i _record_page
 -> -> 0 `i `uc
@@ -1760,7 +1760,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;modules/ui.c: 32:     LCDcmd(0x01);
 [e ( _LCDcmd (1 -> -> 1 `i `uc ]
 "33
-[; ;modules/ui.c: 33:     LCDpos(0, 0);
+[; ;modules/ui.c: 33:     LCDpos(0,0);
 [e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
 "34
 [; ;modules/ui.c: 34:     LCDstr("Loading...");
@@ -1775,866 +1775,943 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;modules/ui.c: 38: }
 [e :UE 1626 ]
 }
-"43
-[; ;modules/ui.c: 43: static void ui_normal(void)
-[v _ui_normal `(v ~T0 @X0 1 sf ]
 "44
-[; ;modules/ui.c: 44: {
+[; ;modules/ui.c: 44: static void ui_normal(void)
+[v _ui_normal `(v ~T0 @X0 1 sf ]
+"45
+[; ;modules/ui.c: 45: {
 {
 [e :U _ui_normal ]
 [f ]
-"45
-[; ;modules/ui.c: 45:     LCDcmd(0x01);
-[e ( _LCDcmd (1 -> -> 1 `i `uc ]
 "46
-[; ;modules/ui.c: 46:     LCDcmd(0x0C);
-[e ( _LCDcmd (1 -> -> 12 `i `uc ]
+[; ;modules/ui.c: 46:     LCDcmd(0x01);
+[e ( _LCDcmd (1 -> -> 1 `i `uc ]
 "47
-[; ;modules/ui.c: 47: }
+[; ;modules/ui.c: 47:     LCDcmd(0x0C);
+[e ( _LCDcmd (1 -> -> 12 `i `uc ]
+"48
+[; ;modules/ui.c: 48: }
 [e :UE 1627 ]
 }
-"52
-[; ;modules/ui.c: 52: static void ui_time_update(void)
+"55
+[; ;modules/ui.c: 55: static void ui_time_update(void)
 [v _ui_time_update `(v ~T0 @X0 1 sf ]
-"53
-[; ;modules/ui.c: 53: {
+"56
+[; ;modules/ui.c: 56: {
 {
 [e :U _ui_time_update ]
 [f ]
-"54
-[; ;modules/ui.c: 54:     char buf[17];
-[v _buf `uc ~T0 @X0 -> 17 `i a ]
-"56
-[; ;modules/ui.c: 56:     char cC = system.alarms.active_C ? 'C' : ' ';
-[v _cC `uc ~T0 @X0 1 a ]
-[e = _cC -> ? != -> . . _system 4 6 `i -> 0 `i : -> 67 `ui -> 32 `ui `uc ]
 "57
-[; ;modules/ui.c: 57:     char cT = system.alarms.active_T ? 'T' : ' ';
-[v _cT `uc ~T0 @X0 1 a ]
-[e = _cT -> ? != -> . . _system 4 7 `i -> 0 `i : -> 84 `ui -> 32 `ui `uc ]
+[; ;modules/ui.c: 57:     char buf[17];
+[v _buf `uc ~T0 @X0 -> 17 `i a ]
 "58
-[; ;modules/ui.c: 58:     char cL = system.alarms.active_L ? 'L' : ' ';
+[; ;modules/ui.c: 58:     char cC, cT, cL, cA, cR;
+[v _cC `uc ~T0 @X0 1 a ]
+[v _cT `uc ~T0 @X0 1 a ]
 [v _cL `uc ~T0 @X0 1 a ]
-[e = _cL -> ? != -> . . _system 4 8 `i -> 0 `i : -> 76 `ui -> 32 `ui `uc ]
-"59
-[; ;modules/ui.c: 59:     char cA = system.alarms.enabled ? 'A' : 'a';
 [v _cA `uc ~T0 @X0 1 a ]
-[e = _cA -> ? != -> . . _system 4 0 `i -> 0 `i : -> 65 `ui -> 97 `ui `uc ]
+[v _cR `uc ~T0 @X0 1 a ]
 "61
-[; ;modules/ui.c: 61:     sprintf(buf, "%02d:%02d:%02d %c%c%c %c ",
-[e ( _sprintf (1 , , , , , , , (. , &U _buf :s 2C -> . . _system 2 0 `i -> . . _system 2 1 `i -> . . _system 2 2 `i -> _cC `i -> _cT `i -> _cL `i -> _cA `i ]
+[; ;modules/ui.c: 61:     if (system.mode == MODE_CONFIG)
+[e $ ! == -> . _system 0 `ui -> . `E54 1 `ui 1629  ]
+"62
+[; ;modules/ui.c: 62:     {
+{
+"63
+[; ;modules/ui.c: 63:         cC = 'C';
+[e = _cC -> -> 67 `ui `uc ]
+"64
+[; ;modules/ui.c: 64:         cT = 'T';
+[e = _cT -> -> 84 `ui `uc ]
+"65
+[; ;modules/ui.c: 65:         cL = 'L';
+[e = _cL -> -> 76 `ui `uc ]
+"66
+[; ;modules/ui.c: 66:         cA = system.alarms.enabled ? 'A' : 'a';
+[e = _cA -> ? != -> . . _system 4 0 `i -> 0 `i : -> 65 `ui -> 97 `ui `uc ]
 "67
-[; ;modules/ui.c: 67:     LCDpos(0, 0);
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
+[; ;modules/ui.c: 67:         cR = 'R';
+[e = _cR -> -> 82 `ui `uc ]
 "68
-[; ;modules/ui.c: 68:     LCDstr(buf);
-[e ( _LCDstr (1 &U _buf ]
-"70
-[; ;modules/ui.c: 70:     LCDpos(1, 0);
-[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-"72
-[; ;modules/ui.c: 72:     switch (ui_state)
+[; ;modules/ui.c: 68:     }
+}
 [e $U 1630  ]
+"69
+[; ;modules/ui.c: 69:     else
+[e :U 1629 ]
+"70
+[; ;modules/ui.c: 70:     {
+{
+"72
+[; ;modules/ui.c: 72:         if (!system.alarms.enabled)
+[e $ ! ! != -> . . _system 4 0 `i -> 0 `i 1631  ]
 "73
-[; ;modules/ui.c: 73:     {
+[; ;modules/ui.c: 73:         {
 {
 "74
-[; ;modules/ui.c: 74:         case UI_NORMAL:
-[e :U 1631 ]
+[; ;modules/ui.c: 74:             cC = ' ';
+[e = _cC -> -> 32 `ui `uc ]
 "75
-[; ;modules/ui.c: 75:             sprintf(buf, "%02dC    L%d", temperature_value, luminosity_value);
-[e ( _sprintf (1 , , (. , &U _buf :s 3C -> _temperature_value `i -> _luminosity_value `i ]
+[; ;modules/ui.c: 75:             cT = ' ';
+[e = _cT -> -> 32 `ui `uc ]
 "76
-[; ;modules/ui.c: 76:             break;
-[e $U 1629  ]
+[; ;modules/ui.c: 76:             cL = ' ';
+[e = _cL -> -> 32 `ui `uc ]
+"77
+[; ;modules/ui.c: 77:             cA = 'a';
+[e = _cA -> -> 97 `ui `uc ]
 "78
-[; ;modules/ui.c: 78:         case UI_CFG_HOUR:
-[e :U 1632 ]
-"79
-[; ;modules/ui.c: 79:         case UI_CFG_MIN:
-[e :U 1633 ]
-"80
-[; ;modules/ui.c: 80:         case UI_CFG_SEC:
-[e :U 1634 ]
-"81
-[; ;modules/ui.c: 81:             sprintf(buf, "Set clock time   ");
-[e ( _sprintf (1 , &U _buf :s 4C ]
-"82
-[; ;modules/ui.c: 82:             break;
-[e $U 1629  ]
-"84
-[; ;modules/ui.c: 84:         case UI_CFG_C:
-[e :U 1635 ]
-"85
-[; ;modules/ui.c: 85:             sprintf(buf, "AL %02d:%02d:%02d   ",
-[e ( _sprintf (1 , , , (. , &U _buf :s 5C -> . . _system 4 1 `i -> . . _system 4 2 `i -> . . _system 4 3 `i ]
-"89
-[; ;modules/ui.c: 89:             break;
-[e $U 1629  ]
-"91
-[; ;modules/ui.c: 91:         case UI_CFG_T:
-[e :U 1636 ]
-"92
-[; ;modules/ui.c: 92:             sprintf(buf, "Tthr=%02d C       ", system.alarms.temp_thr);
-[e ( _sprintf (1 , (. , &U _buf :s 6C -> . . _system 4 4 `i ]
-"93
-[; ;modules/ui.c: 93:             break;
-[e $U 1629  ]
-"95
-[; ;modules/ui.c: 95:         case UI_CFG_L:
-[e :U 1637 ]
-"96
-[; ;modules/ui.c: 96:             sprintf(buf, "Lthr=%d (0-3)     ", system.alarms.lum_thr);
-[e ( _sprintf (1 , (. , &U _buf :s 7C -> . . _system 4 5 `i ]
-"97
-[; ;modules/ui.c: 97:             break;
-[e $U 1629  ]
-"99
-[; ;modules/ui.c: 99:         case UI_CFG_ALARM_EN:
-[e :U 1638 ]
-"100
-[; ;modules/ui.c: 100:             sprintf(buf, system.alarms.enabled ? "Alarms: ON       "
-[e ( _sprintf (1 , &U _buf -> ? != -> . . _system 4 0 `i -> 0 `i : :s 8C :s 9C `*Cuc ]
-"102
-[; ;modules/ui.c: 102:             break;
-[e $U 1629  ]
-"104
-[; ;modules/ui.c: 104:         case UI_CFG_RESET:
-[e :U 1639 ]
-"105
-[; ;modules/ui.c: 105:             sprintf(buf, "Reset records S2 ");
-[e ( _sprintf (1 , &U _buf :s 10C ]
-"106
-[; ;modules/ui.c: 106:             break;
-[e $U 1629  ]
-"107
-[; ;modules/ui.c: 107:     }
+[; ;modules/ui.c: 78:         }
 }
-[e $U 1629  ]
+[e $U 1632  ]
+"79
+[; ;modules/ui.c: 79:         else
+[e :U 1631 ]
+"80
+[; ;modules/ui.c: 80:         {
+{
+"82
+[; ;modules/ui.c: 82:             cC = system.alarms.active_C ? 'C' : ' ';
+[e = _cC -> ? != -> . . _system 4 6 `i -> 0 `i : -> 67 `ui -> 32 `ui `uc ]
+"83
+[; ;modules/ui.c: 83:             cT = system.alarms.active_T ? 'T' : ' ';
+[e = _cT -> ? != -> . . _system 4 7 `i -> 0 `i : -> 84 `ui -> 32 `ui `uc ]
+"84
+[; ;modules/ui.c: 84:             cL = system.alarms.active_L ? 'L' : ' ';
+[e = _cL -> ? != -> . . _system 4 8 `i -> 0 `i : -> 76 `ui -> 32 `ui `uc ]
+"85
+[; ;modules/ui.c: 85:             cA = 'A';
+[e = _cA -> -> 65 `ui `uc ]
+"86
+[; ;modules/ui.c: 86:         }
+}
+[e :U 1632 ]
+"88
+[; ;modules/ui.c: 88:         cR = ' ';
+[e = _cR -> -> 32 `ui `uc ]
+"89
+[; ;modules/ui.c: 89:     }
+}
 [e :U 1630 ]
-[e [\ -> _ui_state `ui , $ -> . `E36 0 `ui 1631
- , $ -> . `E36 1 `ui 1632
- , $ -> . `E36 2 `ui 1633
- , $ -> . `E36 3 `ui 1634
- , $ -> . `E36 4 `ui 1635
- , $ -> . `E36 5 `ui 1636
- , $ -> . `E36 6 `ui 1637
- , $ -> . `E36 7 `ui 1638
- , $ -> . `E36 8 `ui 1639
- 1629 ]
-[e :U 1629 ]
-"109
-[; ;modules/ui.c: 109:     LCDstr(buf);
+"92
+[; ;modules/ui.c: 92:     sprintf(buf, "%02d:%02d:%02d %c%c%c %c %c",
+[e ( _sprintf (1 , , , , , , , , (. , &U _buf :s 2C -> . . _system 2 0 `i -> . . _system 2 1 `i -> . . _system 2 2 `i -> _cC `i -> _cT `i -> _cL `i -> _cA `i -> _cR `i ]
+"98
+[; ;modules/ui.c: 98:     LCDpos(0,0);
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
+"99
+[; ;modules/ui.c: 99:     LCDstr(buf);
 [e ( _LCDstr (1 &U _buf ]
+"102
+[; ;modules/ui.c: 102:     LCDpos(1,0);
+[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+"104
+[; ;modules/ui.c: 104:     switch (ui_state)
+[e $U 1634  ]
+"105
+[; ;modules/ui.c: 105:     {
+{
+"106
+[; ;modules/ui.c: 106:         case UI_NORMAL:
+[e :U 1635 ]
+"107
+[; ;modules/ui.c: 107:             sprintf(buf, "%02dC    L%d", temperature_value, luminosity_value);
+[e ( _sprintf (1 , , (. , &U _buf :s 3C -> _temperature_value `i -> _luminosity_value `i ]
+"108
+[; ;modules/ui.c: 108:             break;
+[e $U 1633  ]
 "110
-[; ;modules/ui.c: 110: }
+[; ;modules/ui.c: 110:         case UI_CFG_HOUR:
+[e :U 1636 ]
+"111
+[; ;modules/ui.c: 111:         case UI_CFG_MIN:
+[e :U 1637 ]
+"112
+[; ;modules/ui.c: 112:         case UI_CFG_SEC:
+[e :U 1638 ]
+"113
+[; ;modules/ui.c: 113:             sprintf(buf, "Set clock time   ");
+[e ( _sprintf (1 , &U _buf :s 4C ]
+"114
+[; ;modules/ui.c: 114:             break;
+[e $U 1633  ]
+"116
+[; ;modules/ui.c: 116:         case UI_CFG_C:
+[e :U 1639 ]
+"117
+[; ;modules/ui.c: 117:             sprintf(buf, "AL %02d:%02d:%02d   ",
+[e ( _sprintf (1 , , , (. , &U _buf :s 5C -> . . _system 4 1 `i -> . . _system 4 2 `i -> . . _system 4 3 `i ]
+"121
+[; ;modules/ui.c: 121:             break;
+[e $U 1633  ]
+"123
+[; ;modules/ui.c: 123:         case UI_CFG_T:
+[e :U 1640 ]
+"124
+[; ;modules/ui.c: 124:             sprintf(buf, "Tthr=%02d C       ", system.alarms.temp_thr);
+[e ( _sprintf (1 , (. , &U _buf :s 6C -> . . _system 4 4 `i ]
+"125
+[; ;modules/ui.c: 125:             break;
+[e $U 1633  ]
+"127
+[; ;modules/ui.c: 127:         case UI_CFG_L:
+[e :U 1641 ]
+"128
+[; ;modules/ui.c: 128:             sprintf(buf, "Lthr=%d (0-3)     ", system.alarms.lum_thr);
+[e ( _sprintf (1 , (. , &U _buf :s 7C -> . . _system 4 5 `i ]
+"129
+[; ;modules/ui.c: 129:             break;
+[e $U 1633  ]
+"131
+[; ;modules/ui.c: 131:         case UI_CFG_ALARM_EN:
+[e :U 1642 ]
+"132
+[; ;modules/ui.c: 132:             sprintf(buf, system.alarms.enabled ? "Alarms: ON       "
+[e ( _sprintf (1 , &U _buf -> ? != -> . . _system 4 0 `i -> 0 `i : :s 8C :s 9C `*Cuc ]
+"134
+[; ;modules/ui.c: 134:             break;
+[e $U 1633  ]
+"136
+[; ;modules/ui.c: 136:         case UI_CFG_RESET:
+[e :U 1643 ]
+"137
+[; ;modules/ui.c: 137:             sprintf(buf, "Reset records S2 ");
+[e ( _sprintf (1 , &U _buf :s 10C ]
+"138
+[; ;modules/ui.c: 138:             break;
+[e $U 1633  ]
+"139
+[; ;modules/ui.c: 139:     }
+}
+[e $U 1633  ]
+[e :U 1634 ]
+[e [\ -> _ui_state `ui , $ -> . `E36 0 `ui 1635
+ , $ -> . `E36 1 `ui 1636
+ , $ -> . `E36 2 `ui 1637
+ , $ -> . `E36 3 `ui 1638
+ , $ -> . `E36 4 `ui 1639
+ , $ -> . `E36 5 `ui 1640
+ , $ -> . `E36 6 `ui 1641
+ , $ -> . `E36 7 `ui 1642
+ , $ -> . `E36 8 `ui 1643
+ 1633 ]
+[e :U 1633 ]
+"141
+[; ;modules/ui.c: 141:     LCDstr(buf);
+[e ( _LCDstr (1 &U _buf ]
+"142
+[; ;modules/ui.c: 142: }
 [e :UE 1628 ]
 }
-"115
-[; ;modules/ui.c: 115: void ui_next_state(void)
+"148
+[; ;modules/ui.c: 148: void ui_next_state(void)
 [v _ui_next_state `(v ~T0 @X0 1 ef ]
-"116
-[; ;modules/ui.c: 116: {
+"149
+[; ;modules/ui.c: 149: {
 {
 [e :U _ui_next_state ]
 [f ]
-"117
-[; ;modules/ui.c: 117:     switch(ui_state)
-[e $U 1642  ]
-"118
-[; ;modules/ui.c: 118:     {
-{
-"119
-[; ;modules/ui.c: 119:         case UI_NORMAL:
-[e :U 1643 ]
-"120
-[; ;modules/ui.c: 120:             ui_state = UI_CFG_HOUR;
-[e = _ui_state . `E36 1 ]
-"121
-[; ;modules/ui.c: 121:             LCDcmd(0x0F);
-[e ( _LCDcmd (1 -> -> 15 `i `uc ]
-"122
-[; ;modules/ui.c: 122:             LCDpos(0,1);
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
-"123
-[; ;modules/ui.c: 123:             break;
-[e $U 1641  ]
-"125
-[; ;modules/ui.c: 125:         case UI_CFG_HOUR:
-[e :U 1644 ]
-"126
-[; ;modules/ui.c: 126:             ui_state = UI_CFG_MIN;
-[e = _ui_state . `E36 2 ]
-"127
-[; ;modules/ui.c: 127:             LCDpos(0,4);
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 4 `i `uc ]
-"128
-[; ;modules/ui.c: 128:             break;
-[e $U 1641  ]
-"130
-[; ;modules/ui.c: 130:         case UI_CFG_MIN:
-[e :U 1645 ]
-"131
-[; ;modules/ui.c: 131:             ui_state = UI_CFG_SEC;
-[e = _ui_state . `E36 3 ]
-"132
-[; ;modules/ui.c: 132:             LCDpos(0,7);
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 7 `i `uc ]
-"133
-[; ;modules/ui.c: 133:             break;
-[e $U 1641  ]
-"135
-[; ;modules/ui.c: 135:         case UI_CFG_SEC:
-[e :U 1646 ]
-"136
-[; ;modules/ui.c: 136:             ui_state = UI_CFG_C;
-[e = _ui_state . `E36 4 ]
-"137
-[; ;modules/ui.c: 137:             alarm_edit_step = 0;
-[e = _alarm_edit_step -> -> 0 `i `uc ]
-"138
-[; ;modules/ui.c: 138:             LCDpos(1,4);
-[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 4 `i `uc ]
-"139
-[; ;modules/ui.c: 139:             break;
-[e $U 1641  ]
-"141
-[; ;modules/ui.c: 141:         case UI_CFG_C:
-[e :U 1647 ]
-"142
-[; ;modules/ui.c: 142:             if (alarm_edit_step < 2)
-[e $ ! < -> _alarm_edit_step `i -> 2 `i 1648  ]
-"143
-[; ;modules/ui.c: 143:             {
-{
-"144
-[; ;modules/ui.c: 144:                 alarm_edit_step++;
-[e ++ _alarm_edit_step -> -> 1 `i `uc ]
-"145
-[; ;modules/ui.c: 145:                 if (alarm_edit_step == 1) LCDpos(1,7);
-[e $ ! == -> _alarm_edit_step `i -> 1 `i 1649  ]
-[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 7 `i `uc ]
-[e :U 1649 ]
-"146
-[; ;modules/ui.c: 146:                 if (alarm_edit_step == 2) LCDpos(1,10);
-[e $ ! == -> _alarm_edit_step `i -> 2 `i 1650  ]
-[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 10 `i `uc ]
-[e :U 1650 ]
-"147
-[; ;modules/ui.c: 147:             }
-}
-[e $U 1651  ]
-"148
-[; ;modules/ui.c: 148:             else
-[e :U 1648 ]
-"149
-[; ;modules/ui.c: 149:             {
-{
+"150
+[; ;modules/ui.c: 150:     switch(ui_state)
+[e $U 1646  ]
 "151
-[; ;modules/ui.c: 151:                 alarm_edit_step = 0;
-[e = _alarm_edit_step -> -> 0 `i `uc ]
+[; ;modules/ui.c: 151:     {
+{
 "152
-[; ;modules/ui.c: 152:                 ui_state = UI_CFG_T;
-[e = _ui_state . `E36 5 ]
+[; ;modules/ui.c: 152:         case UI_NORMAL:
+[e :U 1647 ]
 "153
-[; ;modules/ui.c: 153:                 LCDpos(0,10);
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 10 `i `uc ]
+[; ;modules/ui.c: 153:             system.mode = MODE_CONFIG;
+[e = . _system 0 . `E54 1 ]
 "154
-[; ;modules/ui.c: 154:             }
-}
-[e :U 1651 ]
+[; ;modules/ui.c: 154:             ui_state = UI_CFG_HOUR;
+[e = _ui_state . `E36 1 ]
 "155
-[; ;modules/ui.c: 155:             break;
-[e $U 1641  ]
+[; ;modules/ui.c: 155:             LCDcmd(0x0F);
+[e ( _LCDcmd (1 -> -> 15 `i `uc ]
+"156
+[; ;modules/ui.c: 156:             LCDpos(0,1);
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
 "157
-[; ;modules/ui.c: 157:         case UI_CFG_T:
-[e :U 1652 ]
-"158
-[; ;modules/ui.c: 158:             ui_state = UI_CFG_L;
-[e = _ui_state . `E36 6 ]
+[; ;modules/ui.c: 157:             break;
+[e $U 1645  ]
 "159
-[; ;modules/ui.c: 159:             LCDpos(0,11);
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 11 `i `uc ]
+[; ;modules/ui.c: 159:         case UI_CFG_HOUR:
+[e :U 1648 ]
 "160
-[; ;modules/ui.c: 160:             break;
-[e $U 1641  ]
+[; ;modules/ui.c: 160:             ui_state = UI_CFG_MIN;
+[e = _ui_state . `E36 2 ]
+"161
+[; ;modules/ui.c: 161:             LCDpos(0,4);
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 4 `i `uc ]
 "162
-[; ;modules/ui.c: 162:         case UI_CFG_L:
-[e :U 1653 ]
-"163
-[; ;modules/ui.c: 163:             ui_state = UI_CFG_ALARM_EN;
-[e = _ui_state . `E36 7 ]
+[; ;modules/ui.c: 162:             break;
+[e $U 1645  ]
 "164
-[; ;modules/ui.c: 164:             LCDpos(0,13);
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 13 `i `uc ]
+[; ;modules/ui.c: 164:         case UI_CFG_MIN:
+[e :U 1649 ]
 "165
-[; ;modules/ui.c: 165:             break;
-[e $U 1641  ]
+[; ;modules/ui.c: 165:             ui_state = UI_CFG_SEC;
+[e = _ui_state . `E36 3 ]
+"166
+[; ;modules/ui.c: 166:             LCDpos(0,7);
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 7 `i `uc ]
 "167
-[; ;modules/ui.c: 167:         case UI_CFG_ALARM_EN:
-[e :U 1654 ]
-"168
-[; ;modules/ui.c: 168:             ui_state = UI_CFG_RESET;
-[e = _ui_state . `E36 8 ]
+[; ;modules/ui.c: 167:             break;
+[e $U 1645  ]
 "169
-[; ;modules/ui.c: 169:             LCDpos(1,0);
-[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[; ;modules/ui.c: 169:         case UI_CFG_SEC:
+[e :U 1650 ]
 "170
-[; ;modules/ui.c: 170:             break;
-[e $U 1641  ]
+[; ;modules/ui.c: 170:             ui_state = UI_CFG_C;
+[e = _ui_state . `E36 4 ]
+"171
+[; ;modules/ui.c: 171:             alarm_edit_step = 0;
+[e = _alarm_edit_step -> -> 0 `i `uc ]
 "172
-[; ;modules/ui.c: 172:         case UI_CFG_RESET:
-[e :U 1655 ]
+[; ;modules/ui.c: 172:             LCDpos(1,4);
+[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 4 `i `uc ]
 "173
-[; ;modules/ui.c: 173:         default:
-[e :U 1656 ]
-"174
-[; ;modules/ui.c: 174:             ui_state = UI_NORMAL;
-[e = _ui_state . `E36 0 ]
+[; ;modules/ui.c: 173:             break;
+[e $U 1645  ]
 "175
-[; ;modules/ui.c: 175:             ui_normal();
-[e ( _ui_normal ..  ]
+[; ;modules/ui.c: 175:         case UI_CFG_C:
+[e :U 1651 ]
 "176
-[; ;modules/ui.c: 176:             break;
-[e $U 1641  ]
+[; ;modules/ui.c: 176:             if (alarm_edit_step < 2)
+[e $ ! < -> _alarm_edit_step `i -> 2 `i 1652  ]
 "177
-[; ;modules/ui.c: 177:     }
-}
-[e $U 1641  ]
-[e :U 1642 ]
-[e [\ -> _ui_state `ui , $ -> . `E36 0 `ui 1643
- , $ -> . `E36 1 `ui 1644
- , $ -> . `E36 2 `ui 1645
- , $ -> . `E36 3 `ui 1646
- , $ -> . `E36 4 `ui 1647
- , $ -> . `E36 5 `ui 1652
- , $ -> . `E36 6 `ui 1653
- , $ -> . `E36 7 `ui 1654
- , $ -> . `E36 8 `ui 1655
- 1656 ]
-[e :U 1641 ]
+[; ;modules/ui.c: 177:             {
+{
 "178
-[; ;modules/ui.c: 178: }
-[e :UE 1640 ]
+[; ;modules/ui.c: 178:                 alarm_edit_step++;
+[e ++ _alarm_edit_step -> -> 1 `i `uc ]
+"179
+[; ;modules/ui.c: 179:                 if (alarm_edit_step == 1) LCDpos(1,7);
+[e $ ! == -> _alarm_edit_step `i -> 1 `i 1653  ]
+[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 7 `i `uc ]
+[e :U 1653 ]
+"180
+[; ;modules/ui.c: 180:                 if (alarm_edit_step == 2) LCDpos(1,10);
+[e $ ! == -> _alarm_edit_step `i -> 2 `i 1654  ]
+[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 10 `i `uc ]
+[e :U 1654 ]
+"181
+[; ;modules/ui.c: 181:             }
 }
+[e $U 1655  ]
+"182
+[; ;modules/ui.c: 182:             else
+[e :U 1652 ]
 "183
-[; ;modules/ui.c: 183: void ui_select(void)
-[v _ui_select `(v ~T0 @X0 1 ef ]
+[; ;modules/ui.c: 183:             {
+{
 "184
-[; ;modules/ui.c: 184: {
+[; ;modules/ui.c: 184:                 alarm_edit_step = 0;
+[e = _alarm_edit_step -> -> 0 `i `uc ]
+"185
+[; ;modules/ui.c: 185:                 ui_state = UI_CFG_T;
+[e = _ui_state . `E36 5 ]
+"186
+[; ;modules/ui.c: 186:                 LCDpos(0,10);
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 10 `i `uc ]
+"187
+[; ;modules/ui.c: 187:             }
+}
+[e :U 1655 ]
+"188
+[; ;modules/ui.c: 188:             break;
+[e $U 1645  ]
+"190
+[; ;modules/ui.c: 190:         case UI_CFG_T:
+[e :U 1656 ]
+"191
+[; ;modules/ui.c: 191:             ui_state = UI_CFG_L;
+[e = _ui_state . `E36 6 ]
+"192
+[; ;modules/ui.c: 192:             LCDpos(0,11);
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 11 `i `uc ]
+"193
+[; ;modules/ui.c: 193:             break;
+[e $U 1645  ]
+"195
+[; ;modules/ui.c: 195:         case UI_CFG_L:
+[e :U 1657 ]
+"196
+[; ;modules/ui.c: 196:             ui_state = UI_CFG_ALARM_EN;
+[e = _ui_state . `E36 7 ]
+"197
+[; ;modules/ui.c: 197:             LCDpos(0,13);
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 13 `i `uc ]
+"198
+[; ;modules/ui.c: 198:             break;
+[e $U 1645  ]
+"200
+[; ;modules/ui.c: 200:         case UI_CFG_ALARM_EN:
+[e :U 1658 ]
+"201
+[; ;modules/ui.c: 201:             ui_state = UI_CFG_RESET;
+[e = _ui_state . `E36 8 ]
+"202
+[; ;modules/ui.c: 202:             LCDpos(1,0);
+[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+"203
+[; ;modules/ui.c: 203:             break;
+[e $U 1645  ]
+"205
+[; ;modules/ui.c: 205:         case UI_CFG_RESET:
+[e :U 1659 ]
+"206
+[; ;modules/ui.c: 206:         default:
+[e :U 1660 ]
+"207
+[; ;modules/ui.c: 207:             system.mode = MODE_NORMAL;
+[e = . _system 0 . `E54 0 ]
+"208
+[; ;modules/ui.c: 208:             ui_state = UI_NORMAL;
+[e = _ui_state . `E36 0 ]
+"209
+[; ;modules/ui.c: 209:             ui_normal();
+[e ( _ui_normal ..  ]
+"210
+[; ;modules/ui.c: 210:             break;
+[e $U 1645  ]
+"211
+[; ;modules/ui.c: 211:     }
+}
+[e $U 1645  ]
+[e :U 1646 ]
+[e [\ -> _ui_state `ui , $ -> . `E36 0 `ui 1647
+ , $ -> . `E36 1 `ui 1648
+ , $ -> . `E36 2 `ui 1649
+ , $ -> . `E36 3 `ui 1650
+ , $ -> . `E36 4 `ui 1651
+ , $ -> . `E36 5 `ui 1656
+ , $ -> . `E36 6 `ui 1657
+ , $ -> . `E36 7 `ui 1658
+ , $ -> . `E36 8 `ui 1659
+ 1660 ]
+[e :U 1645 ]
+"212
+[; ;modules/ui.c: 212: }
+[e :UE 1644 ]
+}
+"218
+[; ;modules/ui.c: 218: void ui_select(void)
+[v _ui_select `(v ~T0 @X0 1 ef ]
+"219
+[; ;modules/ui.c: 219: {
 {
 [e :U _ui_select ]
 [f ]
-"188
-[; ;modules/ui.c: 188:     system.records_timer = 0;
-[e = . _system 5 -> -> 0 `i `uc ]
-"193
-[; ;modules/ui.c: 193:     if (ui_state == UI_CFG_RESET)
-[e $ ! == -> _ui_state `ui -> . `E36 8 `ui 1658  ]
-"194
-[; ;modules/ui.c: 194:     {
-{
-"195
-[; ;modules/ui.c: 195:         STORAGE_Reset();
-[e ( _STORAGE_Reset ..  ]
-"197
-[; ;modules/ui.c: 197:         LCDcmd(0x01);
-[e ( _LCDcmd (1 -> -> 1 `i `uc ]
-"198
-[; ;modules/ui.c: 198:         LCDpos(0,0);
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
-"199
-[; ;modules/ui.c: 199:         LCDstr("Reset Done");
-[e ( _LCDstr (1 :s 11C ]
-"200
-[; ;modules/ui.c: 200:         _delay((unsigned long)((150)*(4000000/4000.0)));
-[e ( __delay (1 -> * -> -> 150 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
-"202
-[; ;modules/ui.c: 202:         ui_state = UI_NORMAL;
-[e = _ui_state . `E36 0 ]
-"203
-[; ;modules/ui.c: 203:         system.mode = MODE_NORMAL;
-[e = . _system 0 . `E54 0 ]
-"204
-[; ;modules/ui.c: 204:         ui_normal();
-[e ( _ui_normal ..  ]
-"205
-[; ;modules/ui.c: 205:         return;
-[e $UE 1657  ]
-"206
-[; ;modules/ui.c: 206:     }
-}
-[e :U 1658 ]
-"211
-[; ;modules/ui.c: 211:     if (system.mode == MODE_RECORDS)
-[e $ ! == -> . _system 0 `ui -> . `E54 2 `ui 1659  ]
-"212
-[; ;modules/ui.c: 212:     {
-{
-"213
-[; ;modules/ui.c: 213:         if (record_page == 0)
-[e $ ! == -> _record_page `i -> 0 `i 1660  ]
-"214
-[; ;modules/ui.c: 214:             record_page = 1;
-[e = _record_page -> -> 1 `i `uc ]
-[e $U 1661  ]
-"215
-[; ;modules/ui.c: 215:         else
-[e :U 1660 ]
-"216
-[; ;modules/ui.c: 216:         {
-{
-"217
-[; ;modules/ui.c: 217:             record_page = 0;
-[e = _record_page -> -> 0 `i `uc ]
-"218
-[; ;modules/ui.c: 218:             system.mode = MODE_NORMAL;
-[e = . _system 0 . `E54 0 ]
-"219
-[; ;modules/ui.c: 219:             ui_state = UI_NORMAL;
-[e = _ui_state . `E36 0 ]
 "220
-[; ;modules/ui.c: 220:             ui_normal();
-[e ( _ui_normal ..  ]
-"221
-[; ;modules/ui.c: 221:         }
-}
-[e :U 1661 ]
-"222
-[; ;modules/ui.c: 222:         return;
-[e $UE 1657  ]
+[; ;modules/ui.c: 220:     system.records_timer = 0;
+[e = . _system 5 -> -> 0 `i `uc ]
 "223
-[; ;modules/ui.c: 223:     }
-}
-[e :U 1659 ]
-"228
-[; ;modules/ui.c: 228:     if (ui_state == UI_NORMAL && system.mode == MODE_NORMAL)
-[e $ ! && == -> _ui_state `ui -> . `E36 0 `ui == -> . _system 0 `ui -> . `E54 0 `ui 1662  ]
-"229
-[; ;modules/ui.c: 229:     {
+[; ;modules/ui.c: 223:     if (ui_state == UI_CFG_RESET)
+[e $ ! == -> _ui_state `ui -> . `E36 8 `ui 1662  ]
+"224
+[; ;modules/ui.c: 224:     {
 {
+"225
+[; ;modules/ui.c: 225:         STORAGE_Reset();
+[e ( _STORAGE_Reset ..  ]
+"227
+[; ;modules/ui.c: 227:         LCDcmd(0x01);
+[e ( _LCDcmd (1 -> -> 1 `i `uc ]
+"228
+[; ;modules/ui.c: 228:         LCDpos(0,0);
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
+"229
+[; ;modules/ui.c: 229:         LCDstr("Reset Done");
+[e ( _LCDstr (1 :s 11C ]
 "230
-[; ;modules/ui.c: 230:         system.mode = MODE_RECORDS;
-[e = . _system 0 . `E54 2 ]
-"231
-[; ;modules/ui.c: 231:         record_page = 0;
-[e = _record_page -> -> 0 `i `uc ]
+[; ;modules/ui.c: 230:         _delay((unsigned long)((150)*(4000000/4000.0)));
+[e ( __delay (1 -> * -> -> 150 `i `d / -> -> 4000000 `l `d .4000.0 `ul ]
 "232
-[; ;modules/ui.c: 232:         ui_normal();
-[e ( _ui_normal ..  ]
+[; ;modules/ui.c: 232:         ui_state = UI_NORMAL;
+[e = _ui_state . `E36 0 ]
 "233
-[; ;modules/ui.c: 233:         return;
-[e $UE 1657  ]
+[; ;modules/ui.c: 233:         system.mode = MODE_NORMAL;
+[e = . _system 0 . `E54 0 ]
 "234
-[; ;modules/ui.c: 234:     }
+[; ;modules/ui.c: 234:         ui_normal();
+[e ( _ui_normal ..  ]
+"235
+[; ;modules/ui.c: 235:         return;
+[e $UE 1661  ]
+"236
+[; ;modules/ui.c: 236:     }
 }
 [e :U 1662 ]
 "239
-[; ;modules/ui.c: 239:     switch(ui_state)
-[e $U 1664  ]
+[; ;modules/ui.c: 239:     if (system.mode == MODE_RECORDS)
+[e $ ! == -> . _system 0 `ui -> . `E54 2 `ui 1663  ]
 "240
 [; ;modules/ui.c: 240:     {
 {
 "241
-[; ;modules/ui.c: 241:         case UI_CFG_HOUR:
-[e :U 1665 ]
+[; ;modules/ui.c: 241:         if (record_page == 0) record_page = 1;
+[e $ ! == -> _record_page `i -> 0 `i 1664  ]
+[e = _record_page -> -> 1 `i `uc ]
+[e $U 1665  ]
 "242
-[; ;modules/ui.c: 242:             system.clock.hour = (system.clock.hour + 1) % 24;
-[e = . . _system 2 0 -> % + -> . . _system 2 0 `i -> 1 `i -> 24 `i `uc ]
-"243
-[; ;modules/ui.c: 243:             break;
-[e $U 1663  ]
-"245
-[; ;modules/ui.c: 245:         case UI_CFG_MIN:
-[e :U 1666 ]
-"246
-[; ;modules/ui.c: 246:             system.clock.min = (system.clock.min + 1) % 60;
-[e = . . _system 2 1 -> % + -> . . _system 2 1 `i -> 1 `i -> 60 `i `uc ]
-"247
-[; ;modules/ui.c: 247:             break;
-[e $U 1663  ]
-"249
-[; ;modules/ui.c: 249:         case UI_CFG_SEC:
-[e :U 1667 ]
-"250
-[; ;modules/ui.c: 250:             system.clock.sec = (system.clock.sec + 1) % 60;
-[e = . . _system 2 2 -> % + -> . . _system 2 2 `i -> 1 `i -> 60 `i `uc ]
-"251
-[; ;modules/ui.c: 251:             break;
-[e $U 1663  ]
-"253
-[; ;modules/ui.c: 253:         case UI_CFG_C:
-[e :U 1668 ]
-"255
-[; ;modules/ui.c: 255:             if (alarm_edit_step == 0)
-[e $ ! == -> _alarm_edit_step `i -> 0 `i 1669  ]
-"256
-[; ;modules/ui.c: 256:                 system.alarms.clk_h = (system.alarms.clk_h + 1) % 24;
-[e = . . _system 4 1 -> % + -> . . _system 4 1 `i -> 1 `i -> 24 `i `uc ]
-[e $U 1670  ]
-"257
-[; ;modules/ui.c: 257:             else if (alarm_edit_step == 1)
-[e :U 1669 ]
-[e $ ! == -> _alarm_edit_step `i -> 1 `i 1671  ]
-"258
-[; ;modules/ui.c: 258:                 system.alarms.clk_m = (system.alarms.clk_m + 1) % 60;
-[e = . . _system 4 2 -> % + -> . . _system 4 2 `i -> 1 `i -> 60 `i `uc ]
-[e $U 1672  ]
-"259
-[; ;modules/ui.c: 259:             else if (alarm_edit_step == 2)
-[e :U 1671 ]
-[e $ ! == -> _alarm_edit_step `i -> 2 `i 1673  ]
-"260
-[; ;modules/ui.c: 260:                 system.alarms.clk_s = (system.alarms.clk_s + 1) % 60;
-[e = . . _system 4 3 -> % + -> . . _system 4 3 `i -> 1 `i -> 60 `i `uc ]
-[e :U 1673 ]
-[e :U 1672 ]
-[e :U 1670 ]
-"261
-[; ;modules/ui.c: 261:             break;
-[e $U 1663  ]
-"263
-[; ;modules/ui.c: 263:         case UI_CFG_T:
-[e :U 1674 ]
-"264
-[; ;modules/ui.c: 264:             system.alarms.temp_thr = (system.alarms.temp_thr + 1) % 51;
-[e = . . _system 4 4 -> % + -> . . _system 4 4 `i -> 1 `i -> 51 `i `c ]
-"265
-[; ;modules/ui.c: 265:             break;
-[e $U 1663  ]
-"267
-[; ;modules/ui.c: 267:         case UI_CFG_L:
-[e :U 1675 ]
-"268
-[; ;modules/ui.c: 268:             system.alarms.lum_thr = (system.alarms.lum_thr + 1) % 4;
-[e = . . _system 4 5 -> % + -> . . _system 4 5 `i -> 1 `i -> 4 `i `uc ]
-"269
-[; ;modules/ui.c: 269:             break;
-[e $U 1663  ]
-"271
-[; ;modules/ui.c: 271:         case UI_CFG_ALARM_EN:
-[e :U 1676 ]
-"272
-[; ;modules/ui.c: 272:             system.alarms.enabled ^= 1;
-[e =^ . . _system 4 0 -> -> 1 `i `uc ]
-"273
-[; ;modules/ui.c: 273:             break;
-[e $U 1663  ]
-"275
-[; ;modules/ui.c: 275:         default:
-[e :U 1677 ]
-"276
-[; ;modules/ui.c: 276:             break;
-[e $U 1663  ]
-"277
-[; ;modules/ui.c: 277:     }
-}
-[e $U 1663  ]
+[; ;modules/ui.c: 242:         else
 [e :U 1664 ]
-[e [\ -> _ui_state `ui , $ -> . `E36 1 `ui 1665
- , $ -> . `E36 2 `ui 1666
- , $ -> . `E36 3 `ui 1667
- , $ -> . `E36 4 `ui 1668
- , $ -> . `E36 5 `ui 1674
- , $ -> . `E36 6 `ui 1675
- , $ -> . `E36 7 `ui 1676
- 1677 ]
-[e :U 1663 ]
-"278
-[; ;modules/ui.c: 278: }
-[e :UE 1657 ]
+"243
+[; ;modules/ui.c: 243:         {
+{
+"244
+[; ;modules/ui.c: 244:             record_page = 0;
+[e = _record_page -> -> 0 `i `uc ]
+"245
+[; ;modules/ui.c: 245:             system.mode = MODE_NORMAL;
+[e = . _system 0 . `E54 0 ]
+"246
+[; ;modules/ui.c: 246:             ui_state = UI_NORMAL;
+[e = _ui_state . `E36 0 ]
+"247
+[; ;modules/ui.c: 247:             ui_normal();
+[e ( _ui_normal ..  ]
+"248
+[; ;modules/ui.c: 248:         }
 }
-"284
-[; ;modules/ui.c: 284: void ui_update(void)
-[v _ui_update `(v ~T0 @X0 1 ef ]
+[e :U 1665 ]
+"249
+[; ;modules/ui.c: 249:         return;
+[e $UE 1661  ]
+"250
+[; ;modules/ui.c: 250:     }
+}
+[e :U 1663 ]
+"253
+[; ;modules/ui.c: 253:     if (ui_state == UI_NORMAL && system.mode == MODE_NORMAL)
+[e $ ! && == -> _ui_state `ui -> . `E36 0 `ui == -> . _system 0 `ui -> . `E54 0 `ui 1666  ]
+"254
+[; ;modules/ui.c: 254:     {
+{
+"255
+[; ;modules/ui.c: 255:         system.mode = MODE_RECORDS;
+[e = . _system 0 . `E54 2 ]
+"256
+[; ;modules/ui.c: 256:         record_page = 0;
+[e = _record_page -> -> 0 `i `uc ]
+"257
+[; ;modules/ui.c: 257:         ui_normal();
+[e ( _ui_normal ..  ]
+"258
+[; ;modules/ui.c: 258:         return;
+[e $UE 1661  ]
+"259
+[; ;modules/ui.c: 259:     }
+}
+[e :U 1666 ]
+"262
+[; ;modules/ui.c: 262:     switch(ui_state)
+[e $U 1668  ]
+"263
+[; ;modules/ui.c: 263:     {
+{
+"264
+[; ;modules/ui.c: 264:         case UI_CFG_HOUR:
+[e :U 1669 ]
+"265
+[; ;modules/ui.c: 265:             system.clock.hour = (system.clock.hour + 1) % 24;
+[e = . . _system 2 0 -> % + -> . . _system 2 0 `i -> 1 `i -> 24 `i `uc ]
+"266
+[; ;modules/ui.c: 266:             break;
+[e $U 1667  ]
+"268
+[; ;modules/ui.c: 268:         case UI_CFG_MIN:
+[e :U 1670 ]
+"269
+[; ;modules/ui.c: 269:             system.clock.min = (system.clock.min + 1) % 60;
+[e = . . _system 2 1 -> % + -> . . _system 2 1 `i -> 1 `i -> 60 `i `uc ]
+"270
+[; ;modules/ui.c: 270:             break;
+[e $U 1667  ]
+"272
+[; ;modules/ui.c: 272:         case UI_CFG_SEC:
+[e :U 1671 ]
+"273
+[; ;modules/ui.c: 273:             system.clock.sec = (system.clock.sec + 1) % 60;
+[e = . . _system 2 2 -> % + -> . . _system 2 2 `i -> 1 `i -> 60 `i `uc ]
+"274
+[; ;modules/ui.c: 274:             break;
+[e $U 1667  ]
+"276
+[; ;modules/ui.c: 276:         case UI_CFG_C:
+[e :U 1672 ]
+"277
+[; ;modules/ui.c: 277:             if (alarm_edit_step == 0)
+[e $ ! == -> _alarm_edit_step `i -> 0 `i 1673  ]
+"278
+[; ;modules/ui.c: 278:                 system.alarms.clk_h = (system.alarms.clk_h + 1) % 24;
+[e = . . _system 4 1 -> % + -> . . _system 4 1 `i -> 1 `i -> 24 `i `uc ]
+[e $U 1674  ]
+"279
+[; ;modules/ui.c: 279:             else if (alarm_edit_step == 1)
+[e :U 1673 ]
+[e $ ! == -> _alarm_edit_step `i -> 1 `i 1675  ]
+"280
+[; ;modules/ui.c: 280:                 system.alarms.clk_m = (system.alarms.clk_m + 1) % 60;
+[e = . . _system 4 2 -> % + -> . . _system 4 2 `i -> 1 `i -> 60 `i `uc ]
+[e $U 1676  ]
+"281
+[; ;modules/ui.c: 281:             else if (alarm_edit_step == 2)
+[e :U 1675 ]
+[e $ ! == -> _alarm_edit_step `i -> 2 `i 1677  ]
+"282
+[; ;modules/ui.c: 282:                 system.alarms.clk_s = (system.alarms.clk_s + 1) % 60;
+[e = . . _system 4 3 -> % + -> . . _system 4 3 `i -> 1 `i -> 60 `i `uc ]
+[e :U 1677 ]
+[e :U 1676 ]
+[e :U 1674 ]
+"283
+[; ;modules/ui.c: 283:             break;
+[e $U 1667  ]
 "285
-[; ;modules/ui.c: 285: {
+[; ;modules/ui.c: 285:         case UI_CFG_T:
+[e :U 1678 ]
+"286
+[; ;modules/ui.c: 286:             system.alarms.temp_thr = (system.alarms.temp_thr + 1) % 51;
+[e = . . _system 4 4 -> % + -> . . _system 4 4 `i -> 1 `i -> 51 `i `c ]
+"287
+[; ;modules/ui.c: 287:             break;
+[e $U 1667  ]
+"289
+[; ;modules/ui.c: 289:         case UI_CFG_L:
+[e :U 1679 ]
+"290
+[; ;modules/ui.c: 290:             system.alarms.lum_thr = (system.alarms.lum_thr + 1) % 4;
+[e = . . _system 4 5 -> % + -> . . _system 4 5 `i -> 1 `i -> 4 `i `uc ]
+"291
+[; ;modules/ui.c: 291:             break;
+[e $U 1667  ]
+"293
+[; ;modules/ui.c: 293:         case UI_CFG_ALARM_EN:
+[e :U 1680 ]
+"294
+[; ;modules/ui.c: 294:             system.alarms.enabled ^= 1;
+[e =^ . . _system 4 0 -> -> 1 `i `uc ]
+"295
+[; ;modules/ui.c: 295:             break;
+[e $U 1667  ]
+"297
+[; ;modules/ui.c: 297:         default:
+[e :U 1681 ]
+"298
+[; ;modules/ui.c: 298:             break;
+[e $U 1667  ]
+"299
+[; ;modules/ui.c: 299:     }
+}
+[e $U 1667  ]
+[e :U 1668 ]
+[e [\ -> _ui_state `ui , $ -> . `E36 1 `ui 1669
+ , $ -> . `E36 2 `ui 1670
+ , $ -> . `E36 3 `ui 1671
+ , $ -> . `E36 4 `ui 1672
+ , $ -> . `E36 5 `ui 1678
+ , $ -> . `E36 6 `ui 1679
+ , $ -> . `E36 7 `ui 1680
+ 1681 ]
+[e :U 1667 ]
+"300
+[; ;modules/ui.c: 300: }
+[e :UE 1661 ]
+}
+"306
+[; ;modules/ui.c: 306: void ui_update(void)
+[v _ui_update `(v ~T0 @X0 1 ef ]
+"307
+[; ;modules/ui.c: 307: {
 {
 [e :U _ui_update ]
 [f ]
-"289
-[; ;modules/ui.c: 289:     if (system.mode == MODE_RECORDS)
-[e $ ! == -> . _system 0 `ui -> . `E54 2 `ui 1679  ]
-"290
-[; ;modules/ui.c: 290:     {
+"309
+[; ;modules/ui.c: 309:     if (system.mode == MODE_RECORDS)
+[e $ ! == -> . _system 0 `ui -> . `E54 2 `ui 1683  ]
+"310
+[; ;modules/ui.c: 310:     {
 {
-"291
-[; ;modules/ui.c: 291:         ui_show_records(record_page);
+"311
+[; ;modules/ui.c: 311:         ui_show_records(record_page);
 [e ( _ui_show_records (1 _record_page ]
-"294
-[; ;modules/ui.c: 294:         if (system.flags.one_second)
-[e $ ! != -> . . _system 1 0 `i -> 0 `i 1680  ]
-"295
-[; ;modules/ui.c: 295:         {
+"313
+[; ;modules/ui.c: 313:         if (system.flags.one_second)
+[e $ ! != -> . . _system 1 0 `i -> 0 `i 1684  ]
+"314
+[; ;modules/ui.c: 314:         {
 {
-"296
-[; ;modules/ui.c: 296:             system.records_timer++;
-[e ++ . _system 5 -> -> 1 `i `uc ]
-"298
-[; ;modules/ui.c: 298:             if (system.records_timer >= 10)
-[e $ ! >= -> . _system 5 `i -> 10 `i 1681  ]
-"299
-[; ;modules/ui.c: 299:             {
-{
-"300
-[; ;modules/ui.c: 300:                 system.mode = MODE_NORMAL;
-[e = . _system 0 . `E54 0 ]
-"301
-[; ;modules/ui.c: 301:                 ui_state = UI_NORMAL;
-[e = _ui_state . `E36 0 ]
-"302
-[; ;modules/ui.c: 302:                 ui_normal();
-[e ( _ui_normal ..  ]
-"303
-[; ;modules/ui.c: 303:                 system.records_timer = 0;
-[e = . _system 5 -> -> 0 `i `uc ]
-"304
-[; ;modules/ui.c: 304:             }
-}
-[e :U 1681 ]
-"305
-[; ;modules/ui.c: 305:         }
-}
-[e :U 1680 ]
-"306
-[; ;modules/ui.c: 306:         return;
-[e $UE 1678  ]
-"307
-[; ;modules/ui.c: 307:     }
-}
-[e :U 1679 ]
-"312
-[; ;modules/ui.c: 312:     ui_time_update();
-[e ( _ui_time_update ..  ]
 "315
-[; ;modules/ui.c: 315:     switch(ui_state)
-[e $U 1683  ]
+[; ;modules/ui.c: 315:             system.records_timer++;
+[e ++ . _system 5 -> -> 1 `i `uc ]
 "316
-[; ;modules/ui.c: 316:     {
-{
+[; ;modules/ui.c: 316:             if (system.records_timer >= 10)
+[e $ ! >= -> . _system 5 `i -> 10 `i 1685  ]
 "317
-[; ;modules/ui.c: 317:         case UI_CFG_HOUR: LCDpos(0,1); break;
-[e :U 1684 ]
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
-[e $U 1682  ]
-"318
-[; ;modules/ui.c: 318:         case UI_CFG_MIN: LCDpos(0,4); break;
-[e :U 1685 ]
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 4 `i `uc ]
-[e $U 1682  ]
-"319
-[; ;modules/ui.c: 319:         case UI_CFG_SEC: LCDpos(0,7); break;
-[e :U 1686 ]
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 7 `i `uc ]
-[e $U 1682  ]
-"321
-[; ;modules/ui.c: 321:         case UI_CFG_C:
-[e :U 1687 ]
-"322
-[; ;modules/ui.c: 322:             switch (alarm_edit_step)
-[e $U 1689  ]
-"323
-[; ;modules/ui.c: 323:             {
+[; ;modules/ui.c: 317:             {
 {
+"318
+[; ;modules/ui.c: 318:                 system.mode = MODE_NORMAL;
+[e = . _system 0 . `E54 0 ]
+"319
+[; ;modules/ui.c: 319:                 ui_state = UI_NORMAL;
+[e = _ui_state . `E36 0 ]
+"320
+[; ;modules/ui.c: 320:                 ui_normal();
+[e ( _ui_normal ..  ]
+"321
+[; ;modules/ui.c: 321:                 system.records_timer = 0;
+[e = . _system 5 -> -> 0 `i `uc ]
+"322
+[; ;modules/ui.c: 322:             }
+}
+[e :U 1685 ]
+"323
+[; ;modules/ui.c: 323:         }
+}
+[e :U 1684 ]
 "324
-[; ;modules/ui.c: 324:                 case 0: LCDpos(0,9); break;
-[e :U 1690 ]
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 9 `i `uc ]
-[e $U 1688  ]
+[; ;modules/ui.c: 324:         return;
+[e $UE 1682  ]
 "325
-[; ;modules/ui.c: 325:                 case 1: LCDpos(1,4); break;
-[e :U 1691 ]
-[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 4 `i `uc ]
-[e $U 1688  ]
-"326
-[; ;modules/ui.c: 326:                 case 2: LCDpos(1,7); break;
-[e :U 1692 ]
-[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 7 `i `uc ]
-[e $U 1688  ]
-"327
-[; ;modules/ui.c: 327:                 case 3: LCDpos(1,10); break;
-[e :U 1693 ]
-[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 10 `i `uc ]
-[e $U 1688  ]
-"328
-[; ;modules/ui.c: 328:             }
+[; ;modules/ui.c: 325:     }
 }
-[e $U 1688  ]
-[e :U 1689 ]
-[e [\ _alarm_edit_step , $ -> 0 `i 1690
- , $ -> 1 `i 1691
- , $ -> 2 `i 1692
- , $ -> 3 `i 1693
- 1688 ]
-[e :U 1688 ]
-"329
-[; ;modules/ui.c: 329:             break;
-[e $U 1682  ]
-"331
-[; ;modules/ui.c: 331:         case UI_CFG_T: LCDpos(0,10); break;
-[e :U 1694 ]
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 10 `i `uc ]
-[e $U 1682  ]
-"332
-[; ;modules/ui.c: 332:         case UI_CFG_L: LCDpos(0,11); break;
-[e :U 1695 ]
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 11 `i `uc ]
-[e $U 1682  ]
-"333
-[; ;modules/ui.c: 333:         case UI_CFG_ALARM_EN: LCDpos(0,13); break;
-[e :U 1696 ]
-[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 13 `i `uc ]
-[e $U 1682  ]
-"334
-[; ;modules/ui.c: 334:         case UI_CFG_RESET: LCDpos(1,0); break;
-[e :U 1697 ]
-[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-[e $U 1682  ]
-"336
-[; ;modules/ui.c: 336:         case UI_NORMAL:
-[e :U 1698 ]
-"337
-[; ;modules/ui.c: 337:         default:
-[e :U 1699 ]
-"338
-[; ;modules/ui.c: 338:             LCDcmd(0x0C);
-[e ( _LCDcmd (1 -> -> 12 `i `uc ]
-"339
-[; ;modules/ui.c: 339:             break;
-[e $U 1682  ]
-"340
-[; ;modules/ui.c: 340:     }
-}
-[e $U 1682  ]
 [e :U 1683 ]
-[e [\ -> _ui_state `ui , $ -> . `E36 1 `ui 1684
- , $ -> . `E36 2 `ui 1685
- , $ -> . `E36 3 `ui 1686
- , $ -> . `E36 4 `ui 1687
- , $ -> . `E36 5 `ui 1694
- , $ -> . `E36 6 `ui 1695
- , $ -> . `E36 7 `ui 1696
- , $ -> . `E36 8 `ui 1697
- , $ -> . `E36 0 `ui 1698
- 1699 ]
-[e :U 1682 ]
+"328
+[; ;modules/ui.c: 328:     ui_time_update();
+[e ( _ui_time_update ..  ]
+"331
+[; ;modules/ui.c: 331:     switch(ui_state)
+[e $U 1687  ]
+"332
+[; ;modules/ui.c: 332:     {
+{
+"333
+[; ;modules/ui.c: 333:         case UI_CFG_HOUR: LCDpos(0,1); break;
+[e :U 1688 ]
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 1 `i `uc ]
+[e $U 1686  ]
+"334
+[; ;modules/ui.c: 334:         case UI_CFG_MIN: LCDpos(0,4); break;
+[e :U 1689 ]
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 4 `i `uc ]
+[e $U 1686  ]
+"335
+[; ;modules/ui.c: 335:         case UI_CFG_SEC: LCDpos(0,7); break;
+[e :U 1690 ]
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 7 `i `uc ]
+[e $U 1686  ]
+"337
+[; ;modules/ui.c: 337:         case UI_CFG_C:
+[e :U 1691 ]
+"338
+[; ;modules/ui.c: 338:             switch (alarm_edit_step)
+[e $U 1693  ]
+"339
+[; ;modules/ui.c: 339:             {
+{
+"340
+[; ;modules/ui.c: 340:                 case 0: LCDpos(0,9); break;
+[e :U 1694 ]
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 9 `i `uc ]
+[e $U 1692  ]
 "341
-[; ;modules/ui.c: 341: }
-[e :UE 1678 ]
+[; ;modules/ui.c: 341:                 case 1: LCDpos(1,4); break;
+[e :U 1695 ]
+[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 4 `i `uc ]
+[e $U 1692  ]
+"342
+[; ;modules/ui.c: 342:                 case 2: LCDpos(1,7); break;
+[e :U 1696 ]
+[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 7 `i `uc ]
+[e $U 1692  ]
+"343
+[; ;modules/ui.c: 343:                 case 3: LCDpos(1,10); break;
+[e :U 1697 ]
+[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 10 `i `uc ]
+[e $U 1692  ]
+"344
+[; ;modules/ui.c: 344:             }
 }
-"346
-[; ;modules/ui.c: 346: void ui_show_records(uint8_t page)
-[v _ui_show_records `(v ~T0 @X0 1 ef1`uc ]
+[e $U 1692  ]
+[e :U 1693 ]
+[e [\ _alarm_edit_step , $ -> 0 `i 1694
+ , $ -> 1 `i 1695
+ , $ -> 2 `i 1696
+ , $ -> 3 `i 1697
+ 1692 ]
+[e :U 1692 ]
+"345
+[; ;modules/ui.c: 345:             break;
+[e $U 1686  ]
 "347
-[; ;modules/ui.c: 347: {
+[; ;modules/ui.c: 347:         case UI_CFG_T: LCDpos(0,10); break;
+[e :U 1698 ]
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 10 `i `uc ]
+[e $U 1686  ]
+"348
+[; ;modules/ui.c: 348:         case UI_CFG_L: LCDpos(0,11); break;
+[e :U 1699 ]
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 11 `i `uc ]
+[e $U 1686  ]
+"349
+[; ;modules/ui.c: 349:         case UI_CFG_ALARM_EN: LCDpos(0,13); break;
+[e :U 1700 ]
+[e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 13 `i `uc ]
+[e $U 1686  ]
+"350
+[; ;modules/ui.c: 350:         case UI_CFG_RESET: LCDpos(1,0); break;
+[e :U 1701 ]
+[e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+[e $U 1686  ]
+"352
+[; ;modules/ui.c: 352:         case UI_NORMAL:
+[e :U 1702 ]
+"353
+[; ;modules/ui.c: 353:         default:
+[e :U 1703 ]
+"354
+[; ;modules/ui.c: 354:             LCDcmd(0x0C);
+[e ( _LCDcmd (1 -> -> 12 `i `uc ]
+"355
+[; ;modules/ui.c: 355:             break;
+[e $U 1686  ]
+"356
+[; ;modules/ui.c: 356:     }
+}
+[e $U 1686  ]
+[e :U 1687 ]
+[e [\ -> _ui_state `ui , $ -> . `E36 1 `ui 1688
+ , $ -> . `E36 2 `ui 1689
+ , $ -> . `E36 3 `ui 1690
+ , $ -> . `E36 4 `ui 1691
+ , $ -> . `E36 5 `ui 1698
+ , $ -> . `E36 6 `ui 1699
+ , $ -> . `E36 7 `ui 1700
+ , $ -> . `E36 8 `ui 1701
+ , $ -> . `E36 0 `ui 1702
+ 1703 ]
+[e :U 1686 ]
+"357
+[; ;modules/ui.c: 357: }
+[e :UE 1682 ]
+}
+"363
+[; ;modules/ui.c: 363: void ui_show_records(uint8_t page)
+[v _ui_show_records `(v ~T0 @X0 1 ef1`uc ]
+"364
+[; ;modules/ui.c: 364: {
 {
 [e :U _ui_show_records ]
-"346
-[; ;modules/ui.c: 346: void ui_show_records(uint8_t page)
+"363
+[; ;modules/ui.c: 363: void ui_show_records(uint8_t page)
 [v _page `uc ~T0 @X0 1 r1 ]
-"347
-[; ;modules/ui.c: 347: {
+"364
+[; ;modules/ui.c: 364: {
 [f ]
-"348
-[; ;modules/ui.c: 348:     static uint8_t last_page = 0xFF;
-[v F12666 `uc ~T0 @X0 1 s last_page ]
-[i F12666
+"365
+[; ;modules/ui.c: 365:     static uint8_t last_page = 0xFF;
+[v F12667 `uc ~T0 @X0 1 s last_page ]
+[i F12667
 -> -> 255 `i `uc
 ]
-"349
-[; ;modules/ui.c: 349:     char buf[17];
+"366
+[; ;modules/ui.c: 366:     char buf[17];
 [v _buf `uc ~T0 @X0 -> 17 `i a ]
-"351
-[; ;modules/ui.c: 351:     if (page != last_page)
-[e $ ! != -> _page `i -> F12666 `i 1701  ]
-"352
-[; ;modules/ui.c: 352:     {
+"368
+[; ;modules/ui.c: 368:     if (page != last_page)
+[e $ ! != -> _page `i -> F12667 `i 1705  ]
+"369
+[; ;modules/ui.c: 369:     {
 {
-"353
-[; ;modules/ui.c: 353:         LCDcmd(0x01);
+"370
+[; ;modules/ui.c: 370:         LCDcmd(0x01);
 [e ( _LCDcmd (1 -> -> 1 `i `uc ]
-"354
-[; ;modules/ui.c: 354:         last_page = page;
-[e = F12666 _page ]
-"355
-[; ;modules/ui.c: 355:     }
+"371
+[; ;modules/ui.c: 371:         last_page = page;
+[e = F12667 _page ]
+"372
+[; ;modules/ui.c: 372:     }
 }
-[e :U 1701 ]
-"357
-[; ;modules/ui.c: 357:     if (page == 0)
-[e $ ! == -> _page `i -> 0 `i 1702  ]
-"358
-[; ;modules/ui.c: 358:     {
+[e :U 1705 ]
+"374
+[; ;modules/ui.c: 374:     if (page == 0)
+[e $ ! == -> _page `i -> 0 `i 1706  ]
+"375
+[; ;modules/ui.c: 375:     {
 {
-"359
-[; ;modules/ui.c: 359:         rec_t tmax = STORAGE_GetTmax();
+"376
+[; ;modules/ui.c: 376:         rec_t tmax = STORAGE_GetTmax();
 [v _tmax `S1625 ~T0 @X0 1 a ]
 [e = _tmax ( _STORAGE_GetTmax ..  ]
-"360
-[; ;modules/ui.c: 360:         rec_t tmin = STORAGE_GetTmin();
+"377
+[; ;modules/ui.c: 377:         rec_t tmin = STORAGE_GetTmin();
 [v _tmin `S1625 ~T0 @X0 1 a ]
 [e = _tmin ( _STORAGE_GetTmin ..  ]
-"362
-[; ;modules/ui.c: 362:         LCDpos(0,0);
+"379
+[; ;modules/ui.c: 379:         LCDpos(0,0);
 [e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
-"363
-[; ;modules/ui.c: 363:         sprintf(buf, "%02u:%02u:%02u %02dC L%u",
+"380
+[; ;modules/ui.c: 380:         sprintf(buf, "%02u:%02u:%02u %02dC L%u",
 [e ( _sprintf (1 , , , , , (. , &U _buf :s 12C -> . _tmax 0 `i -> . _tmax 1 `i -> . _tmax 2 `i -> . _tmax 3 `i -> . _tmax 4 `i ]
-"365
-[; ;modules/ui.c: 365:         LCDstr(buf);
+"382
+[; ;modules/ui.c: 382:         LCDstr(buf);
 [e ( _LCDstr (1 &U _buf ]
-"367
-[; ;modules/ui.c: 367:         LCDpos(1,0);
+"384
+[; ;modules/ui.c: 384:         LCDpos(1,0);
 [e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-"368
-[; ;modules/ui.c: 368:         sprintf(buf, "%02u:%02u:%02u %02dC L%u",
+"385
+[; ;modules/ui.c: 385:         sprintf(buf, "%02u:%02u:%02u %02dC L%u",
 [e ( _sprintf (1 , , , , , (. , &U _buf :s 13C -> . _tmin 0 `i -> . _tmin 1 `i -> . _tmin 2 `i -> . _tmin 3 `i -> . _tmin 4 `i ]
-"370
-[; ;modules/ui.c: 370:         LCDstr(buf);
+"387
+[; ;modules/ui.c: 387:         LCDstr(buf);
 [e ( _LCDstr (1 &U _buf ]
-"371
-[; ;modules/ui.c: 371:     }
+"388
+[; ;modules/ui.c: 388:     }
 }
-[e $U 1703  ]
-"372
-[; ;modules/ui.c: 372:     else
-[e :U 1702 ]
-"373
-[; ;modules/ui.c: 373:     {
+[e $U 1707  ]
+"389
+[; ;modules/ui.c: 389:     else
+[e :U 1706 ]
+"390
+[; ;modules/ui.c: 390:     {
 {
-"374
-[; ;modules/ui.c: 374:         rec_t lmax = STORAGE_GetLmax();
+"391
+[; ;modules/ui.c: 391:         rec_t lmax = STORAGE_GetLmax();
 [v _lmax `S1625 ~T0 @X0 1 a ]
 [e = _lmax ( _STORAGE_GetLmax ..  ]
-"375
-[; ;modules/ui.c: 375:         rec_t lmin = STORAGE_GetLmin();
+"392
+[; ;modules/ui.c: 392:         rec_t lmin = STORAGE_GetLmin();
 [v _lmin `S1625 ~T0 @X0 1 a ]
 [e = _lmin ( _STORAGE_GetLmin ..  ]
-"377
-[; ;modules/ui.c: 377:         LCDpos(0,0);
+"394
+[; ;modules/ui.c: 394:         LCDpos(0,0);
 [e ( _LCDpos (2 , -> -> 0 `i `uc -> -> 0 `i `uc ]
-"378
-[; ;modules/ui.c: 378:         sprintf(buf, "%02u:%02u:%02u %02dC L%u",
+"395
+[; ;modules/ui.c: 395:         sprintf(buf, "%02u:%02u:%02u %02dC L%u",
 [e ( _sprintf (1 , , , , , (. , &U _buf :s 14C -> . _lmax 0 `i -> . _lmax 1 `i -> . _lmax 2 `i -> . _lmax 3 `i -> . _lmax 4 `i ]
-"380
-[; ;modules/ui.c: 380:         LCDstr(buf);
+"397
+[; ;modules/ui.c: 397:         LCDstr(buf);
 [e ( _LCDstr (1 &U _buf ]
-"382
-[; ;modules/ui.c: 382:         LCDpos(1,0);
+"399
+[; ;modules/ui.c: 399:         LCDpos(1,0);
 [e ( _LCDpos (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-"383
-[; ;modules/ui.c: 383:         sprintf(buf, "%02u:%02u:%02u %02dC L%u",
+"400
+[; ;modules/ui.c: 400:         sprintf(buf, "%02u:%02u:%02u %02dC L%u",
 [e ( _sprintf (1 , , , , , (. , &U _buf :s 15C -> . _lmin 0 `i -> . _lmin 1 `i -> . _lmin 2 `i -> . _lmin 3 `i -> . _lmin 4 `i ]
-"385
-[; ;modules/ui.c: 385:         LCDstr(buf);
+"402
+[; ;modules/ui.c: 402:         LCDstr(buf);
 [e ( _LCDstr (1 &U _buf ]
-"386
-[; ;modules/ui.c: 386:     }
+"403
+[; ;modules/ui.c: 403:     }
 }
-[e :U 1703 ]
-"387
-[; ;modules/ui.c: 387: }
-[e :UE 1700 ]
+[e :U 1707 ]
+"404
+[; ;modules/ui.c: 404: }
+[e :UE 1704 ]
 }
 [p f _sprintf 9995908 ]
 [a 12C 37 48 50 117 58 37 48 50 117 58 37 48 50 117 32 37 48 50 100 67 32 76 37 117 0 ]
@@ -2643,8 +2720,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 15C 37 48 50 117 58 37 48 50 117 58 37 48 50 117 32 37 48 50 100 67 32 76 37 117 0 ]
 [a 11C 82 101 115 101 116 32 68 111 110 101 0 ]
 [a 3C 37 48 50 100 67 32 32 32 32 76 37 100 0 ]
+[a 2C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 32 37 99 37 99 37 99 32 37 99 32 37 99 0 ]
 [a 1C 76 111 97 100 105 110 103 46 46 46 0 ]
-[a 2C 37 48 50 100 58 37 48 50 100 58 37 48 50 100 32 37 99 37 99 37 99 32 37 99 32 0 ]
 [a 10C 82 101 115 101 116 32 114 101 99 111 114 100 115 32 83 50 32 0 ]
 [a 4C 83 101 116 32 99 108 111 99 107 32 116 105 109 101 32 32 32 0 ]
 [a 5C 65 76 32 37 48 50 100 58 37 48 50 100 58 37 48 50 100 32 32 32 0 ]

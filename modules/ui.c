@@ -9,19 +9,19 @@
 #define _XTAL_FREQ 4000000
 #define TINA_SEC 10   
 
-
 extern unsigned char temperature_value;
 extern unsigned char luminosity_value;
+
+ui_state_t ui_state = UI_NORMAL;
+static uint8_t alarm_edit_step = 0;
+static uint8_t record_page = 0;
 
 static void ui_normal(void);
 static void ui_time_update(void);
 
-ui_state_t ui_state = UI_NORMAL;
-static uint8_t alarm_edit_step = 0;   // 0=h, 1=m, 2=s
-static uint8_t record_page = 0;
 
 // -----------------------------------
-// UI init
+// Init UI
 // -----------------------------------
 void ui_init(void)
 {
@@ -30,52 +30,76 @@ void ui_init(void)
     __delay_ms(100);
 
     LCDcmd(0x01);
-    LCDpos(0, 0);
+    LCDpos(0,0);
     LCDstr("Loading...");
     __delay_ms(300);
 
     ui_normal();
 }
 
+
 // -----------------------------------
-// Normal screen
+// Clear LCD and disable cursor
 // -----------------------------------
 static void ui_normal(void)
 {
     LCDcmd(0x01);
-    LCDcmd(0x0C);      // cursor off
+    LCDcmd(0x0C);
 }
 
+
 // -----------------------------------
-// Update time + status line
+// Update first line (time + status)
+// Update second line (menu text)
 // -----------------------------------
 static void ui_time_update(void)
 {
     char buf[17];
+    char cC, cT, cL, cA, cR;
 
-    char cC = system.alarms.active_C ? 'C' : ' ';
-    char cT = system.alarms.active_T ? 'T' : ' ';
-    char cL = system.alarms.active_L ? 'L' : ' ';
-    char cA = system.alarms.enabled  ? 'A' : 'a';
+    // CONFIG: always show CTL A R
+    if (system.mode == MODE_CONFIG)
+    {
+        cC = 'C';
+        cT = 'T';
+        cL = 'L';
+        cA = system.alarms.enabled ? 'A' : 'a';
+        cR = 'R';
+    }
+    else
+    {
+        // NORMAL + alarms OFF ? show only 'a'
+        if (!system.alarms.enabled)
+        {
+            cC = ' ';
+            cT = ' ';
+            cL = ' ';
+            cA = 'a';
+        }
+        else
+        {
+            // NORMAL + alarms ON ? show active CTL
+            cC = system.alarms.active_C ? 'C' : ' ';
+            cT = system.alarms.active_T ? 'T' : ' ';
+            cL = system.alarms.active_L ? 'L' : ' ';
+            cA = 'A';
+        }
 
-    if (ui_state == UI_CFG_RESET)
-    sprintf(buf, "%02d:%02d:%02d %c%c%c %c R",
+        cR = ' ';
+    }
+
+    // First line
+    sprintf(buf, "%02d:%02d:%02d %c%c%c %c %c",
             system.clock.hour,
             system.clock.min,
             system.clock.sec,
-            cC, cT, cL, cA);
-    else
-        sprintf(buf, "%02d:%02d:%02d %c%c%c %c ",
-                system.clock.hour,
-                system.clock.min,
-                system.clock.sec,
-                cC, cT, cL, cA);
+            cC, cT, cL, cA, cR);
 
-
-    LCDpos(0, 0);
+    LCDpos(0,0);
     LCDstr(buf);
 
-    LCDpos(1, 0);
+    // Second line
+    LCDpos(1,0);
 
     switch (ui_state)
     {
@@ -117,14 +141,16 @@ static void ui_time_update(void)
     LCDstr(buf);
 }
 
+
 // -----------------------------------
-// S1 ? next menu step
+// S1: next menu state
 // -----------------------------------
 void ui_next_state(void)
 {
     switch(ui_state)
     {
         case UI_NORMAL:
+            system.mode = MODE_CONFIG;
             ui_state = UI_CFG_HOUR;
             LCDcmd(0x0F);
             LCDpos(0,1);
@@ -143,19 +169,18 @@ void ui_next_state(void)
         case UI_CFG_SEC:
             ui_state = UI_CFG_C;
             alarm_edit_step = 0;
-            LCDpos(1,4);       // alarm hour position
+            LCDpos(1,4);
             break;
 
-        case UI_CFG_C:   // ALARM TIME EDIT (3 steps)
+        case UI_CFG_C:
             if (alarm_edit_step < 2)
             {
-                alarm_edit_step++;  // move to m ? s
+                alarm_edit_step++;
                 if (alarm_edit_step == 1) LCDpos(1,7);
                 if (alarm_edit_step == 2) LCDpos(1,10);
             }
             else
             {
-                // finished h,m,s ? move to next config
                 alarm_edit_step = 0;
                 ui_state = UI_CFG_T;
                 LCDpos(0,10);
@@ -179,25 +204,22 @@ void ui_next_state(void)
 
         case UI_CFG_RESET:
         default:
+            system.mode = MODE_NORMAL;
             ui_state = UI_NORMAL;
             ui_normal();
             break;
     }
 }
 
+
 // -----------------------------------
-// S2 ? increment / actions / records
+// S2: increment and actions
 // -----------------------------------
 void ui_select(void)
 {
-    // -------------------------------
-    // Always reset records timeout
-    // -------------------------------
     system.records_timer = 0;
 
-    // -------------------------------
-    // RESET (S2 confirms reset)
-    // -------------------------------
+    // Reset records
     if (ui_state == UI_CFG_RESET)
     {
         STORAGE_Reset();
@@ -213,13 +235,10 @@ void ui_select(void)
         return;
     }
 
-    // -------------------------------
-    // RECORDS MODE page flip
-    // -------------------------------
+    // Records page switch
     if (system.mode == MODE_RECORDS)
     {
-        if (record_page == 0)
-            record_page = 1;
+        if (record_page == 0) record_page = 1;
         else
         {
             record_page = 0;
@@ -230,9 +249,7 @@ void ui_select(void)
         return;
     }
 
-    // -------------------------------
-    // NORMAL ? enter RECORDS MODE
-    // -------------------------------
+    // Enter records mode
     if (ui_state == UI_NORMAL && system.mode == MODE_NORMAL)
     {
         system.mode = MODE_RECORDS;
@@ -241,9 +258,7 @@ void ui_select(void)
         return;
     }
 
-    // -------------------------------
-    // CONFIG MODE ? increment values
-    // -------------------------------
+    // CONFIG value changes
     switch(ui_state)
     {
         case UI_CFG_HOUR:
@@ -259,7 +274,6 @@ void ui_select(void)
             break;
 
         case UI_CFG_C:
-            // alarm time editing
             if (alarm_edit_step == 0)
                 system.alarms.clk_h = (system.alarms.clk_h + 1) % 24;
             else if (alarm_edit_step == 1)
@@ -268,7 +282,7 @@ void ui_select(void)
                 system.alarms.clk_s = (system.alarms.clk_s + 1) % 60;
             break;
 
-        case UI_CFG_T: 
+        case UI_CFG_T:
             system.alarms.temp_thr = (system.alarms.temp_thr + 1) % 51;
             break;
 
@@ -287,26 +301,22 @@ void ui_select(void)
 
 
 // -----------------------------------
-// Periodic UI update
+// Periodic update
 // -----------------------------------
 void ui_update(void)
 {
-    // -------------------------------------
-    // RECORDS MODE ? show records + timeout
-    // -------------------------------------
+    // Records mode
     if (system.mode == MODE_RECORDS)
     {
         ui_show_records(record_page);
 
-        // Timeout counter (TINA)
         if (system.flags.one_second)
         {
             system.records_timer++;
-
             if (system.records_timer >= TINA_SEC)
             {
                 system.mode = MODE_NORMAL;
-                ui_state   = UI_NORMAL;
+                ui_state = UI_NORMAL;
                 ui_normal();
                 system.records_timer = 0;
             }
@@ -314,12 +324,10 @@ void ui_update(void)
         return;
     }
 
-    // -------------------------------------
-    // Normal or Config Mode
-    // -------------------------------------
+    // Normal or config mode
     ui_time_update();
 
-    // Keep cursor position
+    // Restore cursor position
     switch(ui_state)
     {
         case UI_CFG_HOUR: LCDpos(0,1); break;
@@ -343,13 +351,14 @@ void ui_update(void)
 
         case UI_NORMAL:
         default:
-            LCDcmd(0x0C); // cursor off
+            LCDcmd(0x0C);
             break;
     }
 }
 
+
 // -----------------------------------
-// Records screen
+// Show records pages
 // -----------------------------------
 void ui_show_records(uint8_t page)
 {
@@ -358,7 +367,7 @@ void ui_show_records(uint8_t page)
 
     if (page != last_page)
     {
-        LCDcmd(0x01);   // clear
+        LCDcmd(0x01);
         last_page = page;
     }
 
